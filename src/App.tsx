@@ -8,7 +8,6 @@ import Question from './pages/Question/Question';
 import Questions from './pages/Questions/Questions';
 import ExamQuestions from './pages/ExamQuestions/ExamQuestions';
 import { MantineProvider } from '@mantine/core';
-import Footer from './components/Footer';
 import DespreNoi from './pages/Despre-noi';
 function App() {
   return (
