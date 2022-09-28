@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="152" height="122" viewBox="0 0 152 122">
+  <g id="normal" transform="translate(-28.795 -42.609)">
+    <rect id="Rectangle_35" data-name="Rectangle 35" width="17" height="17" transform="translate(46.795 147.609)" fill="#28a6df" opacity="0.5"/>
+    <rect id="Rectangle_36" data-name="Rectangle 36" width="17" height="17" transform="translate(91.795 147.609)" fill="#65d37b" opacity="0.5"/>
+    <rect id="Rectangle_37" data-name="Rectangle 37" width="17" height="17" transform="translate(136.795 147.609)" fill="#28a6df" opacity="0.5"/>
+    <text id="A" transform="translate(53.497 158.609)" fill="#fff" font-size="6" font-family="Montserrat-Bold, Montserrat" font-weight="700" letter-spacing="0.02em" opacity="0.8"><tspan x="0" y="0">A</tspan></text>
+    <text id="B" transform="translate(98.5 158.609)" fill="#fff" font-size="6" font-family="Montserrat-Bold, Montserrat" font-weight="700" letter-spacing="0.02em" opacity="0.8"><tspan x="0" y="0">B</tspan></text>
+    <text id="C" transform="translate(143.596 158.609)" fill="#fff" font-size="6" font-family="Montserrat-Bold, Montserrat" font-weight="700" letter-spacing="0.02em" opacity="0.8"><tspan x="0" y="0">C</tspan></text>
+    <rect id="Rectangle_38" data-name="Rectangle 38" width="107" height="5" rx="2.5" transform="translate(28.795 83.609)" fill="#f8fafc"/>
+    <rect id="Rectangle_39" data-name="Rectangle 39" width="152" height="5" rx="2.5" transform="translate(28.795 42.609)" fill="#4a4a4a"/>
+    <rect id="Rectangle_40" data-name="Rectangle 40" width="72" height="5" rx="2.5" transform="translate(28.795 52.609)" fill="#4a4a4a"/>
+    <rect id="Rectangle_41" data-name="Rectangle 41" width="87" height="5" rx="2.5" transform="translate(28.795 97.609)" fill="#f8fafc"/>
+    <rect id="Rectangle_42" data-name="Rectangle 42" width="125" height="5" rx="2.5" transform="translate(28.795 111.609)" fill="#f8fafc"/>
+  </g>
+</svg>

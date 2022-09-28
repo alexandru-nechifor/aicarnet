@@ -1,0 +1,88 @@
+const Settings = {
+  'categoria-A': {
+    total: 20,
+    minCorrect: 17,
+    maxWrong: 3,
+    time: 20,
+    questionData: 'categoria-A',
+  },
+  'categoria-A-mediu-de-invatare': {
+    total: 0,
+    minCorrect: 0,
+    maxWrong: 999,
+    time: 0,
+    questionData: 'categoria-A',
+  },
+  'categoria-B': {
+    total: 26,
+    minCorrect: 22,
+    maxWrong: 4,
+    time: 30,
+    questionData: 'categoria-B',
+  },
+  'categoria-B-mediu-de-invatare': {
+    total: 0,
+    minCorrect: 0,
+    maxWrong: 999,
+    time: 0,
+    questionData: 'categoria-B',
+  },
+  'categoria-C': {
+    total: 26,
+    minCorrect: 22,
+    maxWrong: 4,
+    time: 30,
+    questionData: 'categoria-C',
+  },
+  'categoria-C-mediu-de-invatare': {
+    total: 0,
+    minCorrect: 0,
+    maxWrong: 999,
+    time: 0,
+    questionData: 'categoria-C',
+  },
+  'categoria-D': {
+    total: 26,
+    minCorrect: 22,
+    maxWrong: 4,
+    time: 30,
+    questionData: 'categoria-D',
+  },
+  'categoria-D-mediu-de-invatare': {
+    total: 0,
+    minCorrect: 0,
+    maxWrong: 999,
+    time: 0,
+    questionData: 'categoria-D',
+  },
+  'categoria-E': {
+    total: 11,
+    minCorrect: 9,
+    maxWrong: 3,
+    time: 15,
+    questionData: 'categoria-E',
+  },
+  'categoria-E-mediu-de-invatare': {
+    total: 0,
+    minCorrect: 0,
+    maxWrong: 999,
+    time: 0,
+    questionData: 'categoria-E',
+  },
+  'redobandire-permis': {
+    total: 15,
+    minCorrect: 13,
+    maxWrong: 3,
+    time: 30,
+    questionData: 'redobandire-permis',
+  },
+  'redobandire-permis-mediu-de-invatare': {
+    total: 0,
+    minCorrect: 0,
+    maxWrong: 999,
+    time: 0,
+    questionData: 'redobandire-permis',
+  },
+};
+
+export default Settings;
