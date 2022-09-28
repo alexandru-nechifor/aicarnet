@@ -114,7 +114,7 @@ const Hero = () => {
 
         <div className={classes.controls}>
           <Link to="/chestionare-auto">
-            <Button className={classes.control} size="lg" mx={15}>
+            <Button className={classes.control} size="lg" m={15}>
               Chestionare auto
             </Button>
           </Link>
@@ -124,7 +124,7 @@ const Hero = () => {
               size="lg"
               variant="default"
               color="gray"
-              mx={15}
+              m={15}
             >
               Întrebări examen
             </Button>

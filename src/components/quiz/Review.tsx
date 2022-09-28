@@ -138,13 +138,13 @@ const Review = () => {
               return <></>;
             }
           })}
-        </Stack>
 
-        <Link to="/chestionare-auto">
-          <Button size={'md'} sx={{ color: 'white', margin: '1rem auto' }}>
-            Chestionare auto
-          </Button>
-        </Link>
+          <Link to="/chestionare-auto">
+            <Button size={'md'} sx={{ color: 'white', margin: '1rem auto' }}>
+              Chestionare auto
+            </Button>
+          </Link>
+        </Stack>
       </Container>
     </>
   );

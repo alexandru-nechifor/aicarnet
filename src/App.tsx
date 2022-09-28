@@ -51,7 +51,6 @@ function App() {
             element={<Question />}
           />
         </Routes>
-        <Footer />
       </MantineProvider>
     </>
   );
