@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { IQuizData } from '../types/IQuizData';
-import { QueryFunctionContext } from '@tanstack/react-query';
+// import { QueryFunctionContext } from '@tanstack/react-query';
 const axiosInstace = axios.create({
   baseURL: 'http://localhost:3006',
 });

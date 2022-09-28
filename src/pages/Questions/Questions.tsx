@@ -8,7 +8,6 @@ import {
   createStyles,
   Loader,
   Stack,
-  Text,
 } from '@mantine/core';
 import { toLetter } from '../../functions/toLetter';
 import Choice from '../../components/questionsData/Choice';
