@@ -8,6 +8,7 @@ const Timer = () => {
   const [remainingMinutes, setRemainingMinutes] = useState(time);
   const [remainingSeconds, setRemainingSeconds] = useState(0);
 
+  //Alternativa
   useEffect(() => {
     if (!JSON.stringify(quizID).includes('mediu-de-invatare')) {
       const intervalId = setInterval(() => {
