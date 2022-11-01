@@ -1,19 +1,21 @@
 import axios from 'axios';
 import { IQuizData } from '../types/IQuizData';
-// import { QueryFunctionContext } from '@tanstack/react-query';
+import { QueryFunctionContext } from '@tanstack/react-query';
 const axiosInstace = axios.create({
   baseURL: 'http://localhost:3006',
 });
 
-// QueryFunctionContext<[string, string | null | undefined]>;
-
-export const getData = async ({ queryKey }: any) => {
+export const getData = async ({
+  queryKey,
+}: QueryFunctionContext<[string | undefined]>) => {
   const [quizID] = queryKey;
-  const { data } = await axiosInstace.get<IQuizData[]>(quizID);
+  const { data } = await axiosInstace.get<IQuizData[]>(`${quizID}`);
   return data;
 };
 
-export const getQuestion = async ({ queryKey }: any) => {
+export const getQuestion = async ({
+  queryKey,
+}: QueryFunctionContext<[string | undefined, string | undefined]>) => {
   const [quizID, uuid] = queryKey;
   const { data } = await axiosInstace.get<IQuizData>(`/${quizID}/${uuid}`);
   return data;

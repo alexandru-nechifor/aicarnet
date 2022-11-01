@@ -12,7 +12,10 @@ import {
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Logo from '../assets/logo_white.png';
+import LogoWhite from '../assets/logo.png';
 import { MenuItems } from '../constants';
+import { ActionIcon, useMantineColorScheme } from '@mantine/core';
+import { IconSun, IconMoonStars } from '@tabler/icons';
 
 const HEADER_HEIGHT = 60;
 
@@ -65,6 +68,8 @@ const useStyles = createStyles((theme) => ({
 const Navbar = () => {
   const { classes } = useStyles();
   const [navOpened, setNavOpened] = useState(false);
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const dark = colorScheme === 'dark';
   const items = MenuItems.map((link) => {
     return (
       <NavLink
@@ -82,7 +87,11 @@ const Navbar = () => {
     <Header height={HEADER_HEIGHT} sx={{ borderBottom: 0 }} mb={60}>
       <Container className={classes.inner} fluid>
         <NavLink to="/">
-          <Image height={30} src={Logo} alt="aiCarnet Logo" />
+          <Image
+            height={30}
+            src={dark ? Logo : LogoWhite}
+            alt="aiCarnet Logo"
+          />
         </NavLink>
 
         <Drawer
@@ -98,6 +107,14 @@ const Navbar = () => {
           {items}
         </Group>
         <Group>
+          <ActionIcon
+            variant="outline"
+            color={dark ? 'white' : 'blue'}
+            onClick={() => toggleColorScheme()}
+            title="Toggle color scheme"
+          >
+            {dark ? <IconSun size={18} /> : <IconMoonStars size={18} />}
+          </ActionIcon>
           <NavLink to="/chestionare-auto">
             <Button radius="sm" size="md">
               Chestionare auto

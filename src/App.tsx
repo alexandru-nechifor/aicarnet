@@ -7,50 +7,70 @@ import QuizSelect from './pages/Quiz/QuizSelect';
 import Question from './pages/Question/Question';
 import Questions from './pages/Questions/Questions';
 import ExamQuestions from './pages/ExamQuestions/ExamQuestions';
-import { MantineProvider } from '@mantine/core';
+import {
+  ColorScheme,
+  ColorSchemeProvider,
+  MantineProvider,
+} from '@mantine/core';
 import DespreNoi from './pages/Despre-noi';
+import { useHotkeys, useLocalStorage } from '@mantine/hooks';
+
 function App() {
+  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+    key: 'mantine-color-scheme',
+    defaultValue: 'light',
+    getInitialValueInEffect: true,
+  });
+
+  const toggleColorScheme = (value?: ColorScheme) =>
+    setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+  useHotkeys([['mod+J', () => toggleColorScheme()]]);
   return (
     <>
-      <MantineProvider
-        withGlobalStyles
-        withNormalizeCSS
-        theme={{
-          fontFamily: 'Nunito Sans',
-          colorScheme: 'dark',
-          components: {
-            Container: {
-              defaultProps: {
-                sizes: {
-                  xs: 540,
-                  sm: 720,
-                  md: 960,
-                  lg: 1140,
-                  xl: '90%',
+      <ColorSchemeProvider
+        colorScheme={colorScheme}
+        toggleColorScheme={toggleColorScheme}
+      >
+        <MantineProvider
+          withGlobalStyles
+          withNormalizeCSS
+          theme={{
+            fontFamily: 'Nunito Sans',
+            colorScheme,
+            components: {
+              Container: {
+                defaultProps: {
+                  sizes: {
+                    xs: 540,
+                    sm: 720,
+                    md: 960,
+                    lg: 1140,
+                    xl: '90%',
+                  },
                 },
               },
             },
-          },
-        }}
-      >
-        <Navbar />
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path="/chestionare-auto" element={<ChestionareAuto />} />
-          <Route path="/chestionar-auto/:quizID" element={<QuizTemplate />} />
-          <Route path="/chestionare-auto/:quizID" element={<QuizSelect />} />
-          <Route path="/intrebari-examen/" element={<ExamQuestions />} />
-          <Route path="/despre-noi/" element={<DespreNoi />} />
-          <Route
-            path="/intrebari-examen/:questionsID"
-            element={<Questions />}
-          />
-          <Route
-            path="/intrebari-examen/:questionsCatID/intrebare/:uuid"
-            element={<Question />}
-          />
-        </Routes>
-      </MantineProvider>
+          }}
+        >
+          <Navbar />
+          <Routes>
+            <Route index element={<Home />} />
+            <Route path="/chestionare-auto" element={<ChestionareAuto />} />
+            <Route path="/chestionar-auto/:quizID" element={<QuizTemplate />} />
+            <Route path="/chestionare-auto/:quizID" element={<QuizSelect />} />
+            <Route path="/intrebari-examen/" element={<ExamQuestions />} />
+            <Route path="/despre-noi/" element={<DespreNoi />} />
+            <Route
+              path="/intrebari-examen/:questionsID"
+              element={<Questions />}
+            />
+            <Route
+              path="/intrebari-examen/:questionsCatID/intrebare/:uuid"
+              element={<Question />}
+            />
+          </Routes>
+        </MantineProvider>
+      </ColorSchemeProvider>
     </>
   );
 }

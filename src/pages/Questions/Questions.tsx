@@ -2,14 +2,8 @@ import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuestions } from '../../customHooks/useQuestions';
 import ReactPaginate from 'react-paginate';
-import {
-  Center,
-  Container,
-  createStyles,
-  Loader,
-  Stack,
-} from '@mantine/core';
-import { toLetter } from '../../functions/toLetter';
+import { Center, Container, createStyles, Loader, Stack } from '@mantine/core';
+import { toLetter } from '../../utils/toLetter';
 import Choice from '../../components/questionsData/Choice';
 import QuestionHeading from '../../components/questionsData/QuestionHeading';
 import DataImage from '../../components/questionsData/DataImage';
@@ -70,6 +64,7 @@ const Questions = () => {
   const { classes } = useStyles();
   const [pageNumber, setPageNumber] = useState(0);
   const { questionsID } = useParams<string>();
+
   const { isFetching, isError } = useQuestions(questionsID);
   const questionData = useFilteredQuestionsSelector();
 
