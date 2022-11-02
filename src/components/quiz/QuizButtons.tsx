@@ -113,7 +113,7 @@ const QuizButtons = ({
           onClick={answerLater}
           leftIcon={<AiOutlineRedo size={18} />}
           variant="outline"
-          color="blue.7"
+          color="blue.7 "
           disabled={currentQuestion < totalCount - 1 ? false : true}
           className={classes.button}
         >

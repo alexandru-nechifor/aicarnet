@@ -1,4 +1,4 @@
-import { createStyles, Grid, Paper, Stack } from '@mantine/core';
+import { createStyles, Grid, Paper } from '@mantine/core';
 import { useDispatch } from 'react-redux';
 import { useCurrentQuestionSelector } from '../../customHooks/useCurrentQuestionSelector';
 import { useQuizDataSelector } from '../../customHooks/useQuizDataSelector';
@@ -32,7 +32,10 @@ const QuizChoices = ({ setQuestionScore, shuffle }: IQuizChoices) => {
       width: '70%',
       padding: '1rem 2rem',
       margin: '1rem 0',
-      backgroundColor: theme.colors.dark[6],
+      backgroundColor:
+        theme.colorScheme === 'dark'
+          ? theme.colors.dark[6]
+          : theme.colors.gray[2],
       userSelect: 'none',
 
       '&:hover': {

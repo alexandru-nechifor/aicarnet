@@ -14,7 +14,10 @@ const QuizHeader = () => {
 
   const useStyles = createStyles((theme) => ({
     headerItem: {
-      backgroundColor: theme.colors.dark[5],
+      backgroundColor:
+        theme.colorScheme === 'dark'
+          ? theme.colors.dark[5]
+          : theme.colors.gray[2],
       padding: '0.5rem 1rem',
       borderRadius: '0.5rem',
 

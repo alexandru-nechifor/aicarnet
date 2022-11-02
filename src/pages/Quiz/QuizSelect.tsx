@@ -50,8 +50,14 @@ const QuizSelect = () => {
                         align="center"
                         justify="center"
                         sx={(theme) => ({
-                          backgroundColor: theme.colors.dark[5],
-                          color: theme.colors.blue[7],
+                          backgroundColor:
+                            theme.colorScheme === 'dark'
+                              ? theme.colors.dark[5]
+                              : theme.colors.gray[2],
+                          color:
+                            theme.colorScheme === 'dark'
+                              ? theme.colors.gray[1]
+                              : theme.colors.dark[7],
                           padding: '2rem',
                           borderRadius: '0.5rem',
                           height: '250px',
@@ -69,12 +75,7 @@ const QuizSelect = () => {
                           height={100}
                           width={100}
                         />
-                        <Title
-                          order={2}
-                          size="h4"
-                          color="gray.1"
-                          sx={{ marginTop: 10 }}
-                        >
+                        <Title order={2} size="h4" sx={{ marginTop: 10 }}>
                           {quizType.title}
                         </Title>
                       </Stack>

@@ -37,6 +37,9 @@ function App() {
           theme={{
             fontFamily: 'Nunito Sans',
             colorScheme,
+            colors: {
+              main: ['#3F8FFE'],
+            },
             components: {
               Container: {
                 defaultProps: {

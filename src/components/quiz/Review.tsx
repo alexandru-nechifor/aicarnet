@@ -1,4 +1,4 @@
-import { toLetter } from '../../functions/toLetter';
+import { toLetter } from '../../utils/toLetter';
 import { useSavedAnswersSelector } from '../../customHooks/useSavedAnswersSelector';
 import { useHasPassed } from '../../customHooks/useQuizStatusSelectors';
 import { IconCheck, IconCircleX } from '@tabler/icons';

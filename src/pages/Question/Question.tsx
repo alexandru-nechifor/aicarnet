@@ -7,8 +7,6 @@ import {
   Button,
   Group,
   Modal,
-  TextInput,
-  NumberInput,
 } from '@mantine/core';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -17,7 +15,7 @@ import CorrectAnswer from '../../components/questionsData/CorrectAnswer';
 import DataImage from '../../components/questionsData/DataImage';
 import QuestionHeading from '../../components/questionsData/QuestionHeading';
 import { useQuestion } from '../../customHooks/useQuestion';
-import { toLetter } from '../../functions/toLetter';
+import { toLetter } from '../../utils/toLetter';
 import DeleteQuestion from './DeleteQuestion';
 import EditQuestion from './EditQuestion';
 
