@@ -7,9 +7,12 @@ export const useNavStyles = createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '1rem 4rem',
+    padding: '1rem 0rem',
+    maxWidth: '80%',
+    [theme.fn.smallerThan('md')]: { maxWidth: '90%' },
     [theme.fn.smallerThan('sm')]: {
-      padding: '0 0.8rem',
+      maxWidth: '95%',
+      padding: '0',
     },
   },
 
@@ -42,7 +45,7 @@ export const useNavStyles = createStyles((theme) => ({
       backgroundColor:
         theme.colorScheme === 'dark'
           ? theme.colors.dark[6]
-          : theme.colors.gray[0],
+          : theme.colors.gray[1],
     },
   },
 }));
