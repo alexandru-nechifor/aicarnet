@@ -6,14 +6,20 @@ export const MenuItems = [
   },
 
   {
+    title: 'Blog',
+    url: '/blog',
+    id: 'blog',
+  },
+
+  {
     title: 'Întrebări examen',
     url: '/intrebari-examen',
     id: 'intrebari-examen',
   },
 
   {
-    title: 'Despre noi',
-    url: '/despre-noi',
-    id: 'despre-noi',
+    title: 'Chestionare Auto',
+    url: '/chestionare-auto',
+    id: 'chestionare-auto',
   },
 ];

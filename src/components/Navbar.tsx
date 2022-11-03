@@ -1,5 +1,4 @@
 import {
-  createStyles,
   Header,
   Container,
   Group,
@@ -13,60 +12,13 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Logo from '../assets/logo_white.png';
 import LogoWhite from '../assets/logo.png';
-import { MenuItems } from '../constants';
+import { MenuItems } from '../constants/navigation';
 import { ActionIcon, useMantineColorScheme } from '@mantine/core';
 import { IconSun, IconMoonStars } from '@tabler/icons';
-
-const HEADER_HEIGHT = 60;
-
-const useStyles = createStyles((theme) => ({
-  inner: {
-    height: HEADER_HEIGHT,
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '1rem 4rem',
-    [theme.fn.smallerThan('sm')]: {
-      padding: '0 0.8rem',
-    },
-  },
-
-  links: {
-    [theme.fn.smallerThan('sm')]: {
-      display: 'none',
-    },
-  },
-
-  burger: {
-    [theme.fn.largerThan('sm')]: {
-      display: 'none',
-    },
-  },
-
-  link: {
-    display: 'block',
-    lineHeight: 1,
-    padding: '8px 12px',
-    borderRadius: theme.radius.sm,
-    textDecoration: 'none',
-    color:
-      theme.colorScheme === 'dark'
-        ? theme.colors.dark[0]
-        : theme.colors.gray[7],
-    fontSize: theme.fontSizes.md,
-    fontWeight: 500,
-
-    '&:hover': {
-      backgroundColor:
-        theme.colorScheme === 'dark'
-          ? theme.colors.dark[6]
-          : theme.colors.gray[0],
-    },
-  },
-}));
+import { HEADER_HEIGHT, useNavStyles } from '../styles/navStyles';
 
 const Navbar = () => {
-  const { classes } = useStyles();
+  const { classes } = useNavStyles();
   const [navOpened, setNavOpened] = useState(false);
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const dark = colorScheme === 'dark';
@@ -84,7 +36,7 @@ const Navbar = () => {
   });
 
   return (
-    <Header height={HEADER_HEIGHT} sx={{ borderBottom: 0 }} mb={60}>
+    <Header height={HEADER_HEIGHT} sx={{ borderBottom: 0 }}>
       <Container className={classes.inner} fluid>
         <NavLink to="/">
           <Image
@@ -115,9 +67,10 @@ const Navbar = () => {
           >
             {dark ? <IconSun size={18} /> : <IconMoonStars size={18} />}
           </ActionIcon>
-          <NavLink to="/chestionare-auto">
+          <NavLink to="/">
+            {/* TODO: if user is not logged in show this / else show profile button */}
             <Button radius="sm" size="md">
-              Chestionare auto
+              Înregistrare
             </Button>
           </NavLink>
           <Burger

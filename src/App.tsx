@@ -39,6 +39,7 @@ function App() {
             colorScheme,
             colors: {
               main: ['#3F8FFE'],
+              heading: [colorScheme === 'dark' ? '#EAF3FF' : '#02204A'],
             },
             components: {
               Container: {
@@ -48,7 +49,7 @@ function App() {
                     sm: 720,
                     md: 960,
                     lg: 1140,
-                    xl: '90%',
+                    xl: '80%',
                   },
                 },
               },
@@ -56,6 +57,7 @@ function App() {
           }}
         >
           <Navbar />
+
           <Routes>
             <Route index element={<Home />} />
             <Route path="/chestionare-auto" element={<ChestionareAuto />} />

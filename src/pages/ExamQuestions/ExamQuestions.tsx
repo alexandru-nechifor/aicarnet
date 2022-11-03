@@ -17,7 +17,6 @@ const ExamQuestions = () => {
                 <Grid.Col sm={12} lg={4} key={item.key}>
                   <Link key={item.key} to={`/intrebari-examen/${item.quizID}`}>
                     <Button sx={{ width: '100%' }} variant="outline">
-                      {' '}
                       {item.title}
                     </Button>
                   </Link>

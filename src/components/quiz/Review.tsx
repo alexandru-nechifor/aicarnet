@@ -2,14 +2,7 @@ import { toLetter } from '../../utils/toLetter';
 import { useSavedAnswersSelector } from '../../customHooks/useSavedAnswersSelector';
 import { useHasPassed } from '../../customHooks/useQuizStatusSelectors';
 import { IconCheck, IconCircleX } from '@tabler/icons';
-import {
-  Container,
-  Stack,
-  createStyles,
-  Group,
-  Text,
-  Button,
-} from '@mantine/core';
+import { Stack, createStyles, Group, Text, Button } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import { useQuizDataSelector } from '../../customHooks/useQuizDataSelector';
 import Choice from '../questionsData/Choice';
@@ -18,6 +11,7 @@ import DataImage from '../questionsData/DataImage';
 import CorrectAnswer from '../questionsData/CorrectAnswer';
 import { useScoreSelector } from '../../customHooks/useScoreSelector';
 import { useNegativeScoreSelector } from '../../customHooks/useNegativeScoreSelector';
+import CustomContainer from '../customComponents/Container';
 
 const Review = () => {
   const quizQuestions = useQuizDataSelector();
@@ -77,7 +71,7 @@ const Review = () => {
   const { classes } = useStyles();
   return (
     <>
-      <Container size="xl">
+      <CustomContainer>
         <Group
           className={classes.message}
           align="center"
@@ -145,7 +139,7 @@ const Review = () => {
             </Button>
           </Link>
         </Stack>
-      </Container>
+      </CustomContainer>
     </>
   );
 };
