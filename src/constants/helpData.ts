@@ -1,20 +1,20 @@
 import { BsBook } from 'react-icons/bs';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
-import { TiInputChecked } from 'react-icons/ti';
+import { AiOutlineCheckCircle } from 'react-icons/ai';
 
 export const helpData = [
   {
     icon: BsBook,
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a pellentesque nisl. Cras consequat bibendum eros, at eleifend arcu porttitor in. Mauris diam diam, luctus eget aliquet eu',
-    url: '',
+    url: '#',
   },
   {
     icon: AiOutlineInfoCircle,
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a pellentesque nisl. Cras consequat bibendum eros, at eleifend arcu porttitor in. Mauris diam diam, luctus eget aliquet eu',
-    url: '',
+    url: '#',
   },
   {
-    icon: TiInputChecked,
+    icon: AiOutlineCheckCircle,
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a pellentesque nisl. Cras consequat bibendum eros, at eleifend arcu porttitor in. Mauris diam diam, luctus eget aliquet eu',
     url: '',
   },

@@ -29,6 +29,10 @@ const EditQuestion = ({ questionData }: IEditQuestion) => {
     });
   };
 
+  if (isError) {
+    return <>Error</>;
+  }
+
   if (isLoading) {
     return (
       <Center sx={{ height: '90vh' }}>

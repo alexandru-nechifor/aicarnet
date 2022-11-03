@@ -25,9 +25,9 @@ const SocialProof = () => {
         spacing={0}
         sx={(theme) => ({
           [theme.fn.smallerThan('xs')]: {
-            opacity: '30%',
+            opacity: '5%',
             position: 'absolute',
-            right: -100,
+            right: '11%',
           },
         })}
       >

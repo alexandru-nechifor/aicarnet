@@ -65,7 +65,7 @@ const QuizButtons = ({
     if (negativeScore > Settings[quizID as keyof typeof Settings].maxWrong) {
       dispatch(setIsFinished(true));
     }
-  }, [negativeScore, currentQuestion, setIsFinished]);
+  }, [negativeScore, currentQuestion, dispatch, quizID]);
 
   // Delete answers function
   const deleteAnswers = () => {
