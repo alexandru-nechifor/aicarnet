@@ -1,5 +1,5 @@
 import { Grid, Title, Text, Stack } from '@mantine/core';
-import { heroHeader, heroParagraph } from '../../constants/HomePage';
+import { heroHeader, heroParagraph } from '../../constants/Home/HomePage';
 import CustomContainer from '../customComponents/Container';
 import HeroButtons from './HeroComponents/HeroButtons';
 import HeroImage from './HeroComponents/HeroImage';

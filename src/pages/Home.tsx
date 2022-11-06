@@ -1,7 +1,8 @@
 import { Box } from '@mantine/core';
 
 import Hero from '../components/Homepage/Hero';
-import HelpSection from '../components/Homepage/HelpSection';
+import BenefitsSection from '../components/Homepage/BenefitsSection';
+import FeaturesSection from '../components/Homepage/FeaturesSection';
 
 const Home = () => {
   return (
@@ -16,7 +17,8 @@ const Home = () => {
         })}
       >
         <Hero />
-        <HelpSection />
+        <BenefitsSection />
+        <FeaturesSection />
         {/* <SecondSection /> */}
       </Box>
     </>

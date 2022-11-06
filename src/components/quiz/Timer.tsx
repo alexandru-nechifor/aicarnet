@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Settings from '../../constants/QuizSettings';
+import Settings from '../../constants/Quiz/QuizSettings';
 
 const Timer = () => {
   let { quizID } = useParams<string>();

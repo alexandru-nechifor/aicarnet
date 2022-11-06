@@ -1,13 +1,13 @@
 import { Grid, Title, Text } from '@mantine/core';
 import CustomContainer from '../customComponents/Container';
 
-import { helpData } from '../../constants/helpData';
+import { helpData } from '../../constants/Home/helpData';
 import { BsArrowRightShort } from 'react-icons/bs';
-import { useHelpStyles } from '../../styles/Home/heroStyles';
+import { useBenefitsStyles } from '../../styles/Home/heroStyles';
 import { NavLink } from 'react-router-dom';
 
-const HelpSection = () => {
-  const { classes } = useHelpStyles();
+const BenefitsSection = () => {
+  const { classes } = useBenefitsStyles();
 
   return (
     <section className={classes.helpSection}>
@@ -34,4 +34,4 @@ const HelpSection = () => {
   );
 };
 
-export default HelpSection;
+export default BenefitsSection;

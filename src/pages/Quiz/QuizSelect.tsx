@@ -1,5 +1,5 @@
-import { QuizTypes } from '../../constants/chestionare';
-import { QuizMessages } from '../../constants/chestionare';
+import { QuizTypes } from '../../constants/Quiz/chestionare';
+import { QuizMessages } from '../../constants/Quiz/chestionare';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { FaInfoCircle } from 'react-icons/fa';

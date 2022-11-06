@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ChestionareTopics } from '../constants/chestionare';
+import { ChestionareTopics } from '../constants/Quiz/chestionare';
 
 import { Center, Container, Grid, Stack, Title } from '@mantine/core';
 

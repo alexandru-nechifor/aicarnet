@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
-import Settings from '../constants/QuizSettings';
+import Settings from '../constants/Quiz/QuizSettings';
 import { getData } from '../service/quizService';
 import { resetQuiz, setQuizData, setTotalCount } from '../store/quizDataSlice';
 import { shuffleArray } from '../utils/shuffleArray';

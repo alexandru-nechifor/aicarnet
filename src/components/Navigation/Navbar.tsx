@@ -10,14 +10,21 @@ import {
 } from '@mantine/core';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import Logo from '../assets/logo_white.png';
-import LogoWhite from '../assets/logo.png';
-import { MenuItems } from '../constants/navigation';
+import Logo from '../../assets/logo_white.png';
+import LogoWhite from '../../assets/logo.png';
+import { MenuItems } from '../../constants/navigation';
 import { ActionIcon, useMantineColorScheme } from '@mantine/core';
 import { IconSun, IconMoonStars } from '@tabler/icons';
-import { HEADER_HEIGHT, useNavStyles } from '../styles/navStyles';
+import {
+  HEADER_HEIGHT,
+  useNavStyles,
+} from '../../styles/Navigation/useNavStyles';
+import { useAuth } from '../../context/AuthContext';
+
+import UserNav from './UserNav';
 
 const Navbar = () => {
+  const { currentUser } = useAuth();
   const { classes } = useNavStyles();
   const [navOpened, setNavOpened] = useState(false);
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
@@ -59,20 +66,30 @@ const Navbar = () => {
           {items}
         </Group>
         <Group>
-          <ActionIcon
-            variant="outline"
-            color={dark ? 'white' : 'blue'}
-            onClick={() => toggleColorScheme()}
-            title="Toggle color scheme"
-          >
-            {dark ? <IconSun size={18} /> : <IconMoonStars size={18} />}
-          </ActionIcon>
-          <NavLink to="/">
-            {/* TODO: if user is not logged in show this / else show profile button */}
-            <Button radius="sm" size="md">
-              Înregistrare
-            </Button>
-          </NavLink>
+          {!currentUser ? (
+            <ActionIcon
+              variant="outline"
+              color={dark ? 'white' : 'blue'}
+              onClick={() => toggleColorScheme()}
+              title="Toggle color scheme"
+            >
+              {dark ? <IconSun size={18} /> : <IconMoonStars size={18} />}
+            </ActionIcon>
+          ) : (
+            <></>
+          )}
+
+          {currentUser ? (
+            <UserNav />
+          ) : (
+            <NavLink to="/autentificare">
+              {/* TODO: if user is not logged in show this / else show profile button */}
+              <Button radius="sm" size="md">
+                Autentificare
+              </Button>
+            </NavLink>
+          )}
+
           <Burger
             opened={navOpened}
             onClick={() => setNavOpened(true)}

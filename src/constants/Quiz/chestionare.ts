@@ -6,7 +6,7 @@ import {
   FaIdCard,
 } from 'react-icons/fa';
 
-import ChestionarImage from '../assets/chestionar-normal.svg';
+import ChestionarImage from '../../assets/chestionar-normal.svg';
 
 export const ChestionareTopics = [
   {

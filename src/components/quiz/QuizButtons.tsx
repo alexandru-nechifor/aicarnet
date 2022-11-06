@@ -4,7 +4,7 @@ import {
   AiOutlineRedo,
 } from 'react-icons/ai';
 import { useState, useEffect } from 'react';
-import Settings from '../../constants/QuizSettings';
+import Settings from '../../constants/Quiz/QuizSettings';
 import IQuizButtons from '../../types/IQuizButtons';
 import { useTotalCountSelector } from '../../customHooks/useTotalCountSelector';
 import { useNegativeScoreSelector } from '../../customHooks/useNegativeScoreSelector';

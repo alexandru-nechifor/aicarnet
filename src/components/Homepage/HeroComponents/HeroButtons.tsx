@@ -26,14 +26,17 @@ const HeroButtons = () => {
         </NavLink>
       </Button>
 
-      <Button
-        rightIcon={<BsFillArrowRightCircleFill />}
-        variant="outline"
-        size="lg"
-        className={classes.btn}
-      >
-        Alătură-te
-      </Button>
+      <NavLink to="/inregistrare">
+        {' '}
+        <Button
+          rightIcon={<BsFillArrowRightCircleFill />}
+          variant="outline"
+          size="lg"
+          className={classes.btn}
+        >
+          Alătură-te{' '}
+        </Button>
+      </NavLink>
     </Group>
   );
 };
