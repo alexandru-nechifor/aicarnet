@@ -26,4 +26,9 @@ export const useAuthStyles = createStyles((theme) => ({
       marginLeft: 'auto',
     },
   },
+
+  checkBox: {
+    borderBottom: '1px solid red',
+    paddingBottom: 5,
+  },
 }));

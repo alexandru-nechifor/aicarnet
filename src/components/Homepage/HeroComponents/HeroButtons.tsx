@@ -1,6 +1,7 @@
 import { Button, createStyles, Group } from '@mantine/core';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
+import { useAuth } from '../../../context/AuthContext';
 const HeroButtons = () => {
   const useStyles = createStyles((theme) => ({
     btn: {
@@ -14,6 +15,7 @@ const HeroButtons = () => {
     },
   }));
   const { classes } = useStyles();
+  const { currentUser } = useAuth();
   return (
     <Group>
       <Button
@@ -26,17 +28,29 @@ const HeroButtons = () => {
         </NavLink>
       </Button>
 
-      <NavLink to="/inregistrare">
-        {' '}
-        <Button
-          rightIcon={<BsFillArrowRightCircleFill />}
-          variant="outline"
-          size="lg"
-          className={classes.btn}
-        >
-          Alătură-te{' '}
-        </Button>
-      </NavLink>
+      {currentUser ? (
+        <NavLink to="/cont">
+          <Button
+            rightIcon={<BsFillArrowRightCircleFill />}
+            variant="outline"
+            size="lg"
+            className={classes.btn}
+          >
+            Contul meu
+          </Button>
+        </NavLink>
+      ) : (
+        <NavLink to="/inregistrare">
+          <Button
+            rightIcon={<BsFillArrowRightCircleFill />}
+            variant="outline"
+            size="lg"
+            className={classes.btn}
+          >
+            Alătură-te
+          </Button>
+        </NavLink>
+      )}
     </Group>
   );
 };

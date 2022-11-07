@@ -6,6 +6,7 @@ import {
   Title,
   PasswordInput,
   Text,
+  Anchor,
 } from '@mantine/core';
 import CustomContainer from '../customComponents/Container';
 import registerImg from '../../assets/Account/registerImg.png';
@@ -14,9 +15,14 @@ import { useAuth } from '../../context/AuthContext';
 import { db } from '../../utils/firebase';
 import { doc, setDoc } from 'firebase/firestore';
 import { useAuthStyles } from '../../styles/User/useAuthStyles';
+import { sendEmailVerification } from 'firebase/auth';
+import { Checkbox } from '@mantine/core';
+import React, { useState } from 'react';
 
 const Signup = () => {
-  const { signUp, updateUserProfile } = useAuth();
+  const { signUp } = useAuth();
+  const [isChecked, setIsChecked] = useState(false);
+  const [checkError, setCheckError] = useState(false);
   const navigate = useNavigate();
 
   const user = useForm({
@@ -43,25 +49,37 @@ const Signup = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (user.isValid()) {
-      try {
-        await signUp(email, password).then((result) => {
-          setDoc(doc(db, 'users', result.user.uid), {
-            name: name,
-            email: email,
-            avatarURL: '',
-            isAdmin: false,
+    if (isChecked) {
+      if (user.isValid()) {
+        try {
+          await signUp(email, password).then((result) => {
+            setDoc(doc(db, 'users', result.user.uid), {
+              name: name,
+              email: email,
+              avatarURL: '',
+              isAdmin: false,
+            });
+            sendEmailVerification(result.user);
           });
-          // console.log(result);
-          // updateUserProfile(result.user, name);
-        });
-        navigate('/cont');
-      } catch (e) {
-        // setError(e.message);
-        // console.log(e.message);
+
+          navigate('/cont');
+        } catch (e: any) {
+          console.error(e.message);
+        }
+      } else {
+        user.validate();
       }
     } else {
+      setCheckError(true);
       user.validate();
+    }
+  };
+
+  const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      setIsChecked(true);
+    } else {
+      setIsChecked(false);
     }
   };
 
@@ -126,7 +144,24 @@ const Signup = () => {
                   )
                 }
               />
-              <Button type="submit" mt="sm" size={'md'}>
+              <Checkbox
+                my={'lg'}
+                label={
+                  <>
+                    Accepts{' '}
+                    <Anchor
+                      size="sm"
+                      href="https://mantine.dev"
+                      target="_blank"
+                    >
+                      terms and conditions
+                    </Anchor>
+                  </>
+                }
+                onChange={handleCheck}
+                className={checkError ? classes.checkBox : ''}
+              />
+              <Button type="submit" size={'md'}>
                 Trimite
               </Button>
             </form>

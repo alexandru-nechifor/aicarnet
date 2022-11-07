@@ -95,7 +95,14 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route path="/autentificare" element={<Signin />} />
+              <Route
+                path="/autentificare"
+                element={
+                  <ProtectedRoute to="/cont">
+                    <Signin />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/cont" element={<Account />} />
             </Routes>
           </AuthProvider>

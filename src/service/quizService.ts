@@ -1,9 +1,13 @@
 import axios from 'axios';
 import { IQuizData } from '../types/IQuizData';
 import { QueryFunctionContext } from '@tanstack/react-query';
+// import { quizDatabase } from '../utils/firebase';
+// import { ref, child, get } from 'firebase/database';
 const axiosInstace = axios.create({
   baseURL: 'http://localhost:3006',
 });
+
+// const dataRef = ref(quizDatabase);
 
 export const getData = async ({
   queryKey,
@@ -12,6 +16,26 @@ export const getData = async ({
   const { data } = await axiosInstace.get<IQuizData[]>(`${quizID}`);
   return data;
 };
+
+// export const getData = async ({
+//   queryKey,
+// }: QueryFunctionContext<[string | undefined]>) => {
+//   const [quizID] = queryKey;
+//   let data: any = [];
+//   await get(child(dataRef, `${quizID}`))
+//     .then((snapshot) => {
+//       if (snapshot.exists()) {
+//         data = snapshot.val();
+//         console.log(data);
+//       } else {
+//         console.log('No data available');
+//       }
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+//   return data;
+// };
 
 export const getQuestion = async ({
   queryKey,

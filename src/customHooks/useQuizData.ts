@@ -31,3 +31,31 @@ export const useQuizData = (
     },
   });
 };
+// export const useQuizData = (
+//   quizType: string | undefined,
+//   quizID: string | undefined
+// ) => {
+//   const dispatch = useDispatch();
+//   let shuffledData: any = [];
+//   return useQuery([quizType], getData, {
+//     refetchOnMount: true,
+//     refetchOnWindowFocus: false,
+
+//     onSuccess: (data) => {
+//       dispatch(resetQuiz());
+
+//       let totalCount = 0;
+
+//       if (data) {
+//         shuffledData = shuffleArray(data);
+//         quizID?.includes('mediu-de-invatare')
+//           ? (totalCount = data.length)
+//           : (totalCount = Settings[quizID as keyof typeof Settings].total);
+//       }
+
+//       const filteredData = shuffledData.slice(0, totalCount);
+//       dispatch(setTotalCount(totalCount));
+//       dispatch(setQuizData(filteredData));
+//     },
+//   });
+// };

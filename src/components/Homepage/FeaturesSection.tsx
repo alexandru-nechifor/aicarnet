@@ -26,7 +26,7 @@ const FeaturesSection = () => {
               {benefitsData.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <Box className={classes.box}>
+                  <Box className={classes.box} key={item.id}>
                     <Icon className={classes.icon} />
                     <Box sx={{ width: '80%' }}>
                       <Title order={4} mb={10}>

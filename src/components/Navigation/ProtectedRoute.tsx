@@ -3,13 +3,13 @@ import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
 interface IProtectedRoute {
-  children: ReactJSXElement;
+  children: JSX.Element;
   to: string;
 }
 const ProtectedRoute = ({ children, to }: IProtectedRoute) => {
   const { currentUser } = useAuth();
   if (currentUser) {
-    <Navigate to={to} />;
+    return <Navigate to={to} />;
   }
   return children;
 };

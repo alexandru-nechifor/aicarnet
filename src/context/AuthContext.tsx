@@ -6,6 +6,7 @@ import {
   updateProfile,
   User,
   UserCredential,
+  sendEmailVerification,
 } from 'firebase/auth';
 import {
   createContext,
@@ -59,6 +60,10 @@ export function AuthProvider({ children }: IChildren) {
   const signUp = (email: string, password: string) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
+
+  // const verifyEmail = async () => {
+  //   return await currentUser?.sendEmailVerification();
+  // };
 
   const updateUserProfile = (user: User, name: string, photo?: string) => {
     return updateProfile(user, {

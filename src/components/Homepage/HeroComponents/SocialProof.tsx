@@ -13,8 +13,8 @@ const SocialProof = () => {
   const { classes } = useStyles();
 
   const renderIcon = (num: number) =>
-    [...Array(num)].map(() => {
-      return <AiFillStar className={classes.iconStyle} />;
+    [...Array(num)].map((item, index) => {
+      return <AiFillStar className={classes.iconStyle} key={index} />;
     });
 
   return (

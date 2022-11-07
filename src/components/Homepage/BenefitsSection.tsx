@@ -19,7 +19,7 @@ const BenefitsSection = () => {
           {helpData.map((item) => {
             const Icon = item.icon;
             return (
-              <Grid.Col lg={4}>
+              <Grid.Col lg={4} key={item.id}>
                 <Icon className={classes.boxIcon} />
                 <Text my={20}>{item.text}</Text>
                 <NavLink to={item.url} className={classes.link}>
