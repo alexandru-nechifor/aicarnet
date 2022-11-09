@@ -5,7 +5,7 @@ import { QueryFunctionContext } from '@tanstack/react-query';
 // import { ref, child, get } from 'firebase/database';
 const axiosInstace = axios.create({
   // baseURL: 'http://localhost:3006',
-  baseURL: '  http://10.10.14.10:3006',
+  baseURL: 'https://server-aicarnet.herokuapp.com/',
 });
 
 // "start": "json-server -p 3006 -w db.json",
