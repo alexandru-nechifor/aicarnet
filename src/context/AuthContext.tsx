@@ -6,7 +6,6 @@ import {
   updateProfile,
   User,
   UserCredential,
-  sendEmailVerification,
 } from 'firebase/auth';
 import {
   createContext,

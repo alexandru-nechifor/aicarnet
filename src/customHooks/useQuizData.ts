@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Settings from '../constants/Quiz/QuizSettings';
 import { useAuth } from '../context/AuthContext';

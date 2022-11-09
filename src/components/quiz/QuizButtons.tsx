@@ -59,15 +59,16 @@ const QuizButtons = ({
 
   const { classes } = useStyles();
 
-  useEffect(() => {
-    updateDoc(userProgressDb, {
+  const updateProgress = async () => {
+    console.log(currentQuestion, score, negativeScore);
+    await updateDoc(userProgressDb, {
       [`${quizCat}`]: {
         currentQuestion,
         score,
         negativeScore,
       },
     });
-  }, [currentQuestion]);
+  };
 
   // Check if the buttons can be Enabled
   useEffect(() => {
@@ -83,7 +84,13 @@ const QuizButtons = ({
     if (negativeScore > Settings[quizID as keyof typeof Settings].maxWrong) {
       dispatch(setIsFinished(true));
     }
-  }, [negativeScore, currentQuestion, dispatch, quizID]);
+
+    if (currentQuestion !== 0) {
+      updateProgress();
+    }
+
+    //eslint-disable-next-line
+  }, [currentQuestion]);
 
   // Delete answers function
   const deleteAnswers = () => {
@@ -121,24 +128,31 @@ const QuizButtons = ({
 
     deleteAnswers();
 
-    dispatch(setSavedAnswers(questionScore));
+    if (!quizID?.includes('mediu-de-invatare')) {
+      dispatch(setSavedAnswers(questionScore));
+    } else {
+    }
   };
 
   return (
     <Grid mt={40} align="center" justify="space-between">
-      <Grid.Col sm={12} md={4}>
-        <Button
-          size="lg"
-          onClick={answerLater}
-          leftIcon={<AiOutlineRedo size={18} />}
-          variant="outline"
-          color="blue.7 "
-          disabled={currentQuestion < totalCount - 1 ? false : true}
-          className={classes.button}
-        >
-          <span>Răspunde mai târziu</span>
-        </Button>
-      </Grid.Col>
+      {!quizID?.includes('mediu-de-invatare') ? (
+        <Grid.Col sm={12} md={4}>
+          <Button
+            size="lg"
+            onClick={answerLater}
+            leftIcon={<AiOutlineRedo size={18} />}
+            variant="outline"
+            color="blue.7 "
+            disabled={currentQuestion < totalCount - 1 ? false : true}
+            className={classes.button}
+          >
+            <span>Răspunde mai târziu</span>
+          </Button>
+        </Grid.Col>
+      ) : (
+        <></>
+      )}
       <Grid.Col sm={12} md={4}>
         <Button
           size="lg"
@@ -153,6 +167,7 @@ const QuizButtons = ({
           <span>Șterge răspunsul</span>
         </Button>
       </Grid.Col>
+
       <Grid.Col sm={12} md={4}>
         <Button
           size="lg"

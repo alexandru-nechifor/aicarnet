@@ -1,4 +1,3 @@
-import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 

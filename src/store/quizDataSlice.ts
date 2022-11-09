@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   quizData: [],
+  //eslint-disable-next-line
   savedAnswers: <Array<number>>[],
   score: 0,
   negativeScore: 0,

@@ -1,13 +1,6 @@
-import { useAuth } from '../context/AuthContext';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../utils/firebase';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import {
-  setProgressCurrentQuestion,
-  setProgressNegativeScore,
-  setProgressScore,
-} from '../store/quizDataSlice';
+
 import { User } from 'firebase/auth';
 
 export const getQuizProgress = async (currentUser: User | undefined | null) => {

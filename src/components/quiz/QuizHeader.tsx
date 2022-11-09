@@ -5,8 +5,10 @@ import Timer from './Timer';
 import { useNegativeScoreSelector } from '../../customHooks/useNegativeScoreSelector';
 import { createStyles, Grid, Group, Text } from '@mantine/core';
 import { useQuizDataSelector } from '../../customHooks/useQuizDataSelector';
+import { useParams } from 'react-router-dom';
 
 const QuizHeader = () => {
+  const { quizID } = useParams();
   const quizQuestions = useQuizDataSelector();
   const currentQuestion = useCurrentQuestionSelector();
   const score = useScoreSelector();
@@ -68,10 +70,14 @@ const QuizHeader = () => {
               <span>{negativeScore}</span>
             </Group>
 
-            <Group className={classes.headerItem}>
-              <MdOutlineAvTimer size={25} className={classes.timeIcon} />
-              <Timer />
-            </Group>
+            {!quizID?.includes('mediu-de-invatare') ? (
+              <Group className={classes.headerItem}>
+                <MdOutlineAvTimer size={25} className={classes.timeIcon} />
+                <Timer />
+              </Group>
+            ) : (
+              ''
+            )}
           </Group>
         </Grid.Col>
 
