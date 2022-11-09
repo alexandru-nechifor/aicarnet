@@ -27,7 +27,6 @@ import { NavLink } from 'react-router-dom';
 
 const UserNav = () => {
   const { userSignOut, currentUser } = useAuth();
-
   const [userData, setUserData] = useState<DocumentData | undefined>();
 
   useEffect(() => {

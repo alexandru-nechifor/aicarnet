@@ -24,6 +24,10 @@ import { useDispatch } from 'react-redux';
 import { IQuizData } from '../../types/IQuizData';
 import { Button, createStyles, Grid } from '@mantine/core';
 import { useQuizDataSelector } from '../../customHooks/useQuizDataSelector';
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '../../utils/firebase';
+import { useAuth } from '../../context/AuthContext';
+import { useScoreSelector } from '../../customHooks/useScoreSelector';
 
 const QuizButtons = ({
   shuffle,
@@ -32,12 +36,16 @@ const QuizButtons = ({
   setQuestionScore,
 }: IQuizButtons) => {
   const { quizID } = useParams();
+  const { currentUser } = useAuth();
   const [isEnabled, setIsEnabled] = useState(false);
   const quizQuestions = useQuizDataSelector();
   const totalCount = useTotalCountSelector();
   const negativeScore = useNegativeScoreSelector();
+  const score = useScoreSelector();
   const currentQuestion = useCurrentQuestionSelector();
   const dispatch = useDispatch();
+  const userProgressDb = doc(db, 'users', `${currentUser?.uid}`);
+  const quizCat = quizID?.replace('-mediu-de-invatare', '');
 
   const useStyles = createStyles((theme) => ({
     button: {
@@ -50,6 +58,16 @@ const QuizButtons = ({
   }));
 
   const { classes } = useStyles();
+
+  useEffect(() => {
+    updateDoc(userProgressDb, {
+      [`${quizCat}`]: {
+        currentQuestion,
+        score,
+        negativeScore,
+      },
+    });
+  }, [currentQuestion]);
 
   // Check if the buttons can be Enabled
   useEffect(() => {
@@ -102,6 +120,7 @@ const QuizButtons = ({
     }
 
     deleteAnswers();
+
     dispatch(setSavedAnswers(questionScore));
   };
 

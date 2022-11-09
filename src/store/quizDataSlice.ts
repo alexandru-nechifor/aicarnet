@@ -25,11 +25,20 @@ export const quizDataSlice = createSlice({
     setScore(state) {
       state.score++;
     },
+    setProgressScore(state, action) {
+      state.score = action.payload;
+    },
     setNegativeScore(state) {
       state.negativeScore++;
     },
+    setProgressNegativeScore(state, action) {
+      state.negativeScore = action.payload;
+    },
     setCurrentQuestion(state) {
       state.currentQuestion++;
+    },
+    setProgressCurrentQuestion(state, action) {
+      state.currentQuestion = action.payload;
     },
     setTotalCount(state, action) {
       state.totalCount = action.payload;
@@ -67,8 +76,11 @@ export const {
   setQuizData,
   setSavedAnswers,
   setScore,
+  setProgressScore,
   setNegativeScore,
+  setProgressNegativeScore,
   setCurrentQuestion,
+  setProgressCurrentQuestion,
   setTotalCount,
   setASelected,
   setBSelected,
@@ -76,5 +88,6 @@ export const {
   setDeleteAnswers,
   setHasPassed,
   setIsFinished,
+
   resetQuiz,
 } = quizDataSlice.actions;
