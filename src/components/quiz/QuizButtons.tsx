@@ -39,7 +39,7 @@ const QuizButtons = ({
   const { currentUser } = useAuth();
   const [isEnabled, setIsEnabled] = useState(false);
   const quizQuestions = useQuizDataSelector();
-  const totalCount = useTotalCountSelector();
+  const totalCount = quizQuestions.length;
   const negativeScore = useNegativeScoreSelector();
   const score = useScoreSelector();
   const currentQuestion = useCurrentQuestionSelector();
@@ -59,7 +59,11 @@ const QuizButtons = ({
 
   const { classes } = useStyles();
 
-  const updateProgress = async () => {
+  const updateProgress = async (
+    currentQuestion: number,
+    score: number,
+    negativeScore: number
+  ) => {
     console.log(currentQuestion, score, negativeScore);
     await updateDoc(userProgressDb, {
       [`${quizCat}`]: {
@@ -85,8 +89,8 @@ const QuizButtons = ({
       dispatch(setIsFinished(true));
     }
 
-    if (currentQuestion !== 0) {
-      updateProgress();
+    if (currentQuestion !== 0 && quizID?.includes('mediu-de-invatare')) {
+      updateProgress(currentQuestion, score, negativeScore);
     }
 
     //eslint-disable-next-line
@@ -124,6 +128,9 @@ const QuizButtons = ({
     ) {
       dispatch(setHasPassed(true));
       dispatch(setIsFinished(true));
+      if (quizID?.includes('mediu-de-invatare')) {
+        updateProgress(0, 0, 0);
+      }
     }
 
     deleteAnswers();

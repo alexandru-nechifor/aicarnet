@@ -6,6 +6,7 @@ const HeroButtons = () => {
   const useStyles = createStyles((theme) => ({
     btn: {
       [theme.fn.smallerThan('sm')]: {
+        display: 'block',
         width: '100%',
       },
     },
@@ -18,34 +19,34 @@ const HeroButtons = () => {
   const { currentUser } = useAuth();
   return (
     <Group>
-      <Button
-        rightIcon={<BsFillArrowRightCircleFill />}
-        size="lg"
-        className={classes.btn}
-      >
-        <NavLink to="/chestionare-auto" className={classes.link}>
+      <NavLink to="/chestionare-auto" className={classes.link}>
+        <Button
+          rightIcon={<BsFillArrowRightCircleFill />}
+          size="lg"
+          className={classes.btn}
+        >
           Chestionare auto
-        </NavLink>
-      </Button>
+        </Button>
+      </NavLink>
 
       {currentUser ? (
-        <NavLink to="/cont">
+        <NavLink to="/cont" className={classes.btn}>
           <Button
             rightIcon={<BsFillArrowRightCircleFill />}
             variant="outline"
             size="lg"
-            className={classes.btn}
+            sx={{ width: '100%' }}
           >
             Contul meu
           </Button>
         </NavLink>
       ) : (
-        <NavLink to="/inregistrare">
+        <NavLink to="/inregistrare" className={classes.btn}>
           <Button
             rightIcon={<BsFillArrowRightCircleFill />}
             variant="outline"
             size="lg"
-            className={classes.btn}
+            sx={{ width: '100%' }}
           >
             Alătură-te
           </Button>

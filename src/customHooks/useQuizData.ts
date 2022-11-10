@@ -31,6 +31,7 @@ export const useQuizData = (
 
       if (quizID?.includes('mediu-de-invatare')) {
         totalCount = data.length;
+
         getQuizProgress(currentUser).then((result) => {
           if (result) {
             const quizCat = quizID.replace('-mediu-de-invatare', '');
@@ -51,7 +52,6 @@ export const useQuizData = (
 
         dispatch(setQuizData(filteredData));
       }
-      dispatch(setTotalCount(totalCount));
     },
   });
 };

@@ -7,9 +7,11 @@ import { useQuizData } from '../../customHooks/useQuizData';
 import { useIsFinished } from '../../customHooks/useQuizStatusSelectors';
 import { Box, Center, Loader } from '@mantine/core';
 import CustomContainer from '../../components/customComponents/Container';
+import { useAuth } from '../../context/AuthContext';
 
 const QuizTemplate = () => {
   let { quizID } = useParams<string>();
+  const { currentUser } = useAuth();
   let quizType = Settings[quizID as keyof typeof Settings].questionData;
 
   const { isFetching, isError } = useQuizData(quizType, quizID);
@@ -27,7 +29,11 @@ const QuizTemplate = () => {
     return <>error</>;
   }
 
-  if (!isFinished) {
+  if (!currentUser) {
+    return <>N-ai cont component!!</>;
+  }
+
+  if (!isFinished && currentUser) {
     return (
       <>
         <CustomContainer>
