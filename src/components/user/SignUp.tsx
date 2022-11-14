@@ -57,7 +57,6 @@ const Signup = () => {
               name: name,
               email: email,
               avatarURL: '',
-              isAdmin: false,
             });
             sendEmailVerification(result.user);
           });

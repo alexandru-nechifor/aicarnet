@@ -9,7 +9,6 @@ import {
   setProgressNegativeScore,
   setProgressScore,
   setQuizData,
-  setTotalCount,
 } from '../store/quizDataSlice';
 import { shuffleArray } from '../utils/shuffleArray';
 import { getQuizProgress } from './useQuizProgress';

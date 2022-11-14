@@ -6,7 +6,6 @@ import {
 import { useState, useEffect } from 'react';
 import Settings from '../../constants/Quiz/QuizSettings';
 import IQuizButtons from '../../types/IQuizButtons';
-import { useTotalCountSelector } from '../../customHooks/useTotalCountSelector';
 import { useNegativeScoreSelector } from '../../customHooks/useNegativeScoreSelector';
 import { useCurrentQuestionSelector } from '../../customHooks/useCurrentQuestionSelector';
 import { useParams } from 'react-router-dom';

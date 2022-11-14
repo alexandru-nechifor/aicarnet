@@ -7,11 +7,11 @@ import { useQuizData } from '../../customHooks/useQuizData';
 import { useIsFinished } from '../../customHooks/useQuizStatusSelectors';
 import { Box, Center, Loader } from '@mantine/core';
 import CustomContainer from '../../components/customComponents/Container';
-import { useAuth } from '../../context/AuthContext';
+import ReqAuth from '../../components/Navigation/ReqAuth';
 
 const QuizTemplate = () => {
   let { quizID } = useParams<string>();
-  const { currentUser } = useAuth();
+
   let quizType = Settings[quizID as keyof typeof Settings].questionData;
 
   const { isFetching, isError } = useQuizData(quizType, quizID);
@@ -29,26 +29,24 @@ const QuizTemplate = () => {
     return <>error</>;
   }
 
-  if (!currentUser) {
-    return <>N-ai cont component!!</>;
-  }
-
-  if (!isFinished && currentUser) {
+  if (!isFinished) {
     return (
       <>
-        <CustomContainer>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-around',
-              flexDirection: 'column',
-              minHeight: '85vh',
-            }}
-          >
-            <QuizHeader />
-            <QuizBody />
-          </Box>
-        </CustomContainer>
+        <ReqAuth>
+          <CustomContainer>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-around',
+                flexDirection: 'column',
+                minHeight: '85vh',
+              }}
+            >
+              <QuizHeader />
+              <QuizBody />
+            </Box>
+          </CustomContainer>
+        </ReqAuth>
       </>
     );
   } else {
