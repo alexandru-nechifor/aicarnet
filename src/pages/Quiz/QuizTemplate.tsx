@@ -14,10 +14,10 @@ const QuizTemplate = () => {
 
   let quizType = Settings[quizID as keyof typeof Settings].questionData;
 
-  const { isFetching, isError } = useQuizData(quizType, quizID);
+  const { data, isFetching, isError } = useQuizData(quizType, quizID);
 
   const isFinished = useIsFinished();
-
+  console.log(data);
   if (isFetching) {
     return (
       <Center sx={{ height: '90vh' }}>
@@ -49,8 +49,14 @@ const QuizTemplate = () => {
         </ReqAuth>
       </>
     );
+  } else if (isFinished) {
+    return <Review data={data} quizID={quizID} />;
   } else {
-    return <Review />;
+    return (
+      <Center sx={{ height: '90vh' }}>
+        <Loader size="lg" />
+      </Center>
+    );
   }
 };
 

@@ -17,8 +17,8 @@ export const useQuizData = (
   quizType: string | undefined,
   quizID: string | undefined
 ) => {
-  const { currentUser } = useAuth();
   const dispatch = useDispatch();
+  const { currentUser } = useAuth();
 
   return useQuery([quizType], getData, {
     refetchOnMount: true,
@@ -26,11 +26,8 @@ export const useQuizData = (
 
     onSuccess: (data) => {
       dispatch(resetQuiz());
-      let totalCount = 0;
 
       if (quizID?.includes('mediu-de-invatare')) {
-        totalCount = data.length;
-
         getQuizProgress(currentUser).then((result) => {
           if (result) {
             const quizCat = quizID.replace('-mediu-de-invatare', '');
@@ -39,13 +36,11 @@ export const useQuizData = (
             );
             dispatch(setProgressScore(result[quizCat].score));
             dispatch(setProgressNegativeScore(result[quizCat].negativeScore));
-
-            console.log('am intrat');
           }
         });
         dispatch(setQuizData(data));
       } else {
-        totalCount = Settings[quizID as keyof typeof Settings].total;
+        const totalCount = Settings[quizID as keyof typeof Settings].total;
         const shuffledData = shuffleArray(data);
         const filteredData = shuffledData.slice(0, totalCount);
 

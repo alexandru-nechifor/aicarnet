@@ -13,15 +13,32 @@ import { useScoreSelector } from '../../customHooks/useScoreSelector';
 import { useNegativeScoreSelector } from '../../customHooks/useNegativeScoreSelector';
 import CustomContainer from '../customComponents/Container';
 import { useReviewStyles } from '../../styles/Quiz/useReviewStyles';
+import { useDispatch } from 'react-redux';
+import { resetQuiz, setQuizData } from '../../store/quizDataSlice';
+import { shuffleArray } from '../../utils/shuffleArray';
+import Settings from '../../constants/Quiz/QuizSettings';
 
-const Review = () => {
+const Review = ({ data, quizID }: any) => {
   const quizQuestions = useQuizDataSelector();
   const savedAnswers = useSavedAnswersSelector();
   const passed = useHasPassed();
   const score = useScoreSelector();
   const negativeScore = useNegativeScoreSelector();
+  const dispatch = useDispatch();
 
   const { classes } = useReviewStyles();
+
+  const handleReset = () => {
+    dispatch(resetQuiz());
+
+    if (!quizID.includes('mediu-de-invatare')) {
+      const totalCount = Settings[quizID as keyof typeof Settings].total;
+      const shuffledData = shuffleArray(data);
+      const filteredData = shuffledData.slice(0, totalCount);
+
+      dispatch(setQuizData(filteredData));
+    }
+  };
 
   return (
     <>
@@ -88,15 +105,19 @@ const Review = () => {
           })}
 
           <Group>
-            <Link to="/chestionare-auto">
+            {/* <Link to="/chestionare-auto">
               <Button size={'md'} sx={{ color: 'white', margin: '1rem auto' }}>
                 Chestionare auto
               </Button>
-            </Link>
+            </Link> */}
 
-            {/* <Button size={'md'} sx={{ color: 'white', margin: '1rem auto' }}>
+            <Button
+              size={'md'}
+              sx={{ color: 'white', margin: '1rem auto' }}
+              onClick={handleReset}
+            >
               Încearcă alt chestionar
-            </Button> */}
+            </Button>
           </Group>
         </Stack>
       </CustomContainer>
