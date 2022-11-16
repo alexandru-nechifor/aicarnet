@@ -2,7 +2,7 @@ import { toLetter } from '../../utils/toLetter';
 import { useSavedAnswersSelector } from '../../customHooks/useSavedAnswersSelector';
 import { useHasPassed } from '../../customHooks/useQuizStatusSelectors';
 import { IconCheck, IconCircleX } from '@tabler/icons';
-import { Stack, createStyles, Group, Text, Button } from '@mantine/core';
+import { Stack, Group, Text, Button } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import { useQuizDataSelector } from '../../customHooks/useQuizDataSelector';
 import Choice from '../questionsData/Choice';
@@ -12,6 +12,7 @@ import CorrectAnswer from '../questionsData/CorrectAnswer';
 import { useScoreSelector } from '../../customHooks/useScoreSelector';
 import { useNegativeScoreSelector } from '../../customHooks/useNegativeScoreSelector';
 import CustomContainer from '../customComponents/Container';
+import { useReviewStyles } from '../../styles/Quiz/useReviewStyles';
 
 const Review = () => {
   const quizQuestions = useQuizDataSelector();
@@ -19,56 +20,9 @@ const Review = () => {
   const passed = useHasPassed();
   const score = useScoreSelector();
   const negativeScore = useNegativeScoreSelector();
-  const useStyles = createStyles((theme) => ({
-    dataBox: {
-      [theme.fn.smallerThan('md')]: { width: '100%' },
-      width: '80%',
-      margin: 'auto',
-      backgroundColor: theme.colors.dark[5],
-      color: theme.colors.gray[1],
-      padding: '2rem',
-      borderRadius: '10px',
-    },
 
-    correct: {
-      backgroundColor: theme.colors.green[7],
-      color: 'white',
-      borderRadius: 8,
-      padding: '1rem',
-      textAlign: 'center',
-      width: '100px',
-    },
+  const { classes } = useReviewStyles();
 
-    wrong: {
-      backgroundColor: theme.colors.red[7],
-      color: 'white',
-      borderRadius: 8,
-      padding: '1rem',
-      textAlign: 'center',
-      width: '100px',
-    },
-
-    message: {
-      [theme.fn.smallerThan('md')]: { width: '100%' },
-      width: '40%',
-      margin: 'auto',
-      marginBottom: '2rem',
-      borderRadius: 8,
-      backgroundColor: theme.colors.dark[5],
-      color: theme.colors.gray[1],
-      padding: '2rem',
-    },
-
-    checkedIcon: {
-      color: theme.colors.green[7],
-    },
-
-    circleXIcon: {
-      color: theme.colors.red[7],
-    },
-  }));
-
-  const { classes } = useStyles();
   return (
     <>
       <CustomContainer>
@@ -133,11 +87,17 @@ const Review = () => {
             }
           })}
 
-          <Link to="/chestionare-auto">
-            <Button size={'md'} sx={{ color: 'white', margin: '1rem auto' }}>
-              Chestionare auto
-            </Button>
-          </Link>
+          <Group>
+            <Link to="/chestionare-auto">
+              <Button size={'md'} sx={{ color: 'white', margin: '1rem auto' }}>
+                Chestionare auto
+              </Button>
+            </Link>
+
+            {/* <Button size={'md'} sx={{ color: 'white', margin: '1rem auto' }}>
+              Încearcă alt chestionar
+            </Button> */}
+          </Group>
         </Stack>
       </CustomContainer>
     </>

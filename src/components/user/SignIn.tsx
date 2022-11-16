@@ -7,15 +7,21 @@ import {
   PasswordInput,
   Text,
 } from '@mantine/core';
+
 import CustomContainer from '../customComponents/Container';
 import registerImg from '../../assets/Account/registerImg.png';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useAuthStyles } from '../../styles/User/useAuthStyles';
+import { useState } from 'react';
+import WrongPassword from './Errors/WrongPassword';
+import UserNotFound from './Errors/UserNotFound';
+import TooManyReq from './Errors/TooManyReq';
 
 const Signin = () => {
   const { classes } = useAuthStyles();
   const { login } = useAuth();
+  const [error, setError] = useState('');
   const navigate = useNavigate();
   const user = useForm({
     initialValues: { email: '', password: '' },
@@ -38,14 +44,30 @@ const Signin = () => {
       try {
         await login(email, password);
         navigate('/');
-      } catch (e) {
-        // setError(e.message);
-        // console.log(e.message);
+      } catch (error: any) {
+        setError(error.code);
+        console.log(error.code);
       }
     } else {
       user.validate();
     }
   };
+
+  let ErrorComponent;
+
+  switch (error) {
+    case 'auth/wrong-password':
+      ErrorComponent = <WrongPassword />;
+      break;
+
+    case 'auth/user-not-found':
+      ErrorComponent = <UserNotFound />;
+      break;
+
+    case 'auth/too-many-requests':
+      ErrorComponent = <TooManyReq />;
+      break;
+  }
 
   return (
     <CustomContainer>
@@ -86,6 +108,8 @@ const Signin = () => {
               <Button type="submit" mt="sm" size={'md'}>
                 Trimite
               </Button>
+
+              {ErrorComponent}
             </form>
           </Grid.Col>
           <Grid.Col lg={6}>
