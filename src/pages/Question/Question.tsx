@@ -1,6 +1,13 @@
-import { Center, Container, Loader, Stack, createStyles } from '@mantine/core';
+import {
+  Center,
+  Container,
+  Loader,
+  Stack,
+  createStyles,
+  Button,
+} from '@mantine/core';
 
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Choice from '../../components/questionsData/Choice';
 import CorrectAnswer from '../../components/questionsData/CorrectAnswer';
 import DataImage from '../../components/questionsData/DataImage';
@@ -11,6 +18,7 @@ import { toLetter } from '../../utils/toLetter';
 const Question = () => {
   const { uuid } = useParams<string>();
   const { questionsCatID } = useParams<string>();
+  const navigate = useNavigate();
 
   const {
     isLoading,
@@ -45,9 +53,13 @@ const Question = () => {
 
   return (
     <>
-      <Container size="lg">
-        <Stack className={classes.dataBox}>
+      <Container
+        size="lg"
+        sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+      >
+        <Stack className={classes.dataBox} mt={'1.5rem'}>
           <QuestionHeading>{questionData.question}</QuestionHeading>
+
           <DataImage src={questionData.imgSrc} alt={questionData.question} />
           <Choice>{questionData.choiceA}</Choice>
           <Choice>{questionData.choiceB}</Choice>
@@ -55,6 +67,16 @@ const Question = () => {
 
           <CorrectAnswer correct={toLetter(questionData.correct)} />
         </Stack>
+
+        <Button
+          size={'md'}
+          sx={{ color: 'white', margin: '1rem auto' }}
+          variant="gradient"
+          gradient={{ from: 'indigo', to: 'blue.5' }}
+          onClick={() => navigate(-1)}
+        >
+          Înapoi
+        </Button>
       </Container>
     </>
   );

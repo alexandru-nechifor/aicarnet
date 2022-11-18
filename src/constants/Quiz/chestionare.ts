@@ -4,6 +4,7 @@ import {
   FaBus,
   FaTruckMoving,
   FaIdCard,
+  FaTrailer,
 } from 'react-icons/fa';
 
 import ChestionarImage from '../../assets/chestionar-normal.svg';
@@ -35,7 +36,7 @@ export const ChestionareTopics = [
   },
   {
     title: 'Categoria E',
-    icon: FaCar,
+    icon: FaTrailer,
     key: 'categoria-E',
     quizID: 'categoria-E',
   },

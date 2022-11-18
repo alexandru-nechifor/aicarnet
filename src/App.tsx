@@ -19,6 +19,7 @@ import Account from './components/user/Account';
 import Signin from './components/user/SignIn';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/Navigation/ProtectedRoute';
+import EmailVerified from './components/user/EmailVerified';
 
 function App() {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
@@ -30,6 +31,7 @@ function App() {
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
   useHotkeys([['mod+J', () => toggleColorScheme()]]);
+
   return (
     <>
       <ColorSchemeProvider
@@ -63,6 +65,7 @@ function App() {
         >
           <AuthProvider>
             <Navbar />
+            <EmailVerified />
 
             <Routes>
               <Route index element={<Home />} />

@@ -58,6 +58,7 @@ const Signup = () => {
               email: email,
               avatarURL: '',
             });
+
             sendEmailVerification(result.user);
           });
 

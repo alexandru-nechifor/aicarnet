@@ -6,8 +6,8 @@ import {
 import { useState, useEffect } from 'react';
 import Settings from '../../constants/Quiz/QuizSettings';
 import IQuizButtons from '../../types/IQuizButtons';
-import { useNegativeScoreSelector } from '../../customHooks/useNegativeScoreSelector';
-import { useCurrentQuestionSelector } from '../../customHooks/useCurrentQuestionSelector';
+import { useNegativeScoreSelector } from '../../customHooks/quizHooks/useNegativeScoreSelector';
+import { useCurrentQuestionSelector } from '../../customHooks/quizHooks/useCurrentQuestionSelector';
 import { useParams } from 'react-router-dom';
 import {
   setCurrentQuestion,
@@ -21,12 +21,13 @@ import {
 } from '../../store/quizDataSlice';
 import { useDispatch } from 'react-redux';
 import { IQuizData } from '../../types/IQuizData';
-import { Button, createStyles, Grid } from '@mantine/core';
-import { useQuizDataSelector } from '../../customHooks/useQuizDataSelector';
+import { Button, Grid } from '@mantine/core';
+import { useQuizDataSelector } from '../../customHooks/quizHooks/useQuizDataSelector';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../utils/firebase';
 import { useAuth } from '../../context/AuthContext';
-import { useScoreSelector } from '../../customHooks/useScoreSelector';
+import { useScoreSelector } from '../../customHooks/quizHooks/useScoreSelector';
+import { useQButtonsStyles } from '../../styles/Quiz/useQButtonsStyles';
 
 const QuizButtons = ({
   shuffle,
@@ -43,33 +44,19 @@ const QuizButtons = ({
   const score = useScoreSelector();
   const currentQuestion = useCurrentQuestionSelector();
   const dispatch = useDispatch();
-  const userProgressDb = doc(db, 'users', `${currentUser?.uid}`);
   const quizCat = quizID?.replace('-mediu-de-invatare', '');
 
-  const useStyles = createStyles((theme) => ({
-    button: {
-      display: 'block',
-      [theme.fn.smallerThan('md')]: {
-        width: '100%',
-      },
-      minWidth: '250px',
-    },
-  }));
+  const userProgressDb = doc(db, 'users', `${currentUser?.uid}`);
 
-  const { classes } = useStyles();
+  const { classes } = useQButtonsStyles();
 
   const updateProgress = async (
     currentQuestion: number,
     score: number,
     negativeScore: number
   ) => {
-    console.log(currentQuestion, score, negativeScore);
     await updateDoc(userProgressDb, {
-      [`${quizCat}`]: {
-        currentQuestion,
-        score,
-        negativeScore,
-      },
+      [`${quizCat}`]: { currentQuestion, score, negativeScore },
     });
   };
 

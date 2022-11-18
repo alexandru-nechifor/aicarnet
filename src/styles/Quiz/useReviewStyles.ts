@@ -14,18 +14,16 @@ export const useReviewStyles = createStyles((theme) => ({
     backgroundColor: theme.colors.green[7],
     color: 'white',
     borderRadius: 8,
-    padding: '1rem',
+    padding: '0.5rem 1rem',
     textAlign: 'center',
-    width: '100px',
   },
 
   wrong: {
     backgroundColor: theme.colors.red[7],
     color: 'white',
     borderRadius: 8,
-    padding: '1rem',
+    padding: '0.5rem 1rem',
     textAlign: 'center',
-    width: '100px',
   },
 
   message: {

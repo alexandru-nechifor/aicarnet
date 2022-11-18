@@ -25,6 +25,7 @@ import UserNav from './UserNav';
 
 const Navbar = () => {
   const { currentUser } = useAuth();
+
   const { classes } = useNavStyles();
   const [navOpened, setNavOpened] = useState(false);
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();

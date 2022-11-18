@@ -7,7 +7,7 @@ const ExamQuestions = () => {
     <Container size="xl" sx={{ height: '58vh' }}>
       <Center>
         <Stack>
-          <Title order={1} sx={{ textAlign: 'center' }}>
+          <Title order={1} sx={{ textAlign: 'center', marginTop: '1rem' }}>
             Vă rugăm selectați categoria dorită
           </Title>
 

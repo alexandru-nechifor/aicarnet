@@ -9,9 +9,9 @@ const CorrectAnswer = ({ correct }: ICorrectAnswer) => {
       backgroundColor: theme.colors.green[7],
       color: 'white',
       borderRadius: 8,
-      padding: '1rem',
+      padding: '0.5rem 1rem',
       textAlign: 'center',
-      width: '100px',
+      width: 'fit-content',
     },
   }));
   const { classes } = useStyles();

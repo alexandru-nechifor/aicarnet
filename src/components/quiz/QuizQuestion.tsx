@@ -1,6 +1,6 @@
 import { Title } from '@mantine/core';
-import { useCurrentQuestionSelector } from '../../customHooks/useCurrentQuestionSelector';
-import { useQuizDataSelector } from '../../customHooks/useQuizDataSelector';
+import { useCurrentQuestionSelector } from '../../customHooks/quizHooks/useCurrentQuestionSelector';
+import { useQuizDataSelector } from '../../customHooks/quizHooks/useQuizDataSelector';
 
 const QuizQuestion = () => {
   const quizQuestions = useQuizDataSelector();

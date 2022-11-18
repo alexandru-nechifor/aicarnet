@@ -1,24 +1,38 @@
-import { toLetter } from '../../utils/toLetter';
-import { useSavedAnswersSelector } from '../../customHooks/useSavedAnswersSelector';
-import { useHasPassed } from '../../customHooks/useQuizStatusSelectors';
 import { IconCheck, IconCircleX } from '@tabler/icons';
 import { Stack, Group, Text, Button } from '@mantine/core';
-import { Link } from 'react-router-dom';
-import { useQuizDataSelector } from '../../customHooks/useQuizDataSelector';
+import CustomContainer from '../customComponents/Container';
+
 import Choice from '../questionsData/Choice';
 import QuestionHeading from '../questionsData/QuestionHeading';
 import DataImage from '../questionsData/DataImage';
 import CorrectAnswer from '../questionsData/CorrectAnswer';
-import { useScoreSelector } from '../../customHooks/useScoreSelector';
-import { useNegativeScoreSelector } from '../../customHooks/useNegativeScoreSelector';
-import CustomContainer from '../customComponents/Container';
+
+// Redux imports
+import { useQuizDataSelector } from '../../customHooks/quizHooks/useQuizDataSelector';
+import { useScoreSelector } from '../../customHooks/quizHooks/useScoreSelector';
+import { useNegativeScoreSelector } from '../../customHooks/quizHooks/useNegativeScoreSelector';
 import { useReviewStyles } from '../../styles/Quiz/useReviewStyles';
+import {
+  resetQuiz,
+  setFbLoading,
+  setQuizData,
+} from '../../store/quizDataSlice';
+import { useSavedAnswersSelector } from '../../customHooks/quizHooks/useSavedAnswersSelector';
+import { useHasPassed } from '../../customHooks/quizHooks/useQuizStatusSelectors';
 import { useDispatch } from 'react-redux';
-import { resetQuiz, setQuizData } from '../../store/quizDataSlice';
+
+// Quiz settings
 import { shuffleArray } from '../../utils/shuffleArray';
 import Settings from '../../constants/Quiz/QuizSettings';
+import { toLetter } from '../../utils/toLetter';
+import { useEffect } from 'react';
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '../../utils/firebase';
+import { useAuth } from '../../context/AuthContext';
+import { Link } from 'react-router-dom';
 
 const Review = ({ data, quizID }: any) => {
+  //Redux
   const quizQuestions = useQuizDataSelector();
   const savedAnswers = useSavedAnswersSelector();
   const passed = useHasPassed();
@@ -26,10 +40,14 @@ const Review = ({ data, quizID }: any) => {
   const negativeScore = useNegativeScoreSelector();
   const dispatch = useDispatch();
 
+  //Firebase
+  const { currentUser } = useAuth();
+
   const { classes } = useReviewStyles();
 
   const handleReset = () => {
     dispatch(resetQuiz());
+    dispatch(setFbLoading(false));
 
     if (!quizID.includes('mediu-de-invatare')) {
       const totalCount = Settings[quizID as keyof typeof Settings].total;
@@ -39,6 +57,23 @@ const Review = ({ data, quizID }: any) => {
       dispatch(setQuizData(filteredData));
     }
   };
+
+  useEffect(() => {
+    if (quizID.includes('mediu-de-invatare')) {
+      const userProgressDb = doc(db, 'users', `${currentUser?.uid}`);
+      const resetProgress = async () => {
+        await updateDoc(userProgressDb, {
+          [`${Settings[quizID as keyof typeof Settings].questionData}`]: {
+            currentQuestion: 0,
+            score: 0,
+            negativeScore: 0,
+          },
+        });
+      };
+
+      resetProgress();
+    }
+  }, [quizID, currentUser?.uid]);
 
   return (
     <>
@@ -82,8 +117,6 @@ const Review = ({ data, quizID }: any) => {
                   <Choice>{item.choiceB}</Choice>
                   <Choice>{item.choiceC}</Choice>
 
-                  <CorrectAnswer correct={toLetter(item.correct)} />
-
                   <Group>
                     <span
                       className={
@@ -97,26 +130,34 @@ const Review = ({ data, quizID }: any) => {
 
                     <Text>Răspunsul tău</Text>
                   </Group>
+                  <CorrectAnswer correct={toLetter(item.correct)} />
                 </Stack>
               );
             } else {
-              return <></>;
+              return null;
             }
           })}
 
           <Group>
-            {/* <Link to="/chestionare-auto">
-              <Button size={'md'} sx={{ color: 'white', margin: '1rem auto' }}>
+            <Link to="/chestionare-auto">
+              <Button
+                size={'md'}
+                sx={{ color: 'white', margin: '1rem auto' }}
+                variant="gradient"
+                gradient={{ from: 'indigo', to: 'blue.5' }}
+              >
                 Chestionare auto
               </Button>
-            </Link> */}
+            </Link>
 
             <Button
               size={'md'}
               sx={{ color: 'white', margin: '1rem auto' }}
               onClick={handleReset}
+              variant="gradient"
+              gradient={{ from: 'indigo', to: 'cyan' }}
             >
-              Încearcă alt chestionar
+              Generează alt chestionar
             </Button>
           </Group>
         </Stack>

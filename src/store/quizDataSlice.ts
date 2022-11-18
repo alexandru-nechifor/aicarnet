@@ -7,10 +7,10 @@ const initialState = {
   score: 0,
   negativeScore: 0,
   currentQuestion: 0,
-  totalCount: 0,
   time: 0,
   selected: { isASelected: false, isBSelected: false, isCSelected: false },
   quizStatus: { isFinished: false, hasPassed: false },
+  fbLoading: true,
 };
 
 export const quizDataSlice = createSlice({
@@ -41,9 +41,6 @@ export const quizDataSlice = createSlice({
     setProgressCurrentQuestion(state, action) {
       state.currentQuestion = action.payload;
     },
-    setTotalCount(state, action) {
-      state.totalCount = action.payload;
-    },
     setASelected(state) {
       state.selected.isASelected = !state.selected.isASelected;
     },
@@ -66,6 +63,10 @@ export const quizDataSlice = createSlice({
       state.quizStatus.isFinished = action.payload;
     },
 
+    setFbLoading(state, action) {
+      state.fbLoading = action.payload;
+    },
+
     resetQuiz() {
       return initialState;
     },
@@ -82,13 +83,12 @@ export const {
   setProgressNegativeScore,
   setCurrentQuestion,
   setProgressCurrentQuestion,
-  setTotalCount,
   setASelected,
   setBSelected,
   setCSelected,
   setDeleteAnswers,
   setHasPassed,
   setIsFinished,
-
+  setFbLoading,
   resetQuiz,
 } = quizDataSlice.actions;

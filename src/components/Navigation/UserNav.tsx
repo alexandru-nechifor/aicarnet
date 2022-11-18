@@ -10,11 +10,7 @@ import { useEffect, useState } from 'react';
 import {
   IconLogout,
   IconHeart,
-  IconStar,
-  IconMessage,
   IconSettings,
-  IconPlayerPause,
-  IconTrash,
   IconChevronDown,
   IconSunHigh,
   IconMoon,
@@ -79,14 +75,14 @@ const UserNav = () => {
             <IconHeart size={14} color={theme.colors.red[6]} stroke={1.5} />
           }
         >
-          Liked posts
+          Statistici
         </Menu.Item>
-        <Menu.Item
+        {/* <Menu.Item
           icon={
             <IconStar size={14} color={theme.colors.yellow[6]} stroke={1.5} />
           }
         >
-          Saved posts
+          Statistici
         </Menu.Item>
         <Menu.Item
           icon={
@@ -94,7 +90,7 @@ const UserNav = () => {
           }
         >
           Your comments
-        </Menu.Item>
+        </Menu.Item> */}
 
         <Menu.Label>Settings</Menu.Label>
         <NavLink to="/cont">
@@ -124,7 +120,7 @@ const UserNav = () => {
           Logout
         </Menu.Item>
 
-        <Menu.Divider />
+        {/* <Menu.Divider />
 
         <Menu.Label>Danger zone</Menu.Label>
         <Menu.Item icon={<IconPlayerPause size={14} stroke={1.5} />}>
@@ -132,7 +128,7 @@ const UserNav = () => {
         </Menu.Item>
         <Menu.Item color="red" icon={<IconTrash size={14} stroke={1.5} />}>
           Delete account
-        </Menu.Item>
+        </Menu.Item> */}
       </Menu.Dropdown>
     </Menu>
   );

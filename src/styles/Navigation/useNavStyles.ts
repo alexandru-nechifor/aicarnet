@@ -7,7 +7,7 @@ export const useNavStyles = createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '1rem 0rem',
+    padding: '1rem 16px',
     maxWidth: '80%',
     [theme.fn.smallerThan('md')]: { maxWidth: '90%' },
     [theme.fn.smallerThan('sm')]: {

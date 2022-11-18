@@ -1,34 +1,16 @@
 import { useState } from 'react';
-import { useCurrentQuestionSelector } from '../../customHooks/useCurrentQuestionSelector';
+import { useCurrentQuestionSelector } from '../../customHooks/quizHooks/useCurrentQuestionSelector';
 
-import { createStyles, Image, Modal } from '@mantine/core';
-import { useQuizDataSelector } from '../../customHooks/useQuizDataSelector';
+import { Image, Modal } from '@mantine/core';
+import { useQuizDataSelector } from '../../customHooks/quizHooks/useQuizDataSelector';
+import { useQImageStyles } from '../../styles/Quiz/useQImageStyles';
 
 const QuizImages = () => {
   const quizQuestions = useQuizDataSelector();
   const currentQuestion = useCurrentQuestionSelector();
   const [opened, setOpened] = useState(false);
 
-  const useStyles = createStyles((theme) => ({
-    image: {
-      margin: 'auto',
-      [theme.fn.smallerThan('sm')]: {
-        width: '100%',
-      },
-
-      [theme.fn.smallerThan('lg')]: {
-        width: '60%',
-      },
-
-      [theme.fn.smallerThan('md')]: {
-        width: '60%',
-      },
-      width: '100%',
-      marginTop: '2.5rem',
-    },
-  }));
-
-  const { classes } = useStyles();
+  const { classes } = useQImageStyles();
 
   if (quizQuestions[currentQuestion].imgSrc) {
     return (
@@ -60,7 +42,7 @@ const QuizImages = () => {
       </>
     );
   } else {
-    return <></>;
+    return null;
   }
 };
 

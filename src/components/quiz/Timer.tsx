@@ -8,10 +8,9 @@ const Timer = () => {
   const [remainingMinutes, setRemainingMinutes] = useState(time);
   const [remainingSeconds, setRemainingSeconds] = useState(0);
 
-  //Alternativa
   useEffect(() => {
     if (!JSON.stringify(quizID).includes('mediu-de-invatare')) {
-      const intervalId = setInterval(() => {
+      const timeoutId = setTimeout(() => {
         setRemainingSeconds((prevSeconds) => prevSeconds - 1);
       }, 1000);
       if (remainingSeconds === 0) {
@@ -23,7 +22,7 @@ const Timer = () => {
         // Do something
         console.log('Time is over');
 
-      return () => clearInterval(intervalId);
+      return () => clearTimeout(timeoutId);
     }
   }, [remainingSeconds, remainingMinutes, quizID]);
 
