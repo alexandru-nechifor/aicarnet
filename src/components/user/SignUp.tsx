@@ -7,9 +7,11 @@ import {
   PasswordInput,
   Text,
   Anchor,
+  Box,
+  useMantineColorScheme,
+  Image,
 } from '@mantine/core';
 import CustomContainer from '../customComponents/Container';
-import registerImg from '../../assets/Account/registerImg.png';
 import { useNavigate, NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { db } from '../../utils/firebase';
@@ -18,12 +20,18 @@ import { useAuthStyles } from '../../styles/User/useAuthStyles';
 import { sendEmailVerification } from 'firebase/auth';
 import { Checkbox } from '@mantine/core';
 import React, { useState } from 'react';
+import Logo from '../../assets/logo_white.png';
+import LogoWhite from '../../assets/logo.png';
+import { FaGoogle } from 'react-icons/fa';
+import { ReactComponent as LoginImage } from '../../assets/Account/loginImage.svg';
 
 const Signup = () => {
   const { signUp } = useAuth();
   const [isChecked, setIsChecked] = useState(false);
   const [checkError, setCheckError] = useState(false);
   const navigate = useNavigate();
+  const { colorScheme } = useMantineColorScheme();
+  const dark = colorScheme === 'dark';
 
   const user = useForm({
     initialValues: { name: '', email: '', password: '', confirmPassword: '' },
@@ -87,91 +95,151 @@ const Signup = () => {
     <CustomContainer>
       <section className={classes.rSection}>
         <Grid align="center" sx={{ height: '100%' }}>
-          <Grid.Col lg={6}>
-            <Title
-              order={1}
+          <Box className={classes.logo} sx={{ left: 'auto', right: '10%' }}>
+            <NavLink to="/">
+              <Image
+                height={30}
+                src={dark ? Logo : LogoWhite}
+                alt="aiCarnet Logo"
+              />
+            </NavLink>
+          </Box>
+
+          <Grid.Col
+            lg={5}
+            sm={12}
+            order={1}
+            className={classes.gradientBox}
+            sx={{ left: 0, right: 'auto' }}
+          >
+            <LoginImage className={classes.image} />
+          </Grid.Col>
+          <Grid.Col
+            lg={6}
+            sm={12}
+            order={2}
+            sx={{ marginLeft: 'auto !important' }}
+          >
+            <Box
               sx={(theme) => ({
-                color: theme.colors.heading,
-                marginBottom: '2rem',
+                position: 'relative',
+                [theme.fn.largerThan('md')]: { width: '80%', margin: '0 auto' },
               })}
             >
-              Realizează un cont gratuit chiar acum.
-            </Title>
-            <Text>
-              Ai deja un cont?{' '}
-              <NavLink to="/autentificare" className={classes.loginLink}>
-                Autentifică-te aici.
-              </NavLink>
-            </Text>
-            <form onSubmit={handleSubmit} className={classes.form}>
-              <TextInput
-                label="Nume"
-                placeholder="Nume"
-                {...user.getInputProps('name')}
-                withAsterisk
-              />
-              <TextInput
-                mt="sm"
-                label="E-mail"
-                placeholder="E-mail"
-                {...user.getInputProps('email')}
-                withAsterisk
-                onChange={(event) =>
-                  user.setFieldValue('email', event.currentTarget.value)
-                }
-              />
-              <PasswordInput
-                placeholder="Parolă"
-                label="Parolă"
-                description="Parola trebuie să conțină cel puțin o literă cu majusculă, un număr și un caracter special"
-                {...user.getInputProps('password')}
-                withAsterisk
-                mt={10}
-                onChange={(event) =>
-                  user.setFieldValue('password', event.currentTarget.value)
-                }
-              />
-              <PasswordInput
-                placeholder="Confirmare parolă"
-                label="Confirmare parolă"
-                {...user.getInputProps('confirmPassword')}
-                withAsterisk
-                mt={10}
-                onChange={(event) =>
-                  user.setFieldValue(
-                    'confirmPassword',
-                    event.currentTarget.value
-                  )
-                }
-              />
-              <Checkbox
-                my={'lg'}
-                label={
-                  <>
-                    Accepts{' '}
-                    <Anchor
-                      size="sm"
-                      href="https://mantine.dev"
-                      target="_blank"
-                    >
-                      terms and conditions
-                    </Anchor>
-                  </>
-                }
-                onChange={handleCheck}
-                className={checkError ? classes.checkBox : ''}
-              />
-              <Button type="submit" size={'md'}>
-                Trimite
+              <Title
+                order={1}
+                sx={(theme) => ({
+                  color: theme.colors.heading,
+                  marginBottom: '1rem',
+                  [theme.fn.smallerThan('md')]: {
+                    fontSize: 30,
+                    marginTop: '2rem',
+                  },
+                })}
+                align="center"
+              >
+                Bine ai venit. 👋
+              </Title>
+              <Text
+                sx={{
+                  marginBottom: '1rem',
+                }}
+                align="center"
+              >
+                Te rugăm să introduci informațiile pentru a realiza un cont.
+              </Text>
+
+              <form onSubmit={handleSubmit} className={classes.form}>
+                <TextInput
+                  label="Nume"
+                  placeholder="Introdu numele tău"
+                  {...user.getInputProps('name')}
+                  withAsterisk
+                />
+                <TextInput
+                  mt="sm"
+                  label="Email"
+                  placeholder="Introdu adresa de email"
+                  {...user.getInputProps('email')}
+                  withAsterisk
+                  onChange={(event) =>
+                    user.setFieldValue('email', event.currentTarget.value)
+                  }
+                />
+                <PasswordInput
+                  placeholder="*********"
+                  label="Parolă"
+                  description="Parola trebuie să conțină cel puțin o literă cu majusculă, un număr și un caracter special"
+                  {...user.getInputProps('password')}
+                  withAsterisk
+                  mt={10}
+                  onChange={(event) =>
+                    user.setFieldValue('password', event.currentTarget.value)
+                  }
+                />
+                <PasswordInput
+                  placeholder="Introdu din nou parola ta"
+                  label="Confirmare parolă"
+                  {...user.getInputProps('confirmPassword')}
+                  withAsterisk
+                  mt={10}
+                  onChange={(event) =>
+                    user.setFieldValue(
+                      'confirmPassword',
+                      event.currentTarget.value
+                    )
+                  }
+                />
+                <Checkbox
+                  mt={'1.5rem'}
+                  label={
+                    <>
+                      Sunt de acord cu {''}
+                      <Anchor
+                        size="sm"
+                        href="https://mantine.dev"
+                        target="_blank"
+                      >
+                        termenii și condițiile
+                      </Anchor>
+                      {''} aiCarnet.
+                    </>
+                  }
+                  onChange={handleCheck}
+                  className={checkError ? classes.checkBox : ''}
+                />
+                <Button
+                  type="submit"
+                  mt={'1.5rem'}
+                  size={'md'}
+                  color="blue.6"
+                  sx={{ width: '100%' }}
+                >
+                  Înregistrare
+                </Button>
+              </form>
+              <hr className={classes.divider} />
+              <Button
+                variant="outline"
+                sx={{ width: '100%', marginTop: '2rem' }}
+                leftIcon={<FaGoogle />}
+                size={'md'}
+                color="blue.5"
+              >
+                Înregistrare cu Google
               </Button>
-            </form>
-          </Grid.Col>
-          <Grid.Col lg={6}>
-            <img
-              src={registerImg}
-              alt="Realizare cont aiCarnet"
-              className={classes.image}
-            />
+
+              <Text
+                align="center"
+                className={classes.register}
+                sx={{ bottom: '-10%' }}
+              >
+                Ai deja un cont? {''}
+                <NavLink to="/autentificare  " className={classes.loginLink}>
+                  Autentifică-te aici.
+                </NavLink>
+              </Text>
+            </Box>
           </Grid.Col>
         </Grid>
       </section>

@@ -2,7 +2,7 @@ import { createStyles } from '@mantine/core';
 
 export const useAuthStyles = createStyles((theme) => ({
   rSection: {
-    height: '100vh',
+    [theme.fn.largerThan('md')]: { height: '100vh' },
   },
   form: {
     margin: '0 auto',
@@ -19,7 +19,8 @@ export const useAuthStyles = createStyles((theme) => ({
 
   image: {
     display: 'block',
-    width: '90%',
+    width: '100%',
+    height: '50%',
     margin: 'auto',
   },
 
@@ -44,7 +45,7 @@ export const useAuthStyles = createStyles((theme) => ({
     [theme.fn.smallerThan('md')]: {
       display: 'none',
     },
-    position: 'absolute',
+    position: 'fixed',
     right: 0,
     top: 0,
     bottom: 0,
@@ -67,13 +68,15 @@ export const useAuthStyles = createStyles((theme) => ({
     },
     position: 'absolute',
     top: '3%',
-    left: '11%',
+    left: '10%',
   },
   divider: {
     marginTop: '2rem',
 
     border: 'none',
-    borderTop: `1px solid ${theme.colors.gray[3]}`,
+    borderTop: `1px solid ${
+      theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[3]
+    }`,
     position: 'relative',
 
     '&:after': {

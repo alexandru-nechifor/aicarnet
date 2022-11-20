@@ -27,7 +27,7 @@ import { ReactComponent as LoginImage } from '../../assets/Account/loginImage.sv
 const Signin = () => {
   const { classes } = useAuthStyles();
   const { login } = useAuth();
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const { colorScheme } = useMantineColorScheme();
   const dark = colorScheme === 'dark';
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -103,6 +103,7 @@ const Signin = () => {
                   marginBottom: '1rem',
                   [theme.fn.smallerThan('md')]: {
                     fontSize: 30,
+                    marginTop: '2rem',
                   },
                 })}
                 align="center"
@@ -126,6 +127,7 @@ const Signin = () => {
                   placeholder="Introdu email-ul tău"
                   {...user.getInputProps('email')}
                   withAsterisk
+                  sx={{ borderRadius: 8 }}
                 />
                 <PasswordInput
                   placeholder="************"
@@ -133,6 +135,7 @@ const Signin = () => {
                   {...user.getInputProps('password')}
                   withAsterisk
                   mt={10}
+                  sx={{ borderRadius: 8 }}
                 />
                 <Button
                   type="submit"

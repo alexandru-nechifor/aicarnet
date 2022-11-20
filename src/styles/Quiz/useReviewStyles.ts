@@ -29,12 +29,11 @@ export const useReviewStyles = createStyles((theme) => ({
   message: {
     [theme.fn.smallerThan('md')]: { width: '100%' },
     width: '40%',
-    margin: 'auto',
-    marginBottom: '2rem',
+    margin: '2rem auto',
     borderRadius: 8,
     backgroundColor: theme.colors.dark[5],
     color: theme.colors.gray[1],
-    padding: '2rem',
+    padding: '3rem',
   },
 
   checkedIcon: {

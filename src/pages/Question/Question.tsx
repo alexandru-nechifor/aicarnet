@@ -30,8 +30,10 @@ const Question = () => {
   const useStyles = createStyles((theme) => ({
     dataBox: {
       width: '100%',
-      margin: 'auto',
-      backgroundColor: theme.colors.dark[5],
+      backgroundColor:
+        theme.colorScheme === 'dark'
+          ? theme.colors.dark[5]
+          : theme.colors.gray[1],
       color: theme.colors.gray[1],
       padding: '2rem',
       borderRadius: '10px',
@@ -55,9 +57,15 @@ const Question = () => {
     <>
       <Container
         size="lg"
-        sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '90vh',
+        }}
       >
-        <Stack className={classes.dataBox} mt={'1.5rem'}>
+        <Stack className={classes.dataBox} mt={'1.5rem'} justify="center">
           <QuestionHeading>{questionData.question}</QuestionHeading>
 
           <DataImage src={questionData.imgSrc} alt={questionData.question} />

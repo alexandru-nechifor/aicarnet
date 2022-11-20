@@ -64,6 +64,7 @@ function App() {
           }}
         >
           <AuthProvider>
+            <EmailVerified />
             <Routes>
               <Route element={<WithNavbar />}>
                 <Route index element={<Home />} />
@@ -86,6 +87,8 @@ function App() {
                   path="/intrebari-examen/:questionsCatID/intrebare/:uuid"
                   element={<Question />}
                 />
+
+                <Route path="/cont" element={<Account />} />
               </Route>
 
               {/* User */}
@@ -105,7 +108,6 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route path="/cont" element={<Account />} />
             </Routes>
           </AuthProvider>
         </MantineProvider>

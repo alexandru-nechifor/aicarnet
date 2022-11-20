@@ -5,7 +5,13 @@ interface IQuestionHeading {
 }
 const QuestionHeading = ({ children }: IQuestionHeading) => {
   return (
-    <Title order={2} size={'h3'}>
+    <Title
+      order={2}
+      size={'h3'}
+      sx={(theme) => ({
+        color: theme.colors.heading,
+      })}
+    >
       {children}
     </Title>
   );

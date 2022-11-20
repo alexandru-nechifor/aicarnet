@@ -2,7 +2,15 @@ import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuestions } from '../../customHooks/useQuestions';
 import ReactPaginate from 'react-paginate';
-import { Center, Container, createStyles, Loader, Stack } from '@mantine/core';
+import {
+  Center,
+  Container,
+  createStyles,
+  Group,
+  Loader,
+  Stack,
+  Title,
+} from '@mantine/core';
 import { toLetter } from '../../utils/toLetter';
 import Choice from '../../components/questionsData/Choice';
 import QuestionHeading from '../../components/questionsData/QuestionHeading';
@@ -10,6 +18,7 @@ import DataImage from '../../components/questionsData/DataImage';
 import CorrectAnswer from '../../components/questionsData/CorrectAnswer';
 import SearchInput from './SearchInput';
 import useFilteredQuestionsSelector from '../../customHooks/useFilteredQuestionsSelector';
+import CustomContainer from '../../components/customComponents/Container';
 
 const Questions = () => {
   const useStyles = createStyles((theme) => ({
@@ -17,7 +26,10 @@ const Questions = () => {
       [theme.fn.smallerThan('md')]: { width: '100%' },
       width: '80%',
       margin: 'auto',
-      backgroundColor: theme.colors.dark[5],
+      backgroundColor:
+        theme.colorScheme === 'dark'
+          ? theme.colors.dark[5]
+          : theme.colors.gray[1],
       color: theme.colors.gray[1],
       padding: '2rem',
       borderRadius: '10px',
@@ -94,9 +106,39 @@ const Questions = () => {
   }
 
   return (
-    <Container size="xl">
+    <CustomContainer>
       <Stack mx="auto" justify="center" align="center" spacing={'xl'}>
-        <SearchInput />
+        <Group
+          sx={(theme) => ({
+            margin: '2rem 0',
+            justifyContent: 'space-between',
+            width: '80%',
+
+            [theme.fn.smallerThan('md')]: {
+              width: '100%',
+            },
+          })}
+        >
+          <Title
+            sx={(theme) => ({
+              textTransform: 'capitalize',
+              [theme.fn.smallerThan('sm')]: {
+                textAlign: 'center',
+                width: '100%',
+              },
+              color: theme.colors.main,
+              border: `1px solid ${theme.colors.main}`,
+              padding: '0.5rem 1rem',
+              borderRadius: 8,
+              fontWeight: 600,
+            })}
+            size={'h3'}
+          >
+            {questionsID?.replace('-', ' ')}
+          </Title>
+          <SearchInput />
+        </Group>
+
         {displayQuestions.map((item, index: number) => {
           return (
             <Link
@@ -134,7 +176,7 @@ const Questions = () => {
         activeClassName={classes.activeText}
         pageClassName={classes.page}
       />
-    </Container>
+    </CustomContainer>
   );
 };
 

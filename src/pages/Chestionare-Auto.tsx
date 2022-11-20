@@ -8,7 +8,9 @@ const ChestionareAuto = () => {
     <>
       <Container px="md">
         <Stack mt={'1rem'} mb={'3rem'} align="center">
-          <Title order={1}>Chestionare Auto DRPCIV</Title>
+          <Title order={1} sx={(theme) => ({ color: theme.colors.heading })}>
+            Chestionare Auto DRPCIV
+          </Title>
           <Text size={'lg'}>Vă rugăm selectați categoria dorită</Text>
         </Stack>
         <Center>
@@ -28,8 +30,8 @@ const ChestionareAuto = () => {
                         backgroundColor:
                           theme.colorScheme === 'dark'
                             ? theme.colors.dark[5]
-                            : theme.colors.gray[2],
-                        color: theme.colors.blue[7],
+                            : theme.colors.gray[0],
+                        color: theme.colors.main,
                         padding: '2rem',
                         borderRadius: '0.5rem',
                         height: '220px',
@@ -47,10 +49,7 @@ const ChestionareAuto = () => {
                         order={2}
                         size="h4"
                         sx={(theme) => ({
-                          color:
-                            theme.colorScheme === 'dark'
-                              ? theme.colors.gray[1]
-                              : theme.colors.dark[7],
+                          color: theme.colors.heading,
                         })}
                       >
                         {item.title}

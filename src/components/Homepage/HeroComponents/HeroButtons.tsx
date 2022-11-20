@@ -10,16 +10,12 @@ const HeroButtons = () => {
         width: '100%',
       },
     },
-
-    link: {
-      color: '#fff',
-    },
   }));
   const { classes } = useStyles();
   const { currentUser } = useAuth();
   return (
     <Group>
-      <NavLink to="/chestionare-auto" className={classes.link}>
+      <NavLink to="/chestionare-auto" className={classes.btn}>
         <Button
           rightIcon={<BsFillArrowRightCircleFill />}
           size="lg"

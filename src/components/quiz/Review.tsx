@@ -1,5 +1,5 @@
 import { IconCheck, IconCircleX } from '@tabler/icons';
-import { Stack, Group, Text, Button } from '@mantine/core';
+import { Stack, Group, Text, Button, Title } from '@mantine/core';
 import CustomContainer from '../customComponents/Container';
 
 import Choice from '../questionsData/Choice';
@@ -85,9 +85,21 @@ const Review = ({ data, quizID }: any) => {
           hidden={!passed}
         >
           <IconCheck className={classes.checkedIcon} size={48} />
-          <Text>
-            Felicitări! Ai fost declarat admis cu: {score} răspunsuri corecte
+          <Title order={2}>Admis</Title>
+          <Text align="center">
+            Felicitări! Ai fost declarat admis cu:{' '}
+            <span className={classes.checkedIcon}>{score}</span> răspunsuri
+            corecte. Mai jos poți revedea chestionarul parcurs.
           </Text>
+          <Button
+            size={'md'}
+            sx={{ color: 'white', margin: '1rem auto' }}
+            onClick={handleReset}
+            variant="gradient"
+            gradient={{ from: 'indigo', to: 'cyan' }}
+          >
+            Generează alt chestionar
+          </Button>
         </Group>
 
         <Group
@@ -97,10 +109,22 @@ const Review = ({ data, quizID }: any) => {
           hidden={passed}
         >
           <IconCircleX className={classes.circleXIcon} size={48} />
-          <Text>
-            Ne pare rău! Ai fost declarat respins cu: {negativeScore} răspunsuri
-            greșite.
+          <Title order={2}>Respins</Title>
+
+          <Text align="center">
+            Ne pare rău! Ai fost declarat respins cu:{' '}
+            <span className={classes.circleXIcon}>{negativeScore}</span>{' '}
+            răspunsuri greșite. Mai jos poți revedea chestionarul parcurs.
           </Text>
+          <Button
+            size={'md'}
+            sx={{ color: 'white', margin: '1rem auto' }}
+            onClick={handleReset}
+            variant="gradient"
+            gradient={{ from: 'indigo', to: 'cyan' }}
+          >
+            Generează alt chestionar
+          </Button>
         </Group>
         <Stack mx="auto" justify="center" align="center" spacing={'xl'}>
           {quizQuestions.map((item, index: number) => {
