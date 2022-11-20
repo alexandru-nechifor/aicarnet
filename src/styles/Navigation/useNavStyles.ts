@@ -1,6 +1,6 @@
 import { createStyles } from '@mantine/core';
 
-export const HEADER_HEIGHT = 80;
+export const HEADER_HEIGHT = '10vh';
 export const useNavStyles = createStyles((theme) => ({
   inner: {
     height: HEADER_HEIGHT,

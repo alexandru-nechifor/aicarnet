@@ -6,10 +6,12 @@ import {
   Title,
   PasswordInput,
   Text,
+  Box,
+  useMantineColorScheme,
+  Image,
 } from '@mantine/core';
 
 import CustomContainer from '../customComponents/Container';
-import registerImg from '../../assets/Account/registerImg.png';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useAuthStyles } from '../../styles/User/useAuthStyles';
@@ -17,10 +19,16 @@ import { useState } from 'react';
 import WrongPassword from './Errors/WrongPassword';
 import UserNotFound from './Errors/UserNotFound';
 import TooManyReq from './Errors/TooManyReq';
+import Logo from '../../assets/logo_white.png';
+import LogoWhite from '../../assets/logo.png';
+import { FaGoogle } from 'react-icons/fa';
+import { ReactComponent as LoginImage } from '../../assets/Account/loginImage.svg';
 
 const Signin = () => {
   const { classes } = useAuthStyles();
   const { login } = useAuth();
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const dark = colorScheme === 'dark';
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const user = useForm({
@@ -73,51 +81,93 @@ const Signin = () => {
     <CustomContainer>
       <section className={classes.rSection}>
         <Grid align="center" sx={{ height: '100%' }}>
-          <Grid.Col lg={6}>
-            <Title
-              order={1}
+          <NavLink to="/" className={classes.logo}>
+            <Image
+              height={30}
+              src={dark ? Logo : LogoWhite}
+              alt="aiCarnet Logo"
+            />
+          </NavLink>
+
+          <Grid.Col lg={6} sm={12}>
+            <Box
               sx={(theme) => ({
-                color: theme.colors.heading,
-                marginBottom: '2rem',
+                position: 'relative',
+                [theme.fn.largerThan('md')]: { width: '80%', margin: '0 auto' },
               })}
             >
-              Lorem ipsum dolores sit amet
-            </Title>
-            <Text>
-              Nu ai cont? {''}
-              <NavLink to="/inregistrare  " className={classes.loginLink}>
-                Înregistrează-te aici.
-              </NavLink>
-            </Text>
-            <form onSubmit={handleSubmit} className={classes.form}>
-              <TextInput
-                mt="sm"
-                label="Email"
-                placeholder="Email"
-                {...user.getInputProps('email')}
-                withAsterisk
-              />
-              <PasswordInput
-                placeholder="Parolă"
-                label="Parolă"
-                description="Parola trebuie să conțină cel puțin o literă cu majusculă, un număr și un caracter special"
-                {...user.getInputProps('password')}
-                withAsterisk
-                mt={10}
-              />
-              <Button type="submit" mt="sm" size={'md'}>
-                Trimite
+              <Title
+                order={1}
+                sx={(theme) => ({
+                  color: theme.colors.heading,
+                  marginBottom: '1rem',
+                  [theme.fn.smallerThan('md')]: {
+                    fontSize: 30,
+                  },
+                })}
+                align="center"
+              >
+                Bine ai revenit. 👋
+              </Title>
+              <Text
+                sx={{
+                  marginBottom: '1rem',
+                }}
+                align="center"
+              >
+                Te rugăm să introduci informațiile pe care le-ai folosit atunci
+                când te-ai înregistrat
+              </Text>
+
+              <form onSubmit={handleSubmit} className={classes.form}>
+                <TextInput
+                  mt="sm"
+                  label="Email"
+                  placeholder="Introdu email-ul tău"
+                  {...user.getInputProps('email')}
+                  withAsterisk
+                />
+                <PasswordInput
+                  placeholder="************"
+                  label="Parolă"
+                  {...user.getInputProps('password')}
+                  withAsterisk
+                  mt={10}
+                />
+                <Button
+                  type="submit"
+                  mt={'2rem'}
+                  size={'md'}
+                  color="blue.6"
+                  sx={{ width: '100%' }}
+                >
+                  Autentificare
+                </Button>
+
+                {ErrorComponent}
+              </form>
+              <hr className={classes.divider} />
+              <Button
+                variant="outline"
+                sx={{ width: '100%', marginTop: '2rem' }}
+                leftIcon={<FaGoogle />}
+                size={'md'}
+                color="blue.5"
+              >
+                Autentificare cu Google
               </Button>
 
-              {ErrorComponent}
-            </form>
+              <Text align="center" className={classes.register}>
+                Nu ai cont? {''}
+                <NavLink to="/inregistrare  " className={classes.loginLink}>
+                  Înregistrează-te aici.
+                </NavLink>
+              </Text>
+            </Box>
           </Grid.Col>
-          <Grid.Col lg={6}>
-            <img
-              src={registerImg}
-              alt="Realizare cont aiCarnet"
-              className={classes.image}
-            />
+
+          <Grid.Col lg={5} sm={12} className={classes.gradientBox}>
+            <LoginImage className={classes.image} />
           </Grid.Col>
         </Grid>
       </section>

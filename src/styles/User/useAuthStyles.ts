@@ -2,12 +2,10 @@ import { createStyles } from '@mantine/core';
 
 export const useAuthStyles = createStyles((theme) => ({
   rSection: {
-    height: '90vh',
+    height: '100vh',
   },
   form: {
-    [theme.fn.largerThan('md')]: {
-      width: '60%',
-    },
+    margin: '0 auto',
   },
 
   loginLink: {
@@ -20,15 +18,75 @@ export const useAuthStyles = createStyles((theme) => ({
   },
 
   image: {
-    [theme.fn.largerThan('md')]: {
-      display: 'block',
-      width: '70%',
-      marginLeft: 'auto',
-    },
+    display: 'block',
+    width: '90%',
+    margin: 'auto',
   },
 
   checkBox: {
     borderBottom: '1px solid red',
     paddingBottom: 5,
+  },
+
+  register: {
+    [theme.fn.smallerThan('md')]: {
+      position: 'inherit',
+      marginTop: '2rem',
+    },
+    position: 'absolute',
+    bottom: '-30%',
+    left: '50%',
+    width: '100%',
+    transform: 'TranslateX(-50%)',
+  },
+
+  gradientBox: {
+    [theme.fn.smallerThan('md')]: {
+      display: 'none',
+    },
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    bottom: 0,
+    background: theme.fn.linearGradient(
+      45,
+      theme.colors.indigo[3],
+      theme.colors.blue[8]
+    ),
+    height: '100%',
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+  },
+
+  logo: {
+    [theme.fn.smallerThan('md')]: {
+      position: 'inherit',
+      marginTop: '1rem',
+      paddingLeft: 8,
+    },
+    position: 'absolute',
+    top: '3%',
+    left: '11%',
+  },
+  divider: {
+    marginTop: '2rem',
+
+    border: 'none',
+    borderTop: `1px solid ${theme.colors.gray[3]}`,
+    position: 'relative',
+
+    '&:after': {
+      content: "'SAU'",
+      color: theme.colors.gray[6],
+
+      position: 'absolute',
+
+      top: '-10px',
+      left: '50%',
+      transform: 'TranslateX(-50%)',
+      padding: '0 16px',
+      background: theme.colorScheme === 'dark' ? theme.colors.dark[7] : 'white',
+    },
   },
 }));

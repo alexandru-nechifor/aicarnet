@@ -2,7 +2,6 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import ChestionareAuto from './pages/Chestionare-Auto';
 import QuizTemplate from './pages/Quiz/QuizTemplate';
-import Navbar from './components/Navigation/Navbar';
 import QuizSelect from './pages/Quiz/QuizSelect';
 import Question from './pages/Question/Question';
 import Questions from './pages/Questions/Questions';
@@ -20,6 +19,7 @@ import Signin from './components/user/SignIn';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/Navigation/ProtectedRoute';
 import EmailVerified from './components/user/EmailVerified';
+import WithNavbar from './components/Navigation/WithNavbar';
 
 function App() {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
@@ -64,30 +64,29 @@ function App() {
           }}
         >
           <AuthProvider>
-            <Navbar />
-            <EmailVerified />
-
             <Routes>
-              <Route index element={<Home />} />
-              <Route path="/chestionare-auto" element={<ChestionareAuto />} />
-              <Route
-                path="/chestionar-auto/:quizID"
-                element={<QuizTemplate />}
-              />
-              <Route
-                path="/chestionare-auto/:quizID"
-                element={<QuizSelect />}
-              />
-              <Route path="/intrebari-examen/" element={<ExamQuestions />} />
-              <Route path="/despre-noi/" element={<DespreNoi />} />
-              <Route
-                path="/intrebari-examen/:questionsID"
-                element={<Questions />}
-              />
-              <Route
-                path="/intrebari-examen/:questionsCatID/intrebare/:uuid"
-                element={<Question />}
-              />
+              <Route element={<WithNavbar />}>
+                <Route index element={<Home />} />
+                <Route path="/chestionare-auto" element={<ChestionareAuto />} />
+                <Route
+                  path="/chestionar-auto/:quizID"
+                  element={<QuizTemplate />}
+                />
+                <Route
+                  path="/chestionare-auto/:quizID"
+                  element={<QuizSelect />}
+                />
+                <Route path="/intrebari-examen/" element={<ExamQuestions />} />
+                <Route path="/despre-noi/" element={<DespreNoi />} />
+                <Route
+                  path="/intrebari-examen/:questionsID"
+                  element={<Questions />}
+                />
+                <Route
+                  path="/intrebari-examen/:questionsCatID/intrebare/:uuid"
+                  element={<Question />}
+                />
+              </Route>
 
               {/* User */}
               <Route

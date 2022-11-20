@@ -22,7 +22,7 @@ export const useQuizData = (
   const { currentUser } = useAuth();
 
   return useQuery([quizType], getData, {
-    refetchOnMount: true,
+    // refetchOnMount: true,
     refetchOnWindowFocus: false,
 
     onSuccess: async (data) => {
