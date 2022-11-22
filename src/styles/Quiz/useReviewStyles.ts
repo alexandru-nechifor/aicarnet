@@ -11,7 +11,7 @@ export const useReviewStyles = createStyles((theme) => ({
   },
 
   correct: {
-    backgroundColor: theme.colors.green[7],
+    backgroundColor: theme.colors.green[9],
     color: 'white',
     borderRadius: 8,
     padding: '0.5rem 1rem',
@@ -19,7 +19,7 @@ export const useReviewStyles = createStyles((theme) => ({
   },
 
   wrong: {
-    backgroundColor: theme.colors.red[7],
+    backgroundColor: theme.colors.red[9],
     color: 'white',
     borderRadius: 8,
     padding: '0.5rem 1rem',

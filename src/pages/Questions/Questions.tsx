@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuestions } from '../../customHooks/useQuestions';
 import ReactPaginate from 'react-paginate';
 import {
   Center,
-  Container,
   createStyles,
   Group,
   Loader,
@@ -89,6 +88,10 @@ const Questions = () => {
     pagesVisited + questionsPerPage
   );
 
+  useMemo(() => {
+    window.scrollTo({ top: 0 });
+  }, [pageNumber]);
+
   const changePage = ({ selected }: { selected: number }): void => {
     setPageNumber(selected);
   };
@@ -153,9 +156,9 @@ const Questions = () => {
 
                 <DataImage src={item.imgSrc} alt={item.question} />
 
-                <Choice>{item.choiceA}</Choice>
-                <Choice>{item.choiceB}</Choice>
-                <Choice>{item.choiceC}</Choice>
+                <Choice correct>{item.choiceA}</Choice>
+                <Choice correct>{item.choiceB}</Choice>
+                <Choice correct>{item.choiceC}</Choice>
 
                 <CorrectAnswer correct={toLetter(item.correct)} />
               </Stack>

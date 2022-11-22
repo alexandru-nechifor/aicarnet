@@ -4,6 +4,8 @@ const initialState = {
   quizData: [],
   //eslint-disable-next-line
   savedAnswers: <Array<number>>[],
+  //eslint-disable-next-line
+  answersOrder: <Array<number>>[],
   score: 0,
   negativeScore: 0,
   currentQuestion: 0,
@@ -22,6 +24,9 @@ export const quizDataSlice = createSlice({
     },
     setSavedAnswers(state, action) {
       state.savedAnswers.push(action.payload);
+    },
+    setAnswersOrder(state, action) {
+      state.answersOrder.push(action.payload);
     },
     setScore(state) {
       state.score++;
@@ -77,6 +82,7 @@ export default quizDataSlice.reducer;
 export const {
   setQuizData,
   setSavedAnswers,
+  setAnswersOrder,
   setScore,
   setProgressScore,
   setNegativeScore,

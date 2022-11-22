@@ -1,23 +1,31 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import QuizButtons from './QuizButtons';
 import QuizChoices from './QuizChoices';
 import QuizQuestion from './QuizQuestion';
 import QuizImage from './QuizImage';
 import { Grid } from '@mantine/core';
+import { useDispatch } from 'react-redux';
+import { setAnswersOrder } from '../../store/quizDataSlice';
 
 const QuizBody = () => {
   const [questionScore, setQuestionScore] = useState(0);
   const [shuffle, setShuffle] = useState([0, 1, 2]);
+  const dispatch = useDispatch();
 
   // Shuffle the display order of choices
   const shuffleArray = (array: Array<number>) => {
-    for (let i = array.length - 1; i > 0; i--) {
+    const tempArray = [...array];
+    for (let i = tempArray.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+      [tempArray[i], tempArray[j]] = [tempArray[j], tempArray[i]];
     }
 
-    setShuffle(array);
+    setShuffle(tempArray);
   };
+
+  useEffect(() => {
+    dispatch(setAnswersOrder(shuffle));
+  }, [shuffle, dispatch]);
 
   return (
     <>

@@ -6,6 +6,7 @@ import { setQuizQuestions } from '../store/quizQuestionsSlice';
 export const useQuestions = (quizID: string | undefined) => {
   const dispatch = useDispatch();
   return useQuery([quizID], getData, {
+    refetchOnWindowFocus: false,
     onSuccess: (data) => {
       dispatch(setQuizQuestions(data));
     },

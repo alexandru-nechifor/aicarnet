@@ -69,9 +69,9 @@ const Question = () => {
           <QuestionHeading>{questionData.question}</QuestionHeading>
 
           <DataImage src={questionData.imgSrc} alt={questionData.question} />
-          <Choice>{questionData.choiceA}</Choice>
-          <Choice>{questionData.choiceB}</Choice>
-          <Choice>{questionData.choiceC}</Choice>
+          <Choice correct>{questionData.choiceA}</Choice>
+          <Choice correct>{questionData.choiceB}</Choice>
+          <Choice correct>{questionData.choiceC}</Choice>
 
           <CorrectAnswer correct={toLetter(questionData.correct)} />
         </Stack>
