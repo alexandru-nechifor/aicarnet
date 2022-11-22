@@ -6,6 +6,8 @@ import {
   updateProfile,
   User,
   UserCredential,
+  signInWithPopup,
+  GoogleAuthProvider,
 } from 'firebase/auth';
 import {
   createContext,
@@ -30,6 +32,7 @@ interface ContextState {
     name: string,
     photo?: string
   ) => Promise<void>;
+  googleSignIn: () => Promise<UserCredential>;
 }
 
 const AuthContext = createContext({} as ContextState);
@@ -58,6 +61,12 @@ export function AuthProvider({ children }: IChildren) {
 
   const signUp = (email: string, password: string) => {
     return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  const googleSignIn = () => {
+    const provider = new GoogleAuthProvider();
+
+    return signInWithPopup(auth, provider);
   };
 
   // const verifyEmail = async () => {
@@ -102,6 +111,7 @@ export function AuthProvider({ children }: IChildren) {
     login,
     signUp,
     updateUserProfile,
+    googleSignIn,
   };
 
   return (

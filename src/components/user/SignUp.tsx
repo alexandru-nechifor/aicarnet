@@ -24,6 +24,7 @@ import Logo from '../../assets/logo_white.png';
 import LogoWhite from '../../assets/logo.png';
 import { FaGoogle } from 'react-icons/fa';
 import { ReactComponent as LoginImage } from '../../assets/Account/loginImage.svg';
+import GoogleBtn from './GoogleBtn';
 
 const Signup = () => {
   const { signUp } = useAuth();
@@ -219,15 +220,7 @@ const Signup = () => {
                 </Button>
               </form>
               <hr className={classes.divider} />
-              <Button
-                variant="outline"
-                sx={{ width: '100%', marginTop: '2rem' }}
-                leftIcon={<FaGoogle />}
-                size={'md'}
-                color="blue.5"
-              >
-                Înregistrare cu Google
-              </Button>
+              <GoogleBtn />
 
               <Text
                 align="center"

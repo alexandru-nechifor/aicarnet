@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { IconCircleX } from '@tabler/icons';
 import { Stack, Grid, Group, Button, Text } from '@mantine/core';
 import QuestionHeading from '../questionsData/QuestionHeading';
 import Choice from '../questionsData/Choice';
@@ -15,6 +16,7 @@ import {
   isCCorrect,
   isCWrong,
 } from '../../utils/checkCorrect';
+import DisplayCorrect from './DisplayCorrect';
 
 interface IReviewBody {
   handleReset: () => void;
@@ -41,7 +43,11 @@ const ReviewBody = ({ handleReset }: IReviewBody) => {
               <Grid>
                 <Grid.Col order={answersOrder[index][0]}>
                   <Choice
-                    correct={isACorrect(item.correct)}
+                    correct={
+                      savedAnswers[index] === item.correct
+                        ? isACorrect(item.correct)
+                        : false
+                    }
                     wrong={isAWrong(savedAnswers[index], item.correct)}
                   >
                     {item.choiceA}
@@ -49,7 +55,11 @@ const ReviewBody = ({ handleReset }: IReviewBody) => {
                 </Grid.Col>
                 <Grid.Col order={answersOrder[index][1]}>
                   <Choice
-                    correct={isBCorrect(item.correct)}
+                    correct={
+                      savedAnswers[index] === item.correct
+                        ? isBCorrect(item.correct)
+                        : false
+                    }
                     wrong={isBWrong(savedAnswers[index], item.correct)}
                   >
                     {item.choiceB}
@@ -57,7 +67,11 @@ const ReviewBody = ({ handleReset }: IReviewBody) => {
                 </Grid.Col>
                 <Grid.Col order={answersOrder[index][2]}>
                   <Choice
-                    correct={isCCorrect(item.correct)}
+                    correct={
+                      savedAnswers[index] === item.correct
+                        ? isCCorrect(item.correct)
+                        : false
+                    }
                     wrong={isCWrong(savedAnswers[index], item.correct)}
                   >
                     {item.choiceC}
@@ -65,17 +79,22 @@ const ReviewBody = ({ handleReset }: IReviewBody) => {
                 </Grid.Col>
               </Grid>
 
-              <Group mt={10}>
-                <span
-                  className={
-                    savedAnswers[index] === item.correct
-                      ? classes.correct
-                      : classes.wrong
-                  }
-                >
-                  {savedAnswers[index] === item.correct ? 'Corect' : 'Greșit'}
-                </span>
-              </Group>
+              {savedAnswers[index] !== item.correct ? (
+                <>
+                  <Group>
+                    <IconCircleX color="red" size={30} />
+                    <Text my={10} size="lg">
+                      Ați răspuns greșit. Răspunsul corect este:
+                    </Text>
+                  </Group>
+                  <DisplayCorrect
+                    correct={item.correct}
+                    choiceA={item.choiceA}
+                    choiceB={item.choiceB}
+                    choiceC={item.choiceC}
+                  />
+                </>
+              ) : null}
             </Stack>
           );
         } else {

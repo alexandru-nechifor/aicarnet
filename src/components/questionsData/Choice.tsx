@@ -17,7 +17,7 @@ const Choice = ({ children, correct, wrong }: IChoice) => {
         backgroundColor: correct
           ? theme.colors.green[9]
           : wrong
-          ? theme.colors.red[7]
+          ? theme.colors.red[9]
           : '',
         border: correct ? 'none' : wrong ? 'none' : '',
         color: correct ? 'white' : wrong ? 'white' : '',
