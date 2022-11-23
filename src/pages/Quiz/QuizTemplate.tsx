@@ -1,14 +1,12 @@
-import QuizHeader from '../../components/quiz/QuizHeader';
-import QuizBody from '../../components/quiz/QuizBody';
 import { useParams } from 'react-router-dom';
 import Settings from '../../constants/Quiz/QuizSettings';
 import Review from '../../components/quiz/Review';
 import { useQuizData } from '../../customHooks/quizHooks/useQuizData';
 import { useIsFinished } from '../../customHooks/quizHooks/useQuizStatusSelectors';
-import { Box, Center, Loader } from '@mantine/core';
-import CustomContainer from '../../components/customComponents/Container';
+import { Center, Loader } from '@mantine/core';
 import ReqAuth from '../../components/Navigation/ReqAuth';
 import { useFbLoadingSelector } from '../../customHooks/quizHooks/useFbLoadingSelector';
+import Quiz from '../../components/quiz/Quiz';
 
 const QuizTemplate = () => {
   let { quizID } = useParams<string>();
@@ -33,21 +31,13 @@ const QuizTemplate = () => {
   if (!isFinished && !isFbLoading) {
     return (
       <>
-        <ReqAuth>
-          <CustomContainer>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-around',
-                flexDirection: 'column',
-                minHeight: '85vh',
-              }}
-            >
-              <QuizHeader />
-              <QuizBody />
-            </Box>
-          </CustomContainer>
-        </ReqAuth>
+        {quizID?.includes('mediu-de-invatare') ? (
+          <ReqAuth>
+            <Quiz />
+          </ReqAuth>
+        ) : (
+          <Quiz />
+        )}
       </>
     );
   } else if (isFinished) {

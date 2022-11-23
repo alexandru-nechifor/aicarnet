@@ -1,15 +1,8 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuestions } from '../../customHooks/useQuestions';
 import ReactPaginate from 'react-paginate';
-import {
-  Center,
-  createStyles,
-  Group,
-  Loader,
-  Stack,
-  Title,
-} from '@mantine/core';
+import { Center, Group, Loader, Stack, Title } from '@mantine/core';
 import { toLetter } from '../../utils/toLetter';
 import Choice from '../../components/questionsData/Choice';
 import QuestionHeading from '../../components/questionsData/QuestionHeading';
@@ -18,61 +11,10 @@ import CorrectAnswer from '../../components/questionsData/CorrectAnswer';
 import SearchInput from './SearchInput';
 import useFilteredQuestionsSelector from '../../customHooks/useFilteredQuestionsSelector';
 import CustomContainer from '../../components/customComponents/Container';
+import { useQuestionsStyles } from '../../styles/Quiz/useQuestionsStyles';
 
 const Questions = () => {
-  const useStyles = createStyles((theme) => ({
-    dataBox: {
-      [theme.fn.smallerThan('md')]: { width: '100%' },
-      width: '80%',
-      margin: 'auto',
-      backgroundColor:
-        theme.colorScheme === 'dark'
-          ? theme.colors.dark[5]
-          : theme.colors.gray[1],
-      color: theme.colors.gray[1],
-      padding: '2rem',
-      borderRadius: '10px',
-    },
-
-    paginateContainer: {
-      [theme.fn.smallerThan('md')]: { width: '100%' },
-      display: 'flex',
-      justifyContent: 'space-evenly',
-      alignItems: 'center',
-      width: '50%',
-      margin: '2rem auto',
-    },
-
-    button: {
-      backgroundColor: theme.colors.blue[7],
-      [theme.fn.smallerThan('sm')]: { padding: '0.4rem 0.8rem' },
-      padding: '0.8rem 1.5rem',
-      borderRadius: 8,
-      color: 'white',
-      '&:hover': {
-        backgroundColor: theme.colors.blue[9],
-        cursor: 'pointer',
-      },
-    },
-
-    buttonDisabled: {
-      '&:hover': {
-        cursor: 'not-allowed',
-        backgroundColor: theme.colors.blue[7],
-      },
-      opacity: '60%',
-    },
-
-    activeText: {
-      color: theme.colors.blue[7],
-    },
-
-    page: {
-      cursor: 'pointer',
-    },
-  }));
-
-  const { classes } = useStyles();
+  const { classes } = useQuestionsStyles();
   const [pageNumber, setPageNumber] = useState(0);
   const { questionsID } = useParams<string>();
 
@@ -88,7 +30,7 @@ const Questions = () => {
     pagesVisited + questionsPerPage
   );
 
-  useMemo(() => {
+  useEffect(() => {
     window.scrollTo({ top: 0 });
   }, [pageNumber]);
 
@@ -156,9 +98,9 @@ const Questions = () => {
 
                 <DataImage src={item.imgSrc} alt={item.question} />
 
-                <Choice correct>{item.choiceA}</Choice>
-                <Choice correct>{item.choiceB}</Choice>
-                <Choice correct>{item.choiceC}</Choice>
+                <Choice>{item.choiceA}</Choice>
+                <Choice>{item.choiceB}</Choice>
+                <Choice>{item.choiceC}</Choice>
 
                 <CorrectAnswer correct={toLetter(item.correct)} />
               </Stack>

@@ -9,8 +9,8 @@ import {
   Box,
   useMantineColorScheme,
   Image,
+  Loader,
 } from '@mantine/core';
-
 import CustomContainer from '../customComponents/Container';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
@@ -30,6 +30,7 @@ const Signin = () => {
   const { colorScheme } = useMantineColorScheme();
   const dark = colorScheme === 'dark';
   const [error, setError] = useState('');
+  const [loading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const user = useForm({
     initialValues: { email: '', password: '' },
@@ -50,7 +51,9 @@ const Signin = () => {
 
     if (user.isValid()) {
       try {
+        setIsLoading(true);
         await login(email, password);
+        setIsLoading(false);
         navigate('/');
       } catch (error: any) {
         setError(error.code);
@@ -144,7 +147,9 @@ const Signin = () => {
                   color="blue.6"
                   sx={{ width: '100%' }}
                 >
-                  Autentificare
+                  <Text mr={10}>Autentificare</Text>
+
+                  {loading ? <Loader size="sm" color={'white'} /> : null}
                 </Button>
 
                 {ErrorComponent}

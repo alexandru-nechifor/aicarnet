@@ -1,5 +1,5 @@
 import { IconCheck, IconCircleX } from '@tabler/icons';
-import { Group, Text, Button, Title, Grid } from '@mantine/core';
+import { Group, Text, Button, Title } from '@mantine/core';
 import CustomContainer from '../customComponents/Container';
 // Redux imports
 import { useScoreSelector } from '../../customHooks/quizHooks/useScoreSelector';

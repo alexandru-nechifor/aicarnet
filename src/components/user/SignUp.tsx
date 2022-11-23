@@ -10,6 +10,7 @@ import {
   Box,
   useMantineColorScheme,
   Image,
+  Loader,
 } from '@mantine/core';
 import CustomContainer from '../customComponents/Container';
 import { useNavigate, NavLink } from 'react-router-dom';
@@ -22,7 +23,6 @@ import { Checkbox } from '@mantine/core';
 import React, { useState } from 'react';
 import Logo from '../../assets/logo_white.png';
 import LogoWhite from '../../assets/logo.png';
-import { FaGoogle } from 'react-icons/fa';
 import { ReactComponent as LoginImage } from '../../assets/Account/loginImage.svg';
 import GoogleBtn from './GoogleBtn';
 
@@ -30,6 +30,7 @@ const Signup = () => {
   const { signUp } = useAuth();
   const [isChecked, setIsChecked] = useState(false);
   const [checkError, setCheckError] = useState(false);
+  const [loading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { colorScheme } = useMantineColorScheme();
   const dark = colorScheme === 'dark';
@@ -61,6 +62,7 @@ const Signup = () => {
     if (isChecked) {
       if (user.isValid()) {
         try {
+          setIsLoading(true);
           await signUp(email, password).then((result) => {
             setDoc(doc(db, 'users', result.user.uid), {
               name: name,
@@ -69,6 +71,7 @@ const Signup = () => {
             });
 
             sendEmailVerification(result.user);
+            setIsLoading(false);
           });
 
           navigate('/cont');
@@ -216,7 +219,9 @@ const Signup = () => {
                   color="blue.6"
                   sx={{ width: '100%' }}
                 >
-                  Înregistrare
+                  <Text mr={10}>Înregistrare</Text>
+
+                  {loading ? <Loader size="sm" color={'white'} /> : null}
                 </Button>
               </form>
               <hr className={classes.divider} />

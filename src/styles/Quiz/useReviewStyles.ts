@@ -28,7 +28,7 @@ export const useReviewStyles = createStyles((theme) => ({
 
   message: {
     [theme.fn.smallerThan('md')]: { width: '100%' },
-    width: '40%',
+    width: 700,
     margin: '2rem auto',
     borderRadius: 8,
     backgroundColor: theme.colors.dark[5],

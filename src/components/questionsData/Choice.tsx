@@ -1,8 +1,7 @@
-import { Box, Paper } from '@mantine/core';
+import { Paper } from '@mantine/core';
 
 interface IChoice {
   children: string;
-
   correct?: boolean;
   wrong?: boolean;
 }

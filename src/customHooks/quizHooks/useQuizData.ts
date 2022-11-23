@@ -28,7 +28,7 @@ export const useQuizData = (
     onSuccess: async (data) => {
       dispatch(resetQuiz());
 
-      if (quizID?.includes('mediu-de-invatare')) {
+      if (quizID?.includes('mediu-de-invatare') && currentUser) {
         const quizCat = quizID.replace('-mediu-de-invatare', '');
         getQuizProgress(currentUser).then((result) => {
           if (result) {
