@@ -13,6 +13,7 @@ const initialState = {
   time: 0,
   selected: { isASelected: false, isBSelected: false, isCSelected: false },
   quizStatus: { isFinished: false, hasPassed: false },
+  isTimeFinished: false,
   fbLoading: true,
 };
 
@@ -69,6 +70,10 @@ export const quizDataSlice = createSlice({
       state.quizStatus.isFinished = action.payload;
     },
 
+    setIsTimeFinished(state, action) {
+      state.isTimeFinished = action.payload;
+    },
+
     setFbLoading(state, action) {
       state.fbLoading = action.payload;
     },
@@ -100,6 +105,7 @@ export const {
   setDeleteAnswers,
   setHasPassed,
   setIsFinished,
+  setIsTimeFinished,
   setFbLoading,
   setQuizID,
   resetQuiz,

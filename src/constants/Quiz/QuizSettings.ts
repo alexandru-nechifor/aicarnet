@@ -3,7 +3,7 @@ const Settings = {
     total: 20,
     minCorrect: 17,
     maxWrong: 3,
-    time: 20,
+    time: 1,
     questionData: 'categoria-A',
   },
   'categoria-A-mediu-de-invatare': {

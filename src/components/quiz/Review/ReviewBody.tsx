@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import { IconCircleX } from '@tabler/icons';
 import { Stack, Grid, Group, Button, Text } from '@mantine/core';
-import QuestionHeading from '../questionsData/QuestionHeading';
-import Choice from '../questionsData/Choice';
-import DataImage from '../questionsData/DataImage';
-import { useReviewStyles } from '../../styles/Quiz/useReviewStyles';
-import { useQuizDataSelector } from '../../customHooks/quizHooks/useQuizDataSelector';
-import { useSavedAnswersSelector } from '../../customHooks/quizHooks/useSavedAnswersSelector';
-import { useAnswersOrderSelector } from '../../customHooks/quizHooks/useAnswersOrderSelector';
+import QuestionHeading from '../../questionsData/QuestionHeading';
+import Choice from '../../questionsData/Choice';
+import DataImage from '../../questionsData/DataImage';
+import { useReviewStyles } from '../../../styles/Quiz/useReviewStyles';
+import { useQuizDataSelector } from '../../../customHooks/quizHooks/useQuizDataSelector';
+import { useSavedAnswersSelector } from '../../../customHooks/quizHooks/useSavedAnswersSelector';
+import { useAnswersOrderSelector } from '../../../customHooks/quizHooks/useAnswersOrderSelector';
 import {
   isACorrect,
   isAWrong,
@@ -15,8 +15,8 @@ import {
   isBWrong,
   isCCorrect,
   isCWrong,
-} from '../../utils/checkCorrect';
-import DisplayCorrect from './DisplayCorrect';
+} from '../../../utils/checkCorrect';
+import DisplayCorrect from '../DisplayCorrect';
 
 interface IReviewBody {
   handleReset: () => void;
@@ -83,7 +83,16 @@ const ReviewBody = ({ handleReset }: IReviewBody) => {
                 <>
                   <Group>
                     <IconCircleX color="red" size={30} />
-                    <Text my={10} size="lg">
+                    <Text
+                      my={10}
+                      size="lg"
+                      sx={(theme) => ({
+                        color:
+                          theme.colorScheme === 'dark'
+                            ? 'white'
+                            : theme.colors.dark[7],
+                      })}
+                    >
                       Ați răspuns greșit. Răspunsul corect este:
                     </Text>
                   </Group>

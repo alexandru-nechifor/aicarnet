@@ -1,12 +1,13 @@
 import { useParams } from 'react-router-dom';
 import Settings from '../../constants/Quiz/QuizSettings';
-import Review from '../../components/quiz/Review';
+import Review from '../../components/quiz/Review/Review';
 import { useQuizData } from '../../customHooks/quizHooks/useQuizData';
 import { useIsFinished } from '../../customHooks/quizHooks/useQuizStatusSelectors';
 import { Center, Loader } from '@mantine/core';
 import ReqAuth from '../../components/Navigation/ReqAuth';
 import { useFbLoadingSelector } from '../../customHooks/quizHooks/useFbLoadingSelector';
 import Quiz from '../../components/quiz/Quiz';
+import { useIsTimeFinished } from '../../customHooks/quizHooks/useIsTimeFinishedSelector';
 
 const QuizTemplate = () => {
   let { quizID } = useParams<string>();
@@ -16,6 +17,7 @@ const QuizTemplate = () => {
   const isFbLoading = useFbLoadingSelector();
   const { data, isFetching, isError } = useQuizData(quizType, quizID);
   const isFinished = useIsFinished();
+  const isTimeFinished = useIsTimeFinished();
 
   if (isFetching) {
     return (
@@ -40,8 +42,8 @@ const QuizTemplate = () => {
         )}
       </>
     );
-  } else if (isFinished) {
-    return <Review data={data} />;
+  } else if (isFinished || isTimeFinished) {
+    return <Review data={data} quizID={quizID} />;
   } else {
     return (
       <Center sx={{ height: '90vh' }}>

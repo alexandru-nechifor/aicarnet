@@ -4,7 +4,10 @@ export const useReviewStyles = createStyles((theme) => ({
     [theme.fn.smallerThan('md')]: { width: '100%' },
     width: '80%',
     margin: 'auto',
-    backgroundColor: theme.colors.dark[5],
+    backgroundColor:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[5]
+        : theme.colors.gray[1],
     color: theme.colors.gray[1],
     padding: '2rem',
     borderRadius: '10px',
@@ -31,8 +34,11 @@ export const useReviewStyles = createStyles((theme) => ({
     width: 700,
     margin: '2rem auto',
     borderRadius: 8,
-    backgroundColor: theme.colors.dark[5],
-    color: theme.colors.gray[1],
+    backgroundColor:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[5]
+        : theme.colors.gray[1],
+    color: theme.colors.heading,
     padding: '3rem',
   },
 
