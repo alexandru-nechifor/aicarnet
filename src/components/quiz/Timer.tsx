@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import Settings from '../../constants/Quiz/QuizSettings';
+import { useQuizIDSelector } from '../../customHooks/quizHooks/useQuizIDSelector';
 
 const Timer = () => {
-  let { quizID } = useParams<string>();
+  const quizID = useQuizIDSelector();
   const time = Settings[quizID as keyof typeof Settings].time;
   const [remainingMinutes, setRemainingMinutes] = useState(time);
   const [remainingSeconds, setRemainingSeconds] = useState(0);

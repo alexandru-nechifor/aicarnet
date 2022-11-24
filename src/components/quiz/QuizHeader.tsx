@@ -5,11 +5,11 @@ import Timer from './Timer';
 import { useNegativeScoreSelector } from '../../customHooks/quizHooks/useNegativeScoreSelector';
 import { Grid, Group, Text } from '@mantine/core';
 import { useQuizDataSelector } from '../../customHooks/quizHooks/useQuizDataSelector';
-import { useParams } from 'react-router-dom';
 import { useQHeaderStyles } from '../../styles/Quiz/useQHeaderStyles';
+import { useQuizIDSelector } from '../../customHooks/quizHooks/useQuizIDSelector';
 
 const QuizHeader = () => {
-  const { quizID } = useParams();
+  const quizID = useQuizIDSelector();
   const quizQuestions = useQuizDataSelector();
   const currentQuestion = useCurrentQuestionSelector();
   const score = useScoreSelector();

@@ -22,9 +22,11 @@ import { db } from '../../utils/firebase';
 import { useAuth } from '../../context/AuthContext';
 
 import ReviewBody from './ReviewBody';
+import { useQuizIDSelector } from '../../customHooks/quizHooks/useQuizIDSelector';
 
-const Review = ({ data, quizID }: any) => {
+const Review = ({ data }: any) => {
   //Redux
+  const quizID = useQuizIDSelector();
   const passed = useHasPassed();
   const score = useScoreSelector();
   const negativeScore = useNegativeScoreSelector();

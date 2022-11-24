@@ -6,6 +6,7 @@ const initialState = {
   savedAnswers: <Array<number>>[],
   //eslint-disable-next-line
   answersOrder: <Array<number>>[],
+  quizID: '',
   score: 0,
   negativeScore: 0,
   currentQuestion: 0,
@@ -72,6 +73,10 @@ export const quizDataSlice = createSlice({
       state.fbLoading = action.payload;
     },
 
+    setQuizID(state, action) {
+      state.quizID = action.payload;
+    },
+
     resetQuiz() {
       return initialState;
     },
@@ -96,5 +101,6 @@ export const {
   setHasPassed,
   setIsFinished,
   setFbLoading,
+  setQuizID,
   resetQuiz,
 } = quizDataSlice.actions;

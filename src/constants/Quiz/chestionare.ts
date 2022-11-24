@@ -1,8 +1,11 @@
-import { FaBus, FaTruckMoving, FaIdCard, FaTrailer } from 'react-icons/fa';
+import { FaTruckMoving, FaIdCard, FaTrailer } from 'react-icons/fa';
 
-import { ReactComponent as Motorcycle } from '../../assets/QuizCat/motorcycle.svg';
-import { ReactComponent as Car } from '../../assets/QuizCat/car.svg';
-import { ReactComponent as Bus } from '../../assets/QuizCat/bus.svg';
+import Motorcycle from '../../assets/QuizCat/motorcycle.svg';
+import Car from '../../assets/QuizCat/car.svg';
+import Bus from '../../assets/QuizCat/bus.svg';
+import Truck from '../../assets/QuizCat/truck.png';
+import Trailer from '../../assets/QuizCat/trailer.png';
+import Id from '../../assets/QuizCat/id.png';
 
 import ChestionarImage from '../../assets/chestionar-normal.svg';
 
@@ -10,36 +13,42 @@ export const ChestionareTopics = [
   {
     title: 'Categoria A',
     icon: Motorcycle,
+    width: 150,
     key: 'categoria-A',
     quizID: 'categoria-A',
   },
   {
     title: 'Categoria B',
     icon: Car,
+    width: 150,
     key: 'categoria-B',
     quizID: 'categoria-B',
   },
   {
     title: 'Categoria C',
-    icon: FaTruckMoving,
+    icon: Truck,
+    width: 100,
     key: 'categoria-C',
     quizID: 'categoria-C',
   },
   {
     title: 'Categoria D',
     icon: Bus,
+    width: 120,
     key: 'categoria-D',
     quizID: 'categoria-D',
   },
   {
     title: 'Categoria E',
-    icon: FaTrailer,
+    icon: Trailer,
+    width: 100,
     key: 'categoria-E',
     quizID: 'categoria-E',
   },
   {
     title: 'Redobândire permis',
-    icon: FaIdCard,
+    icon: Id,
+    width: 100,
     key: 'redobandire-permise',
     quizID: 'redobandire-permis',
   },

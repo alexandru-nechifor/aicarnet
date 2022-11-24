@@ -8,7 +8,6 @@ import Settings from '../../constants/Quiz/QuizSettings';
 import IQuizButtons from '../../types/IQuizButtons';
 import { useNegativeScoreSelector } from '../../customHooks/quizHooks/useNegativeScoreSelector';
 import { useCurrentQuestionSelector } from '../../customHooks/quizHooks/useCurrentQuestionSelector';
-import { useParams } from 'react-router-dom';
 import {
   setCurrentQuestion,
   setDeleteAnswers,
@@ -28,6 +27,7 @@ import { db } from '../../utils/firebase';
 import { useAuth } from '../../context/AuthContext';
 import { useScoreSelector } from '../../customHooks/quizHooks/useScoreSelector';
 import { useQButtonsStyles } from '../../styles/Quiz/useQButtonsStyles';
+import { useQuizIDSelector } from '../../customHooks/quizHooks/useQuizIDSelector';
 
 const QuizButtons = ({
   shuffle,
@@ -35,7 +35,7 @@ const QuizButtons = ({
   shuffleArray,
   setQuestionScore,
 }: IQuizButtons) => {
-  const { quizID } = useParams();
+  const quizID = useQuizIDSelector();
   const { currentUser } = useAuth();
   const [isEnabled, setIsEnabled] = useState(false);
   const quizQuestions = useQuizDataSelector();

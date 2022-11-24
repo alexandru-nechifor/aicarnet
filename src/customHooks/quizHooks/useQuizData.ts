@@ -10,6 +10,7 @@ import {
   setProgressNegativeScore,
   setProgressScore,
   setQuizData,
+  setQuizID,
 } from '../../store/quizDataSlice';
 import { shuffleArray } from '../../utils/shuffleArray';
 import { getQuizProgress } from './getQuizProgress';
@@ -27,6 +28,7 @@ export const useQuizData = (
 
     onSuccess: async (data) => {
       dispatch(resetQuiz());
+      dispatch(setQuizID(quizID));
 
       if (quizID?.includes('mediu-de-invatare') && currentUser) {
         const quizCat = quizID.replace('-mediu-de-invatare', '');

@@ -41,7 +41,7 @@ const QuizTemplate = () => {
       </>
     );
   } else if (isFinished) {
-    return <Review data={data} quizID={quizID} />;
+    return <Review data={data} />;
   } else {
     return (
       <Center sx={{ height: '90vh' }}>

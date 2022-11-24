@@ -1,7 +1,15 @@
 import { Link } from 'react-router-dom';
 import { ChestionareTopics } from '../constants/Quiz/chestionare';
 
-import { Center, Container, Grid, Stack, Title, Text } from '@mantine/core';
+import {
+  Center,
+  Container,
+  Grid,
+  Stack,
+  Title,
+  Text,
+  Image,
+} from '@mantine/core';
 import Gradient from '../components/customComponents/Gradient';
 
 const ChestionareAuto = () => {
@@ -21,7 +29,6 @@ const ChestionareAuto = () => {
         <Center mt={'3rem'}>
           <Grid justify="center" align="center" gutter={50}>
             {ChestionareTopics.map((item) => {
-              const Icon = item.icon;
               return (
                 <Grid.Col md={6} lg={4} key={item.key}>
                   <Link
@@ -52,7 +59,7 @@ const ChestionareAuto = () => {
                         },
                       })}
                     >
-                      <Icon size="70px" />
+                      <Image src={item.icon} width={item.width} />
 
                       <Title
                         order={2}
