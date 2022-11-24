@@ -46,7 +46,7 @@ function App() {
             colorScheme,
             colors: {
               main: ['#3F8FFE'],
-              heading: [colorScheme === 'dark' ? '#EAF3FF' : '#02204A'],
+              heading: [colorScheme === 'dark' ? '#EAF3FF' : '#081325'],
             },
             components: {
               Container: {

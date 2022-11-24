@@ -2,18 +2,23 @@ import { Link } from 'react-router-dom';
 import { ChestionareTopics } from '../constants/Quiz/chestionare';
 
 import { Center, Container, Grid, Stack, Title, Text } from '@mantine/core';
+import Gradient from '../components/customComponents/Gradient';
 
 const ChestionareAuto = () => {
   return (
-    <>
+    <Gradient>
       <Container px="md">
-        <Stack mt={'1rem'} mb={'3rem'} align="center">
-          <Title order={1} sx={(theme) => ({ color: theme.colors.heading })}>
+        <Stack align="center">
+          <Title
+            mt={'3rem'}
+            order={1}
+            sx={(theme) => ({ color: theme.colors.heading })}
+          >
             Chestionare Auto DRPCIV
           </Title>
           <Text size={'lg'}>Vă rugăm selectați categoria dorită</Text>
         </Stack>
-        <Center>
+        <Center mt={'3rem'}>
           <Grid justify="center" align="center" gutter={50}>
             {ChestionareTopics.map((item) => {
               const Icon = item.icon;
@@ -30,8 +35,12 @@ const ChestionareAuto = () => {
                         backgroundColor:
                           theme.colorScheme === 'dark'
                             ? theme.colors.dark[5]
-                            : theme.colors.gray[0],
+                            : 'white',
                         color: theme.colors.main,
+                        border:
+                          theme.colorScheme === 'dark'
+                            ? ''
+                            : ` 1px solid ${theme.colors.gray[2]}`,
                         padding: '2rem',
                         borderRadius: '0.5rem',
                         height: '220px',
@@ -62,7 +71,7 @@ const ChestionareAuto = () => {
           </Grid>
         </Center>
       </Container>
-    </>
+    </Gradient>
   );
 };
 export default ChestionareAuto;

@@ -1,24 +1,21 @@
-import {
-  FaCar,
-  FaMotorcycle,
-  FaBus,
-  FaTruckMoving,
-  FaIdCard,
-  FaTrailer,
-} from 'react-icons/fa';
+import { FaBus, FaTruckMoving, FaIdCard, FaTrailer } from 'react-icons/fa';
+
+import { ReactComponent as Motorcycle } from '../../assets/QuizCat/motorcycle.svg';
+import { ReactComponent as Car } from '../../assets/QuizCat/car.svg';
+import { ReactComponent as Bus } from '../../assets/QuizCat/bus.svg';
 
 import ChestionarImage from '../../assets/chestionar-normal.svg';
 
 export const ChestionareTopics = [
   {
     title: 'Categoria A',
-    icon: FaMotorcycle,
+    icon: Motorcycle,
     key: 'categoria-A',
     quizID: 'categoria-A',
   },
   {
     title: 'Categoria B',
-    icon: FaCar,
+    icon: Car,
     key: 'categoria-B',
     quizID: 'categoria-B',
   },
@@ -30,7 +27,7 @@ export const ChestionareTopics = [
   },
   {
     title: 'Categoria D',
-    icon: FaBus,
+    icon: Bus,
     key: 'categoria-D',
     quizID: 'categoria-D',
   },

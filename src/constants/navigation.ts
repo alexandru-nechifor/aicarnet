@@ -5,11 +5,11 @@ export const MenuItems = [
     id: 'acasa',
   },
 
-  {
-    title: 'Blog',
-    url: '/blog',
-    id: 'blog',
-  },
+  // {
+  //   title: 'Blog',
+  //   url: '/blog',
+  //   id: 'blog',
+  // },
 
   {
     title: 'Întrebări examen',
