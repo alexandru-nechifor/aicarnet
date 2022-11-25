@@ -1,3 +1,5 @@
+import { FaTruckMoving, FaIdCard, FaTrailer } from 'react-icons/fa';
+
 import Motorcycle from '../../assets/QuizCat/motorcycle.svg';
 import Car from '../../assets/QuizCat/car.svg';
 import Bus from '../../assets/QuizCat/bus.svg';

@@ -1,7 +1,7 @@
-import { Box, Grid, SimpleGrid, Title, Text } from '@mantine/core';
+import { Box, Grid, SimpleGrid, Title, Text, Image } from '@mantine/core';
 import { useFeaturesStyles } from '../../styles/Home/heroStyles';
 import CustomContainer from '../customComponents/Container';
-import { ReactComponent as BenefitsIMG } from '../../assets/Home/benefitsImg.svg';
+import BenefitsIMG from '../../assets/Home/benefitsImg.svg';
 import { benefitsData } from '../../constants/Home/benefitsData';
 
 const FeaturesSection = () => {
@@ -12,7 +12,7 @@ const FeaturesSection = () => {
       <section className={classes.fSection}>
         <Grid align="center">
           <Grid.Col lg={6}>
-            <BenefitsIMG width="100%" />
+            <Image src={BenefitsIMG} width="100%" />
           </Grid.Col>
           <Grid.Col lg={6}>
             <Title

@@ -1,6 +1,6 @@
-import { Title, Text, Stack, Button, Box, Group } from '@mantine/core';
+import { Title, Text, Stack, Button, Box, Group, Image } from '@mantine/core';
 import { Link } from 'react-router-dom';
-import { ReactComponent as UserProfile } from '../../assets/Account/userProfile.svg';
+import UserProfile from '../../assets/Account/userProfile.svg';
 import CustomContainer from '../customComponents/Container';
 import Gradient from '../customComponents/Gradient';
 const NotRegistered = () => {
@@ -37,7 +37,7 @@ const NotRegistered = () => {
               </Text>
             </Box>
 
-            <UserProfile width={'90%'} />
+            <Image src={UserProfile} width={'80%'} />
             <Group mt={30}>
               <Link to="../../inregistrare">
                 <Button size="lg" variant="filled">

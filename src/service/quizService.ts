@@ -2,11 +2,10 @@ import axios from 'axios';
 import { IQuizData } from '../types/IQuizData';
 import { QueryFunctionContext } from '@tanstack/react-query';
 
-const APIToken = process.env.REACT_APP_QUIZ_API_KEY;
-const ServerURL = process.env.REACT_APP_SERVER_URL;
+const APIToken = import.meta.env.VITE_QUIZ_API_KEY;
 
 const axiosInstace = axios.create({
-  baseURL: `${ServerURL}`,
+  baseURL: `http://localhost:1337/api/`,
   headers: {
     Authorization: `Bearer ${APIToken}`,
   },

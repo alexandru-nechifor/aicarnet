@@ -2,7 +2,8 @@ import { createStyles } from '@mantine/core';
 export const useReviewStyles = createStyles((theme) => ({
   dataBox: {
     [theme.fn.smallerThan('md')]: { width: '100%' },
-    width: '80%',
+    [theme.fn.smallerThan(1600)]: { width: '90%' },
+    width: '75%',
     margin: 'auto',
     backgroundColor:
       theme.colorScheme === 'dark'
@@ -31,7 +32,7 @@ export const useReviewStyles = createStyles((theme) => ({
 
   message: {
     [theme.fn.smallerThan('md')]: { width: '100%' },
-    width: 700,
+    width: 500,
     margin: '2rem auto',
     borderRadius: 8,
     backgroundColor:

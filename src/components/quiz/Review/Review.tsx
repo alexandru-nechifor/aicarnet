@@ -20,10 +20,11 @@ import { db } from '../../../utils/firebase';
 import { useAuth } from '../../../context/AuthContext';
 
 import ReviewBody from './ReviewBody';
-import { useIsTimeFinished } from '../../../customHooks/quizHooks/useIsTimeFinishedSelector';
+
 import Passed from './Passed';
 import Failed from './Failed';
 import TimeOver from './TimeOver';
+import { useIsTimeFinished } from '../../../customHooks/quizHooks/useIsTimeFinishedSelector';
 
 const Review = ({ data, quizID }: any) => {
   //Redux

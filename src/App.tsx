@@ -14,7 +14,7 @@ import {
 import DespreNoi from './pages/Despre-noi';
 import { useHotkeys, useLocalStorage } from '@mantine/hooks';
 import Signup from './components/user/SignUp';
-import Account from './components/user/Account';
+import Account from './components/user/Account/Account';
 import Signin from './components/user/SignIn';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/Navigation/ProtectedRoute';

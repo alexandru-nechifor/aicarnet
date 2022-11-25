@@ -21,7 +21,7 @@ import UserNotFound from './Errors/UserNotFound';
 import TooManyReq from './Errors/TooManyReq';
 import Logo from '../../assets/logo_white.png';
 import LogoWhite from '../../assets/logo.png';
-import { ReactComponent as LoginImage } from '../../assets/Account/loginImage.svg';
+import LoginImage from '../../assets/Account/loginImage.svg';
 import GoogleBtn from './GoogleBtn';
 
 const Signin = () => {
@@ -167,7 +167,7 @@ const Signin = () => {
           </Grid.Col>
 
           <Grid.Col lg={5} sm={12} className={classes.gradientBox}>
-            <LoginImage className={classes.image} />
+            <Image src={LoginImage} className={classes.image} />
           </Grid.Col>
         </Grid>
       </section>

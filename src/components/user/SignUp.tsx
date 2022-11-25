@@ -23,7 +23,7 @@ import { Checkbox } from '@mantine/core';
 import React, { useState } from 'react';
 import Logo from '../../assets/logo_white.png';
 import LogoWhite from '../../assets/logo.png';
-import { ReactComponent as LoginImage } from '../../assets/Account/loginImage.svg';
+import LoginImage from '../../assets/Account/loginImage.svg';
 import GoogleBtn from './GoogleBtn';
 
 const Signup = () => {
@@ -116,7 +116,7 @@ const Signup = () => {
             className={classes.gradientBox}
             sx={{ left: 0, right: 'auto' }}
           >
-            <LoginImage className={classes.image} />
+            <Image src={LoginImage} className={classes.image} />
           </Grid.Col>
           <Grid.Col
             lg={6}

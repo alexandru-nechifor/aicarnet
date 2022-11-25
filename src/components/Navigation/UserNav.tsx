@@ -10,10 +10,10 @@ import { useEffect, useState } from 'react';
 import {
   IconLogout,
   IconHeart,
-  IconSettings,
   IconChevronDown,
   IconSunHigh,
   IconMoon,
+  IconUser,
 } from '@tabler/icons';
 import { useAuth } from '../../context/AuthContext';
 import { doc, DocumentData, getDoc } from 'firebase/firestore';
@@ -92,10 +92,10 @@ const UserNav = () => {
           Your comments
         </Menu.Item> */}
 
-        <Menu.Label>Settings</Menu.Label>
+        <Menu.Label>Setări</Menu.Label>
         <NavLink to="/cont">
-          <Menu.Item icon={<IconSettings size={14} stroke={1.5} />}>
-            Setări cont
+          <Menu.Item icon={<IconUser size={14} stroke={1.5} />}>
+            Profil
           </Menu.Item>
         </NavLink>
         {/* <Menu.Item icon={<IconSwitchHorizontal size={14} stroke={1.5} />}>
