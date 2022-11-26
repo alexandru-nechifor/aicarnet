@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ChestionareTopics } from '../constants/Quiz/chestionare';
+import { QuizTopics } from '../constants/Quiz/chestionare';
 
 import {
   Center,
@@ -28,7 +28,7 @@ const ChestionareAuto = () => {
         </Stack>
         <Center mt={'3rem'}>
           <Grid justify="center" align="center" gutter={50}>
-            {ChestionareTopics.map((item) => {
+            {QuizTopics.map((item) => {
               return (
                 <Grid.Col md={6} lg={4} key={item.key}>
                   <Link

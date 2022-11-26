@@ -77,8 +77,7 @@ function App() {
                   path="/chestionare-auto/:quizID"
                   element={<QuizSelect />}
                 />
-                <Route path="/intrebari-examen/" element={<ExamQuestions />} />
-                <Route path="/despre-noi/" element={<DespreNoi />} />
+                <Route path="/despre-noi" element={<DespreNoi />} />
                 <Route
                   path="/intrebari-examen/:questionsID"
                   element={<Questions />}

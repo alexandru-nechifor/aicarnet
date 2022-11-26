@@ -2,21 +2,22 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuestions } from '../../customHooks/useQuestions';
 import ReactPaginate from 'react-paginate';
-import { Center, Group, Loader, Stack, Title } from '@mantine/core';
-import { toLetter } from '../../utils/toLetter';
+import { Button, Center, Group, Loader, Stack } from '@mantine/core';
 import Choice from '../../components/questionsData/Choice';
 import QuestionHeading from '../../components/questionsData/QuestionHeading';
 import DataImage from '../../components/questionsData/DataImage';
-import CorrectAnswer from '../../components/questionsData/CorrectAnswer';
 import SearchInput from './SearchInput';
 import useFilteredQuestionsSelector from '../../customHooks/useFilteredQuestionsSelector';
 import CustomContainer from '../../components/customComponents/Container';
 import { useQuestionsStyles } from '../../styles/Quiz/useQuestionsStyles';
+import { QuizTopics } from '../../constants/Quiz/chestionare';
+import { isACorrect, isBCorrect, isCCorrect } from '../../utils/checkCorrect';
 
 const Questions = () => {
   const { classes } = useQuestionsStyles();
+
+  const { questionsID, pageNum } = useParams<string>();
   const [pageNumber, setPageNumber] = useState(0);
-  const { questionsID } = useParams<string>();
 
   const { isFetching, isError } = useQuestions(questionsID);
   const questionData = useFilteredQuestionsSelector();
@@ -57,30 +58,26 @@ const Questions = () => {
           sx={(theme) => ({
             margin: '2rem 0',
             justifyContent: 'space-between',
-            width: '80%',
+            width: '100%',
 
             [theme.fn.smallerThan('md')]: {
               width: '100%',
             },
           })}
         >
-          <Title
-            sx={(theme) => ({
-              textTransform: 'capitalize',
-              [theme.fn.smallerThan('sm')]: {
-                textAlign: 'center',
-                width: '100%',
-              },
-              color: theme.colors.main,
-              border: `1px solid ${theme.colors.main}`,
-              padding: '0.5rem 1rem',
-              borderRadius: 8,
-              fontWeight: 600,
+          <Group>
+            {QuizTopics.map((item) => {
+              return (
+                <Link to={`/intrebari-examen/${item.quizID}`} key={item.key}>
+                  <Button
+                    variant={questionsID === item.quizID ? 'filled' : 'outline'}
+                  >
+                    {item.title}
+                  </Button>
+                </Link>
+              );
             })}
-            size={'h3'}
-          >
-            {questionsID?.replace('-', ' ')}
-          </Title>
+          </Group>
           <SearchInput />
         </Group>
 
@@ -98,11 +95,15 @@ const Questions = () => {
 
                 <DataImage src={item.imgSrc} alt={item.question} />
 
-                <Choice>{item.choiceA}</Choice>
-                <Choice>{item.choiceB}</Choice>
-                <Choice>{item.choiceC}</Choice>
-
-                <CorrectAnswer correct={toLetter(item.correct)} />
+                <Choice correct={isACorrect(item.correct)}>
+                  {item.choiceA}
+                </Choice>
+                <Choice correct={isBCorrect(item.correct)}>
+                  {item.choiceB}
+                </Choice>
+                <Choice correct={isCCorrect(item.correct)}>
+                  {item.choiceC}
+                </Choice>
               </Stack>
             </Link>
           );

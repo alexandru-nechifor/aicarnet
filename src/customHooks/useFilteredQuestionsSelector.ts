@@ -1,11 +1,14 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { IQuizData } from '../types/IQuizData';
+import latinize from 'latinize';
 
 const useFilteredQuestionsSelector = () => {
   const questions = useSelector((state: RootState) =>
     state.quizQuestions.quizQuestions.filter((question: IQuizData) =>
-      question.question.includes(state.quizQuestions.search)
+      latinize(question.question.toLowerCase()).includes(
+        state.quizQuestions.search.toLowerCase().trim()
+      )
     )
   );
   return questions as IQuizData[];

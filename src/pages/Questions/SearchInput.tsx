@@ -10,7 +10,9 @@ const SearchInput = () => {
 
   return (
     <TextInput
-      onChange={(event) => dispatch(setSearch(event.currentTarget.value))}
+      onChange={(event) => {
+        dispatch(setSearch(event.currentTarget.value));
+      }}
       value={search}
       placeholder="Caută întrebarea"
       sx={{ width: '400px' }}

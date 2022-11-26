@@ -4,7 +4,7 @@ export const useQuestionsStyles = createStyles((theme) => ({
   dataBox: {
     [theme.fn.smallerThan('md')]: { width: '100%' },
     width: '80%',
-    margin: 'auto',
+    // margin: 'auto',
     backgroundColor:
       theme.colorScheme === 'dark'
         ? theme.colors.dark[5]

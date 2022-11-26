@@ -1,26 +1,24 @@
-import { FaTruckMoving, FaIdCard, FaTrailer } from 'react-icons/fa';
-
 import Motorcycle from '../../assets/QuizCat/motorcycle.svg';
 import Car from '../../assets/QuizCat/car.svg';
 import Bus from '../../assets/QuizCat/bus.svg';
-import Truck from '../../assets/QuizCat/truck.png';
-import Trailer from '../../assets/QuizCat/trailer.png';
-import Id from '../../assets/QuizCat/id.png';
+import Truck from '../../assets/QuizCat/truck.svg';
+import Trailer from '../../assets/QuizCat/trailer.svg';
+import Id from '../../assets/QuizCat/id.svg';
 
 import ChestionarImage from '../../assets/chestionar-normal.svg';
 
-export const ChestionareTopics = [
+export const QuizTopics = [
   {
     title: 'Categoria A',
     icon: Motorcycle,
-    width: 150,
+    width: 110,
     key: 'categoria-A',
     quizID: 'categoria-A',
   },
   {
     title: 'Categoria B',
     icon: Car,
-    width: 150,
+    width: 110,
     key: 'categoria-B',
     quizID: 'categoria-B',
   },
@@ -34,14 +32,14 @@ export const ChestionareTopics = [
   {
     title: 'Categoria D',
     icon: Bus,
-    width: 120,
+    width: 140,
     key: 'categoria-D',
     quizID: 'categoria-D',
   },
   {
     title: 'Categoria E',
     icon: Trailer,
-    width: 100,
+    width: 120,
     key: 'categoria-E',
     quizID: 'categoria-E',
   },

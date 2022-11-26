@@ -9,11 +9,10 @@ import {
 
 import { useNavigate, useParams } from 'react-router-dom';
 import Choice from '../../components/questionsData/Choice';
-import CorrectAnswer from '../../components/questionsData/CorrectAnswer';
 import DataImage from '../../components/questionsData/DataImage';
 import QuestionHeading from '../../components/questionsData/QuestionHeading';
 import { useQuestion } from '../../customHooks/useQuestion';
-import { toLetter } from '../../utils/toLetter';
+import { isACorrect, isBCorrect, isCCorrect } from '../../utils/checkCorrect';
 
 const Question = () => {
   const { uuid } = useParams<string>();
@@ -69,11 +68,15 @@ const Question = () => {
           <QuestionHeading>{questionData.question}</QuestionHeading>
 
           <DataImage src={questionData.imgSrc} alt={questionData.question} />
-          <Choice>{questionData.choiceA}</Choice>
-          <Choice>{questionData.choiceB}</Choice>
-          <Choice>{questionData.choiceC}</Choice>
-
-          <CorrectAnswer correct={toLetter(questionData.correct)} />
+          <Choice correct={isACorrect(questionData.correct)}>
+            {questionData.choiceA}
+          </Choice>
+          <Choice correct={isBCorrect(questionData.correct)}>
+            {questionData.choiceB}
+          </Choice>
+          <Choice correct={isCCorrect(questionData.correct)}>
+            {questionData.choiceC}
+          </Choice>
         </Stack>
 
         <Button
