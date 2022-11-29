@@ -8,9 +8,9 @@ import {
 } from '@mantine/core';
 
 import { useNavigate, useParams } from 'react-router-dom';
-import Choice from '../../components/questionsData/Choice';
-import DataImage from '../../components/questionsData/DataImage';
-import QuestionHeading from '../../components/questionsData/QuestionHeading';
+import Choice from '../../components/QuestionsData/Choice';
+import DataImage from '../../components/QuestionsData/DataImage';
+import QuestionHeading from '../../components/QuestionsData/QuestionHeading';
 import { useQuestion } from '../../customHooks/useQuestion';
 import { isACorrect, isBCorrect, isCCorrect } from '../../utils/checkCorrect';
 

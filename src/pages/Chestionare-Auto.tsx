@@ -10,7 +10,7 @@ import {
   Text,
   Image,
 } from '@mantine/core';
-import Gradient from '../components/customComponents/Gradient';
+import Gradient from '../components/CustomComponents/Gradient';
 
 const ChestionareAuto = () => {
   return (

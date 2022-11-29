@@ -11,27 +11,25 @@ import {
   useMantineColorScheme,
   Image,
   Loader,
+  Checkbox,
 } from '@mantine/core';
-import CustomContainer from '../customComponents/Container';
-import { useNavigate, NavLink } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
-import { db } from '../../utils/firebase';
-import { doc, setDoc } from 'firebase/firestore';
+import CustomContainer from '../CustomComponents/Container';
+import { NavLink } from 'react-router-dom';
 import { useAuthStyles } from '../../styles/User/useAuthStyles';
-import { sendEmailVerification } from 'firebase/auth';
-import { Checkbox } from '@mantine/core';
 import React, { useState } from 'react';
 import Logo from '../../assets/logo_white.png';
 import LogoWhite from '../../assets/logo.png';
 import LoginImage from '../../assets/Account/loginImage.svg';
 import GoogleBtn from './GoogleBtn';
+import { useAuthContext } from '../../context/AuthContext';
+import { setToken } from '../../utils/helpers';
+import { registerWithEmail } from '../../service/authService';
 
 const Signup = () => {
-  const { signUp } = useAuth();
   const [isChecked, setIsChecked] = useState(false);
   const [checkError, setCheckError] = useState(false);
+  const { setUser } = useAuthContext();
   const [loading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
   const { colorScheme } = useMantineColorScheme();
   const dark = colorScheme === 'dark';
 
@@ -43,13 +41,14 @@ const Signup = () => {
       name: (value) =>
         value.length < 5 ? 'Numele trebuie să aibă minim 5 caractere' : null,
       email: (value) => (/^\S+@\S+$/.test(value) ? null : 'E-mail invalid'),
-      password: (value) => (value.length < 10 ? 'Parolă invalidă' : null),
+      password: (value) => (value.length < 4 ? 'Parolă invalidă' : null),
       confirmPassword: (value, values) =>
         value !== values.password || value.length === 0
           ? 'Parolele nu se potrivesc'
           : null,
     },
   });
+
   const name: string = user.getInputProps('name').value;
   const email: string = user.getInputProps('email').value;
   const password: string = user.getInputProps('password').value;
@@ -60,24 +59,19 @@ const Signup = () => {
     e.preventDefault();
 
     if (isChecked) {
+      setCheckError(false);
       if (user.isValid()) {
-        try {
-          setIsLoading(true);
-          await signUp(email, password).then((result) => {
-            setDoc(doc(db, 'users', result.user.uid), {
-              name: name,
-              email: email,
-              avatarURL: '',
-            });
-
-            sendEmailVerification(result.user);
-            setIsLoading(false);
-          });
-
-          navigate('/cont');
-        } catch (e: any) {
-          console.error(e.message);
-        }
+        setIsLoading(true);
+        registerWithEmail(name, email, password)
+          .then((response) => {
+            setToken(response.jwt);
+            setUser(response.user);
+          })
+          .catch((error) => {
+            console.log(error);
+            console.log(error.response.data.error.message);
+          })
+          .finally(() => setIsLoading(false));
       } else {
         user.validate();
       }

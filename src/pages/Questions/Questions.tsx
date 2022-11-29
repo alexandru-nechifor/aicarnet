@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuestions } from '../../customHooks/useQuestions';
 import ReactPaginate from 'react-paginate';
-import { Button, Center, Group, Loader, Stack } from '@mantine/core';
-import Choice from '../../components/questionsData/Choice';
-import QuestionHeading from '../../components/questionsData/QuestionHeading';
-import DataImage from '../../components/questionsData/DataImage';
+import { Button, Center, Grid, Group, Loader, Stack } from '@mantine/core';
+import Choice from '../../components/QuestionsData/Choice';
+import QuestionHeading from '../../components/QuestionsData/QuestionHeading';
+import DataImage from '../../components/QuestionsData/DataImage';
 import SearchInput from './SearchInput';
 import useFilteredQuestionsSelector from '../../customHooks/useFilteredQuestionsSelector';
-import CustomContainer from '../../components/customComponents/Container';
+import CustomContainer from '../../components/CustomComponents/Container';
 import { useQuestionsStyles } from '../../styles/Quiz/useQuestionsStyles';
 import { QuizTopics } from '../../constants/Quiz/chestionare';
 import { isACorrect, isBCorrect, isCCorrect } from '../../utils/checkCorrect';
@@ -16,7 +16,7 @@ import { isACorrect, isBCorrect, isCCorrect } from '../../utils/checkCorrect';
 const Questions = () => {
   const { classes } = useQuestionsStyles();
 
-  const { questionsID, pageNum } = useParams<string>();
+  const { questionsID } = useParams<string>();
   const [pageNumber, setPageNumber] = useState(0);
 
   const { isFetching, isError } = useQuestions(questionsID);
@@ -54,32 +54,28 @@ const Questions = () => {
   return (
     <CustomContainer>
       <Stack mx="auto" justify="center" align="center" spacing={'xl'}>
-        <Group
-          sx={(theme) => ({
-            margin: '2rem 0',
-            justifyContent: 'space-between',
-            width: '100%',
-
-            [theme.fn.smallerThan('md')]: {
-              width: '100%',
-            },
-          })}
-        >
-          <Group>
-            {QuizTopics.map((item) => {
-              return (
-                <Link to={`/intrebari-examen/${item.quizID}`} key={item.key}>
-                  <Button
-                    variant={questionsID === item.quizID ? 'filled' : 'outline'}
-                  >
-                    {item.title}
-                  </Button>
-                </Link>
-              );
-            })}
-          </Group>
-          <SearchInput />
-        </Group>
+        <Grid sx={{ margin: '2rem 0', width: '100%' }} justify="space-between">
+          <Grid.Col sm={12} lg={6} xl={8}>
+            <Group>
+              {QuizTopics.map((item) => {
+                return (
+                  <Link to={`/intrebari-examen/${item.quizID}`} key={item.key}>
+                    <Button
+                      variant={
+                        questionsID === item.quizID ? 'filled' : 'outline'
+                      }
+                    >
+                      {item.title}
+                    </Button>
+                  </Link>
+                );
+              })}
+            </Group>
+          </Grid.Col>
+          <Grid.Col sm={12} lg={6} xl={4}>
+            <SearchInput />
+          </Grid.Col>
+        </Grid>
 
         {displayQuestions.map((item, index: number) => {
           return (

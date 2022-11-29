@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
-import { IQuizData } from '../types/IQuizData';
+import { IQuizData } from '../types/Quiz/IQuizData';
 import latinize from 'latinize';
 
 const useFilteredQuestionsSelector = () => {

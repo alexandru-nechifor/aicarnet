@@ -14,7 +14,7 @@ import {
   setCSelected,
 } from '../../store/quizDataSlice';
 import { useQChoicesStyles } from '../../styles/Quiz/useQChoicesStyles';
-import IQuizChoices from '../../types/IQuizChoices';
+import IQuizChoices from '../../types/Quiz/IQuizChoices';
 
 const QuizChoices = ({ setQuestionScore, shuffle }: IQuizChoices) => {
   const quizQuestions = useQuizDataSelector();

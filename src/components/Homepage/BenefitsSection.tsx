@@ -1,9 +1,9 @@
 import { Grid, Title, Text } from '@mantine/core';
-import CustomContainer from '../customComponents/Container';
+import CustomContainer from '../CustomComponents/Container';
 
 import { helpData } from '../../constants/Home/helpData';
 import { BsArrowRightShort } from 'react-icons/bs';
-import { useBenefitsStyles } from '../../styles/Home/heroStyles';
+import { useBenefitsStyles } from '../../styles/Home/useBenefitsStyles';
 import { NavLink } from 'react-router-dom';
 
 const BenefitsSection = () => {

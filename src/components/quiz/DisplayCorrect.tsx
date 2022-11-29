@@ -1,4 +1,4 @@
-import Choice from '../questionsData/Choice';
+import Choice from '../QuestionsData/Choice';
 
 interface IDisplayCorrect {
   correct: number | undefined;

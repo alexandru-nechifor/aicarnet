@@ -1,6 +1,5 @@
 import { BsBook } from 'react-icons/bs';
-import { AiOutlineInfoCircle } from 'react-icons/ai';
-import { AiOutlineCheckCircle } from 'react-icons/ai';
+import { AiOutlineInfoCircle, AiOutlineCheckCircle } from 'react-icons/ai';
 
 export const helpData = [
   {

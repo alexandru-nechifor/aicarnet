@@ -1,10 +1,7 @@
 import { Container } from '@mantine/core';
-import { ReactNode } from 'react';
+import { IReactChildren } from '../../types/IReactChildren';
 
-interface IContainer {
-  children: ReactNode;
-}
-const CustomContainer = ({ children }: IContainer) => {
+const CustomContainer = ({ children }: IReactChildren) => {
   return (
     <Container
       sx={(theme) => ({

@@ -1,10 +1,7 @@
 import { Box } from '@mantine/core';
-import { ReactNode } from 'react';
+import { IReactChildren } from '../../types/IReactChildren';
 
-interface IGradient {
-  children: ReactNode;
-}
-const Gradient = ({ children }: IGradient) => {
+const Gradient = ({ children }: IReactChildren) => {
   return (
     <Box
       sx={(theme) => ({

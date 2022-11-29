@@ -1,5 +1,5 @@
 import { Box } from '@mantine/core';
-import CustomContainer from '../customComponents/Container';
+import CustomContainer from '../CustomComponents/Container';
 import QuizBody from './QuizBody';
 import QuizHeader from './QuizHeader';
 

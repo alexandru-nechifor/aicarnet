@@ -1,6 +1,7 @@
 import { Grid, Title, Text, Stack } from '@mantine/core';
+
 import { heroHeader, heroParagraph } from '../../constants/Home/HomePage';
-import CustomContainer from '../customComponents/Container';
+import CustomContainer from '../CustomComponents/Container';
 import HeroButtons from './HeroComponents/HeroButtons';
 import HeroImage from './HeroComponents/HeroImage';
 import SocialProof from './HeroComponents/SocialProof';

@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { IQuizData } from '../types/IQuizData';
+import { IQuizData } from '../types/Quiz/IQuizData';
+//eslint-disable-next-line
 import { QueryFunctionContext } from '@tanstack/react-query';
 
 const APIToken = import.meta.env.VITE_QUIZ_API_KEY;
@@ -16,7 +17,7 @@ export const getData = async ({
 }: QueryFunctionContext<[string | undefined]>) => {
   const [quizID] = queryKey;
   const { data } = await axiosInstace.get(`${quizID?.toLowerCase()}s`);
-  let questions = [] as IQuizData[];
+  const questions = [] as IQuizData[];
   if (data) {
     for (let index = 0; index < data.data.length; index++) {
       questions.push({

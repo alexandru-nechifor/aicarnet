@@ -1,8 +1,8 @@
 import { Box, Grid, SimpleGrid, Title, Text, Image } from '@mantine/core';
-import { useFeaturesStyles } from '../../styles/Home/heroStyles';
-import CustomContainer from '../customComponents/Container';
+import CustomContainer from '../CustomComponents/Container';
 import BenefitsIMG from '../../assets/Home/benefitsImg.svg';
 import { benefitsData } from '../../constants/Home/benefitsData';
+import { useFeaturesStyles } from '../../styles/Home/useFeaturesStyles';
 
 const FeaturesSection = () => {
   const { classes } = useFeaturesStyles();

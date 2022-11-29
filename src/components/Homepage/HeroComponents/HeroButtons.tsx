@@ -1,7 +1,8 @@
 import { Button, createStyles, Group } from '@mantine/core';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
-import { useAuth } from '../../../context/AuthContext';
+import { useAuthContext } from '../../../context/AuthContext';
+
 const HeroButtons = () => {
   const useStyles = createStyles((theme) => ({
     btn: {
@@ -12,7 +13,8 @@ const HeroButtons = () => {
     },
   }));
   const { classes } = useStyles();
-  const { currentUser } = useAuth();
+  const { user } = useAuthContext();
+
   return (
     <Group>
       <NavLink to="/chestionare-auto" className={classes.btn}>
@@ -25,7 +27,7 @@ const HeroButtons = () => {
         </Button>
       </NavLink>
 
-      {currentUser ? (
+      {user ? (
         <NavLink to="/cont" className={classes.btn}>
           <Button
             rightIcon={<BsFillArrowRightCircleFill />}

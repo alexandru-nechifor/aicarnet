@@ -5,8 +5,8 @@ import QuizTemplate from './pages/Quiz/QuizTemplate';
 import QuizSelect from './pages/Quiz/QuizSelect';
 import Question from './pages/Question/Question';
 import Questions from './pages/Questions/Questions';
-import ExamQuestions from './pages/ExamQuestions/ExamQuestions';
 import {
+  /* eslint-disable */
   ColorScheme,
   ColorSchemeProvider,
   MantineProvider,
@@ -16,7 +16,7 @@ import { useHotkeys, useLocalStorage } from '@mantine/hooks';
 import Signup from './components/user/SignUp';
 import Account from './components/user/Account/Account';
 import Signin from './components/user/SignIn';
-import { AuthProvider } from './context/AuthContext';
+
 import ProtectedRoute from './components/Navigation/ProtectedRoute';
 import EmailVerified from './components/user/EmailVerified';
 import WithNavbar from './components/Navigation/WithNavbar';
@@ -63,52 +63,50 @@ function App() {
             },
           }}
         >
-          <AuthProvider>
-            <EmailVerified />
-            <Routes>
-              <Route element={<WithNavbar />}>
-                <Route index element={<Home />} />
-                <Route path="/chestionare-auto" element={<ChestionareAuto />} />
-                <Route
-                  path="/chestionar-auto/:quizID"
-                  element={<QuizTemplate />}
-                />
-                <Route
-                  path="/chestionare-auto/:quizID"
-                  element={<QuizSelect />}
-                />
-                <Route path="/despre-noi" element={<DespreNoi />} />
-                <Route
-                  path="/intrebari-examen/:questionsID"
-                  element={<Questions />}
-                />
-                <Route
-                  path="/intrebari-examen/:questionsCatID/intrebare/:uuid"
-                  element={<Question />}
-                />
-
-                <Route path="/cont" element={<Account />} />
-              </Route>
-
-              {/* User */}
+          <EmailVerified />
+          <Routes>
+            <Route element={<WithNavbar />}>
+              <Route index element={<Home />} />
+              <Route path="/chestionare-auto" element={<ChestionareAuto />} />
               <Route
-                path="/inregistrare"
-                element={
-                  <ProtectedRoute to="/cont">
-                    <Signup />
-                  </ProtectedRoute>
-                }
+                path="/chestionar-auto/:quizID"
+                element={<QuizTemplate />}
               />
               <Route
-                path="/autentificare"
-                element={
-                  <ProtectedRoute to="/cont">
-                    <Signin />
-                  </ProtectedRoute>
-                }
+                path="/chestionare-auto/:quizID"
+                element={<QuizSelect />}
               />
-            </Routes>
-          </AuthProvider>
+              <Route path="/despre-noi" element={<DespreNoi />} />
+              <Route
+                path="/intrebari-examen/:questionsID"
+                element={<Questions />}
+              />
+              <Route
+                path="/intrebari-examen/:questionsCatID/intrebare/:uuid"
+                element={<Question />}
+              />
+
+              <Route path="/cont" element={<Account />} />
+            </Route>
+
+            {/* User */}
+            <Route
+              path="/inregistrare"
+              element={
+                <ProtectedRoute to="/cont">
+                  <Signup />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/autentificare"
+              element={
+                <ProtectedRoute to="/cont">
+                  <Signin />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
         </MantineProvider>
       </ColorSchemeProvider>
     </>

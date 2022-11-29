@@ -5,7 +5,7 @@ import {
 } from 'react-icons/ai';
 import { useState, useEffect } from 'react';
 import Settings from '../../constants/Quiz/QuizSettings';
-import IQuizButtons from '../../types/IQuizButtons';
+import IQuizButtons from '../../types/Quiz/IQuizButtons';
 import { useNegativeScoreSelector } from '../../customHooks/quizHooks/useNegativeScoreSelector';
 import { useCurrentQuestionSelector } from '../../customHooks/quizHooks/useCurrentQuestionSelector';
 import {
@@ -19,15 +19,14 @@ import {
   setScore,
 } from '../../store/quizDataSlice';
 import { useDispatch } from 'react-redux';
-import { IQuizData } from '../../types/IQuizData';
+import { IQuizData } from '../../types/Quiz/IQuizData';
 import { Button, Grid } from '@mantine/core';
 import { useQuizDataSelector } from '../../customHooks/quizHooks/useQuizDataSelector';
-import { doc, updateDoc } from 'firebase/firestore';
-import { db } from '../../utils/firebase';
-import { useAuth } from '../../context/AuthContext';
+
 import { useScoreSelector } from '../../customHooks/quizHooks/useScoreSelector';
 import { useQButtonsStyles } from '../../styles/Quiz/useQButtonsStyles';
 import { useQuizIDSelector } from '../../customHooks/quizHooks/useQuizIDSelector';
+import { useAuthContext } from '../../context/AuthContext';
 
 const QuizButtons = ({
   shuffle,
@@ -36,7 +35,7 @@ const QuizButtons = ({
   setQuestionScore,
 }: IQuizButtons) => {
   const quizID = useQuizIDSelector();
-  const { currentUser } = useAuth();
+  const { user, updateUserData } = useAuthContext();
   const [isEnabled, setIsEnabled] = useState(false);
   const quizQuestions = useQuizDataSelector();
   const totalCount = quizQuestions.length;
@@ -46,19 +45,7 @@ const QuizButtons = ({
   const dispatch = useDispatch();
   const quizCat = quizID?.replace('-mediu-de-invatare', '');
 
-  const userProgressDb = doc(db, 'users', `${currentUser?.uid}`);
-
   const { classes } = useQButtonsStyles();
-
-  const updateProgress = async (
-    currentQuestion: number,
-    score: number,
-    negativeScore: number
-  ) => {
-    await updateDoc(userProgressDb, {
-      [`${quizCat}`]: { currentQuestion, score, negativeScore },
-    });
-  };
 
   // Check if the buttons can be Enabled
   useEffect(() => {
@@ -75,8 +62,18 @@ const QuizButtons = ({
       dispatch(setIsFinished(true));
     }
 
-    if (currentQuestion !== 0 && quizID?.includes('mediu-de-invatare')) {
-      updateProgress(currentQuestion, score, negativeScore);
+    if (
+      currentQuestion !== 0 &&
+      quizID?.includes('mediu-de-invatare') &&
+      user
+    ) {
+      updateUserData(
+        user.id,
+        quizCat.replace('-', ''),
+        currentQuestion,
+        score,
+        negativeScore
+      );
     }
 
     //eslint-disable-next-line
@@ -90,7 +87,7 @@ const QuizButtons = ({
 
   // Answer later function
   const answerLater = () => {
-    let tempArray: Array<IQuizData> = [...quizQuestions];
+    const tempArray: Array<IQuizData> = [...quizQuestions];
     tempArray.splice(totalCount, 0, tempArray.splice(currentQuestion, 1)[0]);
     shuffleArray(shuffle);
     deleteAnswers();
@@ -100,7 +97,7 @@ const QuizButtons = ({
   // Submit answer function
   const submitAnswer = () => {
     shuffleArray(shuffle);
-    let questionCorrect = quizQuestions[currentQuestion].correct;
+    const questionCorrect = quizQuestions[currentQuestion].correct;
     if (questionCorrect === questionScore) {
       dispatch(setScore());
     } else {
@@ -114,8 +111,8 @@ const QuizButtons = ({
     ) {
       dispatch(setHasPassed(true));
       dispatch(setIsFinished(true));
-      if (quizID?.includes('mediu-de-invatare')) {
-        updateProgress(0, 0, 0);
+      if (quizID?.includes('mediu-de-invatare') && user) {
+        updateUserData(user.id, quizCat.replace('-', ''), 0, 0, 0);
       }
     }
 
@@ -123,7 +120,6 @@ const QuizButtons = ({
 
     if (!quizID?.includes('mediu-de-invatare')) {
       dispatch(setSavedAnswers(questionScore));
-    } else {
     }
   };
 

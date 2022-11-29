@@ -1,8 +1,8 @@
 import { Title, Text, Stack, Button, Box, Group, Image } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import UserProfile from '../../assets/Account/userProfile.svg';
-import CustomContainer from '../customComponents/Container';
-import Gradient from '../customComponents/Gradient';
+import CustomContainer from '../CustomComponents/Container';
+import Gradient from '../CustomComponents/Gradient';
 const NotRegistered = () => {
   return (
     <Gradient>

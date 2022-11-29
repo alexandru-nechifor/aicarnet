@@ -15,7 +15,10 @@ const SearchInput = () => {
       }}
       value={search}
       placeholder="Caută întrebarea"
-      sx={{ width: '400px' }}
+      sx={(theme) => ({
+        width: '400px',
+        [theme.fn.smallerThan('md')]: { width: 'auto', marginTop: '1rem' },
+      })}
       icon={<IconSearch size={14} />}
     ></TextInput>
   );

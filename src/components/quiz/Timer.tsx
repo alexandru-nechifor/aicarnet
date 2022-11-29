@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import Settings from '../../constants/Quiz/QuizSettings';
-import { useQuizIDSelector } from '../../customHooks/quizHooks/useQuizIDSelector';
 import { setIsFinished, setIsTimeFinished } from '../../store/quizDataSlice';
 
 const Timer = () => {
-  const quizID = useQuizIDSelector();
+  const { quizID } = useParams<string>();
   const time = Settings[quizID as keyof typeof Settings].time;
   const [remainingMinutes, setRemainingMinutes] = useState(time);
   const [remainingSeconds, setRemainingSeconds] = useState(0);

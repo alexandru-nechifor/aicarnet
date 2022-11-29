@@ -1,7 +1,6 @@
-import { QuizTypes } from '../../constants/Quiz/chestionare';
-import { QuizMessages } from '../../constants/Quiz/chestionare';
-import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { QuizTypes, QuizMessages } from '../../constants/Quiz/chestionare';
+
+import { Link, useParams } from 'react-router-dom';
 import { FaInfoCircle } from 'react-icons/fa';
 import {
   Center,
@@ -12,10 +11,10 @@ import {
   Image,
   Paper,
 } from '@mantine/core';
-import Gradient from '../../components/customComponents/Gradient';
+import Gradient from '../../components/CustomComponents/Gradient';
 
 const QuizSelect = () => {
-  let { quizID } = useParams<string>();
+  const { quizID } = useParams<string>();
   return (
     <Gradient>
       <Container

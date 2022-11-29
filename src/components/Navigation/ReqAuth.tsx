@@ -1,4 +1,4 @@
-import { useAuth } from '../../context/AuthContext';
+import { useAuthContext } from '../../context/AuthContext';
 import NotRegistered from '../user/NotRegistered';
 
 interface IReqAuth {
@@ -6,8 +6,8 @@ interface IReqAuth {
 }
 
 const ReqAuth = ({ children }: IReqAuth) => {
-  const { currentUser } = useAuth();
-  if (currentUser) {
+  const { user } = useAuthContext();
+  if (user) {
     return children;
   } else {
     return <NotRegistered />;

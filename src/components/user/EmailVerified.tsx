@@ -1,9 +1,9 @@
-import { useAuth } from '../../context/AuthContext';
 import { IconX } from '@tabler/icons';
 import { Notification } from '@mantine/core';
+import { useAuthContext } from '../../context/AuthContext';
 const EmailVerified = () => {
-  const { currentUser } = useAuth();
-  if (currentUser && !currentUser?.emailVerified) {
+  const { user } = useAuthContext();
+  if (user && !user?.confirmed) {
     return (
       <Notification
         icon={<IconX size={18} />}

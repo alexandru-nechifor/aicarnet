@@ -5,18 +5,19 @@ import { useQuizData } from '../../customHooks/quizHooks/useQuizData';
 import { useIsFinished } from '../../customHooks/quizHooks/useQuizStatusSelectors';
 import { Center, Loader } from '@mantine/core';
 import ReqAuth from '../../components/Navigation/ReqAuth';
-import { useFbLoadingSelector } from '../../customHooks/quizHooks/useFbLoadingSelector';
 import Quiz from '../../components/quiz/Quiz';
 import Review from '../../components/quiz/Review/Review';
+import { useAuthContext } from '../../context/AuthContext';
+import { useProgressLoadingSelector } from '../../customHooks/quizHooks/useProgressLoadingSelector';
 
 const QuizTemplate = () => {
-  let { quizID } = useParams<string>();
+  const { quizID } = useParams<string>();
 
-  let quizType = Settings[quizID as keyof typeof Settings].questionData;
-
-  const isFbLoading = useFbLoadingSelector();
-  const { data, isFetching, isError } = useQuizData(quizType, quizID);
+  const quizType = Settings[quizID as keyof typeof Settings].questionData;
+  const { isUserLoading } = useAuthContext();
   const isFinished = useIsFinished();
+  const { data, isFetching, isError } = useQuizData(quizType, quizID);
+  const isProgressLoading = useProgressLoadingSelector();
 
   if (isFetching) {
     return (
@@ -29,10 +30,10 @@ const QuizTemplate = () => {
     return <>error</>;
   }
 
-  if (!isFinished && !isFbLoading) {
+  if (!isFinished && !isProgressLoading) {
     return (
       <>
-        {quizID?.includes('mediu-de-invatare') ? (
+        {quizID?.includes('mediu-de-invatare') && isUserLoading ? (
           <ReqAuth>
             <Quiz />
           </ReqAuth>

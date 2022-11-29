@@ -7,24 +7,26 @@ import {
   Image,
   Drawer,
   Stack,
+  ActionIcon,
+  useMantineColorScheme,
 } from '@mantine/core';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Logo from '../../assets/logo_white.png';
 import LogoWhite from '../../assets/logo.png';
 import { MenuItems } from '../../constants/navigation';
-import { ActionIcon, useMantineColorScheme } from '@mantine/core';
+
 import { IconSun, IconMoonStars } from '@tabler/icons';
 import {
   HEADER_HEIGHT,
   useNavStyles,
 } from '../../styles/Navigation/useNavStyles';
-import { useAuth } from '../../context/AuthContext';
+import { useAuthContext } from '../../context/AuthContext';
 
 import UserNav from './UserNav';
 
 const Navbar = () => {
-  const { currentUser } = useAuth();
+  const { user } = useAuthContext();
 
   const { classes } = useNavStyles();
   const [navOpened, setNavOpened] = useState(false);
@@ -67,7 +69,7 @@ const Navbar = () => {
           {items}
         </Group>
         <Group>
-          {!currentUser ? (
+          {!user ? (
             <ActionIcon
               variant="outline"
               color={dark ? 'white' : 'blue'}
@@ -80,7 +82,7 @@ const Navbar = () => {
             <></>
           )}
 
-          {currentUser ? (
+          {user ? (
             <UserNav />
           ) : (
             <NavLink to="/autentificare">

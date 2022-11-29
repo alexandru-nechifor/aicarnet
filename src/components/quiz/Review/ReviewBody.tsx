@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { IconCircleX } from '@tabler/icons';
 import { Stack, Grid, Group, Button, Text } from '@mantine/core';
-import QuestionHeading from '../../questionsData/QuestionHeading';
-import Choice from '../../questionsData/Choice';
-import DataImage from '../../questionsData/DataImage';
+import QuestionHeading from '../../QuestionsData/QuestionHeading';
+import Choice from '../../QuestionsData/Choice';
+import DataImage from '../../QuestionsData/DataImage';
 import { useReviewStyles } from '../../../styles/Quiz/useReviewStyles';
 import { useQuizDataSelector } from '../../../customHooks/quizHooks/useQuizDataSelector';
 import { useSavedAnswersSelector } from '../../../customHooks/quizHooks/useSavedAnswersSelector';

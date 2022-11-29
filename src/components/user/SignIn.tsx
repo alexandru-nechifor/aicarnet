@@ -11,9 +11,8 @@ import {
   Image,
   Loader,
 } from '@mantine/core';
-import CustomContainer from '../customComponents/Container';
+import CustomContainer from '../CustomComponents/Container';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
 import { useAuthStyles } from '../../styles/User/useAuthStyles';
 import { useState } from 'react';
 import WrongPassword from './Errors/WrongPassword';
@@ -23,10 +22,12 @@ import Logo from '../../assets/logo_white.png';
 import LogoWhite from '../../assets/logo.png';
 import LoginImage from '../../assets/Account/loginImage.svg';
 import GoogleBtn from './GoogleBtn';
+import { loginWithEmail } from '../../service/authService';
+import { setToken } from '../../utils/helpers';
 
 const Signin = () => {
   const { classes } = useAuthStyles();
-  const { login } = useAuth();
+
   const { colorScheme } = useMantineColorScheme();
   const dark = colorScheme === 'dark';
   const [error, setError] = useState('');
@@ -39,7 +40,7 @@ const Signin = () => {
     validate: {
       email: (value) => (/^\S+@\S+$/.test(value) ? null : 'E-mail invalid'),
       password: (value) =>
-        value.length < 10 ? 'You must be at least 18 to register' : null,
+        value.length < 4 ? 'You must be at least 18 to register' : null,
     },
   });
 
@@ -50,15 +51,19 @@ const Signin = () => {
     e.preventDefault();
 
     if (user.isValid()) {
-      try {
-        setIsLoading(true);
-        await login(email, password);
-        setIsLoading(false);
-        navigate('/');
-      } catch (error: any) {
-        setError(error.code);
-        console.log(error.code);
-      }
+      setIsLoading(true);
+
+      loginWithEmail(email, password)
+        .then((response) => {
+          setToken(response.data.jwt);
+          setIsLoading(false);
+          navigate('/cont');
+        })
+        .catch((error) => {
+          console.log(error.response.data.error.message);
+          setIsLoading(false);
+          setError(error.response.data.error.message);
+        });
     } else {
       user.validate();
     }
@@ -67,7 +72,7 @@ const Signin = () => {
   let ErrorComponent;
 
   switch (error) {
-    case 'auth/wrong-password':
+    case 'Invalid identifier or password':
       ErrorComponent = <WrongPassword />;
       break;
 
