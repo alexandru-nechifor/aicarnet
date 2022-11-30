@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuestions } from '../../customHooks/useQuestions';
 import ReactPaginate from 'react-paginate';
-import { Button, Center, Grid, Group, Loader, Stack } from '@mantine/core';
+import { Center, Grid, Loader, Stack } from '@mantine/core';
 import Choice from '../../components/QuestionsData/Choice';
 import QuestionHeading from '../../components/QuestionsData/QuestionHeading';
 import DataImage from '../../components/QuestionsData/DataImage';
@@ -10,15 +10,13 @@ import SearchInput from './SearchInput';
 import useFilteredQuestionsSelector from '../../customHooks/useFilteredQuestionsSelector';
 import CustomContainer from '../../components/CustomComponents/Container';
 import { useQuestionsStyles } from '../../styles/Quiz/useQuestionsStyles';
-import { QuizTopics } from '../../constants/Quiz/chestionare';
 import { isACorrect, isBCorrect, isCCorrect } from '../../utils/checkCorrect';
+import SelectButtons from './SelectButtons';
 
 const Questions = () => {
-  const { classes } = useQuestionsStyles();
-
   const { questionsID } = useParams<string>();
+  const { classes } = useQuestionsStyles();
   const [pageNumber, setPageNumber] = useState(0);
-
   const { isFetching, isError } = useQuestions(questionsID);
   const questionData = useFilteredQuestionsSelector();
 
@@ -56,21 +54,7 @@ const Questions = () => {
       <Stack mx="auto" justify="center" align="center" spacing={'xl'}>
         <Grid sx={{ margin: '2rem 0', width: '100%' }} justify="space-between">
           <Grid.Col sm={12} lg={6} xl={8}>
-            <Group>
-              {QuizTopics.map((item) => {
-                return (
-                  <Link to={`/intrebari-examen/${item.quizID}`} key={item.key}>
-                    <Button
-                      variant={
-                        questionsID === item.quizID ? 'filled' : 'outline'
-                      }
-                    >
-                      {item.title}
-                    </Button>
-                  </Link>
-                );
-              })}
-            </Group>
+            <SelectButtons />
           </Grid.Col>
           <Grid.Col sm={12} lg={6} xl={4}>
             <SearchInput />

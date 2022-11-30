@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
-import Settings from '../../constants/Quiz/QuizSettings';
+
 import { useAuthContext } from '../../context/AuthContext';
 import { getData } from '../../service/quizService';
 import {
@@ -12,16 +12,12 @@ import {
   setQuizData,
   setQuizID,
 } from '../../store/quizDataSlice';
-import { shuffleArray } from '../../utils/shuffleArray';
 
-export const useQuizData = (
-  quizType: string | undefined,
-  quizID: string | undefined
-) => {
+export const useQuizData = (quizID: string | undefined) => {
   const dispatch = useDispatch();
   const { user } = useAuthContext();
 
-  return useQuery([quizType], getData, {
+  return useQuery([quizID], getData, {
     // refetchOnMount: true,
     refetchOnWindowFocus: false,
 
@@ -46,10 +42,7 @@ export const useQuizData = (
           }
         }
       } else {
-        const totalCount = Settings[quizID as keyof typeof Settings].total;
-        const shuffledData = shuffleArray(data);
-        const filteredData = shuffledData?.slice(0, totalCount);
-        dispatch(setQuizData(filteredData));
+        dispatch(setQuizData(data));
       }
       dispatch(setProgressLoading(false));
     },

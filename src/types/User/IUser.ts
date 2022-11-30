@@ -7,6 +7,8 @@ export interface User {
   confirmed?: boolean;
   blocked?: boolean;
   createdAt: string;
+  //eslint-disable-next-line
   progress?: any;
+  //eslint-disable-next-line
   profilePicture?: any;
 }

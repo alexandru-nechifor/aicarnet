@@ -85,7 +85,7 @@ const Profile = () => {
               if (user?.username !== editedUsername) {
                 updateUsername(editedUsername, user?.id);
               } else {
-                console.log('acelasi username');
+                setEditUsername(false);
               }
             }}
           >

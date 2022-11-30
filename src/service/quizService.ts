@@ -2,6 +2,7 @@ import axios from 'axios';
 import { IQuizData } from '../types/Quiz/IQuizData';
 //eslint-disable-next-line
 import { QueryFunctionContext } from '@tanstack/react-query';
+import Settings from '../constants/Quiz/QuizSettings';
 
 const APIToken = import.meta.env.VITE_QUIZ_API_KEY;
 
@@ -16,18 +17,27 @@ export const getData = async ({
   queryKey,
 }: QueryFunctionContext<[string | undefined]>) => {
   const [quizID] = queryKey;
-  const { data } = await axiosInstace.get(`${quizID?.toLowerCase()}s`);
+  const isLearning = quizID?.includes('mediu-de-invatare');
+  const quizData = quizID?.replace('-mediu-de-invatare', '').toLowerCase();
+
+  const totalCount = Settings[quizID as keyof typeof Settings].total;
+  const {
+    data: { data },
+  } = isLearning
+    ? await axiosInstace.get(`${quizData}s`)
+    : await axiosInstace.get(`/${quizData}/custom?num=${totalCount}`);
+
   const questions = [] as IQuizData[];
   if (data) {
-    for (let index = 0; index < data.data.length; index++) {
+    for (let index = 0; index < data.length; index++) {
       questions.push({
-        question: data.data[index].attributes.question,
-        imgSrc: data.data[index].attributes.imgSrc,
-        choiceA: data.data[index].attributes.choiceA,
-        choiceB: data.data[index].attributes.choiceB,
-        choiceC: data.data[index].attributes.choiceC,
-        correct: data.data[index].attributes.correct,
-        id: data.data[index].id,
+        question: data[index].attributes.question,
+        imgSrc: data[index].attributes.imgSrc,
+        choiceA: data[index].attributes.choiceA,
+        choiceB: data[index].attributes.choiceB,
+        choiceC: data[index].attributes.choiceC,
+        correct: data[index].attributes.correct,
+        id: data[index].id,
       });
     }
   }

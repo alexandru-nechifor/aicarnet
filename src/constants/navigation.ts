@@ -13,7 +13,7 @@ export const MenuItems = [
 
   {
     title: 'Întrebări examen',
-    url: '/intrebari-examen/categoria-A',
+    url: '/intrebari-examen',
     id: 'intrebari-examen',
   },
 

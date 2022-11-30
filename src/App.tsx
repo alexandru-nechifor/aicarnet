@@ -20,6 +20,7 @@ import Signin from './components/user/SignIn';
 import ProtectedRoute from './components/Navigation/ProtectedRoute';
 import EmailVerified from './components/user/EmailVerified';
 import WithNavbar from './components/Navigation/WithNavbar';
+import SelectCat from './pages/Questions/SelectCat';
 
 function App() {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
@@ -77,6 +78,7 @@ function App() {
                 element={<QuizSelect />}
               />
               <Route path="/despre-noi" element={<DespreNoi />} />
+              <Route path="/intrebari-examen/" element={<SelectCat />} />
               <Route
                 path="/intrebari-examen/:questionsID"
                 element={<Questions />}

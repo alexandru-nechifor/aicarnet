@@ -1,6 +1,4 @@
 import { useParams } from 'react-router-dom';
-import Settings from '../../constants/Quiz/QuizSettings';
-
 import { useQuizData } from '../../customHooks/quizHooks/useQuizData';
 import { useIsFinished } from '../../customHooks/quizHooks/useQuizStatusSelectors';
 import { Center, Loader } from '@mantine/core';
@@ -13,10 +11,9 @@ import { useProgressLoadingSelector } from '../../customHooks/quizHooks/useProgr
 const QuizTemplate = () => {
   const { quizID } = useParams<string>();
 
-  const quizType = Settings[quizID as keyof typeof Settings].questionData;
   const { isUserLoading } = useAuthContext();
   const isFinished = useIsFinished();
-  const { data, isFetching, isError } = useQuizData(quizType, quizID);
+  const { data, isFetching, isError } = useQuizData(quizID);
   const isProgressLoading = useProgressLoadingSelector();
 
   if (isFetching) {
