@@ -20,6 +20,10 @@ export const useBenefitsStyles = createStyles((theme) => ({
       position: 'absolute',
       right: -100,
       top: -20,
+
+      [theme.fn.smallerThan('md')]: {
+        right: 0,
+      },
     },
   },
 

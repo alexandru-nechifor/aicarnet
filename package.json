@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .ts,.tsx"
   },
   "dependencies": {
+    "@mantine/carousel": "^5.8.4",
     "@mantine/dropzone": "^5.8.3",
     "compressorjs": "^1.1.1",
     "eslint-plugin-jsx-a11y": "^6.6.1",
@@ -21,9 +22,9 @@
     "vite-plugin-eslint": "^1.8.1"
   },
   "devDependencies": {
-    "@mantine/core": "^5.4.1",
+    "@mantine/core": "^5.8.4",
     "@mantine/form": "^5.4.1",
-    "@mantine/hooks": "^5.4.1",
+    "@mantine/hooks": "^5.8.4",
     "@mantine/modals": "^5.4.1",
     "@react-query-firebase/firestore": "^1.0.0-dev.7",
     "@reduxjs/toolkit": "^1.8.5",

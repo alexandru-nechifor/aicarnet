@@ -12,7 +12,7 @@ const BenefitsSection = () => {
   return (
     <section className={classes.helpSection}>
       <CustomContainer>
-        <Title order={2} className={classes.header}>
+        <Title order={2} size="h1" className={classes.header}>
           Cum te putem ajuta?
         </Title>
         <Grid mt={50} gutter="xl">

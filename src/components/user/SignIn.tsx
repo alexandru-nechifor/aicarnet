@@ -55,6 +55,7 @@ const Signin = () => {
 
       loginWithEmail(email, password)
         .then((response) => {
+          console.log(response);
           setToken(response.data.jwt);
           setIsLoading(false);
           navigate('/cont');

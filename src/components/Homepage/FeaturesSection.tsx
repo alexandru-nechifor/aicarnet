@@ -17,6 +17,7 @@ const FeaturesSection = () => {
           <Grid.Col lg={6}>
             <Title
               order={2}
+              size={'h1'}
               mb={40}
               sx={(theme) => ({ color: theme.colors.heading })}
             >
