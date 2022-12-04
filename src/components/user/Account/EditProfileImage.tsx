@@ -8,6 +8,7 @@ import {
 import { useEffect, useState } from 'react';
 import { useAuthContext } from '../../../context/AuthContext';
 import { IconUpload, IconPhoto, IconX } from '@tabler/icons';
+
 import { Dropzone } from '@mantine/dropzone';
 
 //eslint-disable-next-line

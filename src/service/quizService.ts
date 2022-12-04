@@ -3,14 +3,14 @@ import { IQuizData } from '../types/Quiz/IQuizData';
 //eslint-disable-next-line
 import { QueryFunctionContext } from '@tanstack/react-query';
 import Settings from '../constants/Quiz/QuizSettings';
-
-const APIToken = import.meta.env.VITE_QUIZ_API_KEY;
+import { getToken } from '../utils/helpers';
 
 const axiosInstace = axios.create({
   baseURL: `http://localhost:1337/api/`,
   headers: {
-    Authorization: `Bearer ${APIToken}`,
+    Authorization: `Bearer ${getToken()}`,
   },
+  withCredentials: true,
 });
 
 export const getData = async ({
@@ -51,18 +51,3 @@ export const getQuestion = async ({
   const { data } = await axiosInstace.get(`/${quizID?.toLowerCase()}s/${uuid}`);
   return data.data.attributes;
 };
-
-// export const putQuestion = async (req: IQuizData) => {
-//   const { id, ...rest } = req;
-//   const { data } = await axiosInstace.put<IQuizData>(
-//     `/${rest.cat}/${id}`,
-//     rest
-//   );
-//   return data;
-// };
-
-// export const deleteQuestion = async (req: IQuizData) => {
-//   const { id, cat } = req;
-//   const { data } = await axiosInstace.delete<IQuizData>(`/${cat}/${id}`);
-//   return data;
-// };

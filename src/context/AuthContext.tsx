@@ -7,16 +7,12 @@ interface Contextstate {
   setUser: (user: User) => void;
   logout: () => void;
   updateUserData: (
-    id: number | undefined,
     quizID: string,
     currentQuestion: number,
     score: number,
     negativeScore: number
   ) => void;
-  updateUsername: (
-    username: string | undefined,
-    id: number | undefined
-  ) => void;
+  updateUsername: (username: string | undefined) => void;
   uploadAvatar: (file: File | Blob) => void;
 }
 

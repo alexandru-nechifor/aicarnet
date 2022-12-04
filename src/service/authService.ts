@@ -13,11 +13,15 @@ export const registerWithEmail = async (
   email: string,
   password: string
 ) => {
-  const data = await axiosInstace.post('auth/local/register', {
-    username,
-    email,
-    password,
-  });
+  const data = await axiosInstace.post(
+    'auth/local/register',
+    {
+      username,
+      email,
+      password,
+    },
+    { withCredentials: true }
+  );
 
   return data.data;
 };

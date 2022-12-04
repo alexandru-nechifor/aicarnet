@@ -8,8 +8,6 @@ import axios from 'axios';
 import Compressor from 'compressorjs';
 import { IReactChildren } from '../types/IReactChildren';
 
-const USER_API_TOKEN = import.meta.env.VITE_USER_API_KEY;
-
 const AuthProvider = ({ children }: IReactChildren) => {
   const [userData, setUserData] = useState<User | null>(null);
   const [isUserLoading, setIsUserLoading] = useState(true);
@@ -21,8 +19,9 @@ const AuthProvider = ({ children }: IReactChildren) => {
 
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `${BEARER} ${USER_API_TOKEN}`,
+      Authorization: `${BEARER} ${authToken}`,
     },
+    withCredentials: true,
   });
 
   const fetchLoggedInUser = async (token: string | null) => {
@@ -69,14 +68,13 @@ const AuthProvider = ({ children }: IReactChildren) => {
   };
 
   const updateUserData = async (
-    id: number | undefined,
     quizID: string,
     currentQuestion: number,
     score: number,
     negativeScore: number
   ) => {
     // Update user progress in quiz
-    await APIAxiosInstace.put(`/users/${id}`, {
+    await APIAxiosInstace.put(`/users/${userData?.id}`, {
       [`${quizID}`]: {
         progress: {
           currentQuestion,
@@ -94,7 +92,7 @@ const AuthProvider = ({ children }: IReactChildren) => {
       APIAxiosInstace.delete(`/upload/files/${userData?.profilePicture.id}`, {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `${BEARER} ${USER_API_TOKEN}`,
+          Authorization: `${BEARER} ${authToken}`,
         },
       });
     }
@@ -113,7 +111,7 @@ const AuthProvider = ({ children }: IReactChildren) => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `${BEARER} ${USER_API_TOKEN}`,
+            Authorization: `${BEARER} ${authToken}`,
           },
           data,
         }).then((result) => {
@@ -128,11 +126,8 @@ const AuthProvider = ({ children }: IReactChildren) => {
     });
   };
 
-  const updateUsername = async (
-    username: string | undefined,
-    id: number | undefined
-  ) => {
-    await APIAxiosInstace.put(`/users/${id}`, {
+  const updateUsername = async (username: string | undefined) => {
+    await APIAxiosInstace.put(`/users/${userData?.id}`, {
       username,
     });
     refetchLoggedInUser(authToken);

@@ -68,7 +68,6 @@ const QuizButtons = ({
       user
     ) {
       updateUserData(
-        user.id,
         quizCat.replace('-', ''),
         currentQuestion,
         score,
@@ -112,7 +111,7 @@ const QuizButtons = ({
       dispatch(setHasPassed(true));
       dispatch(setIsFinished(true));
       if (quizID?.includes('mediu-de-invatare') && user) {
-        updateUserData(user.id, quizCat.replace('-', ''), 0, 0, 0);
+        updateUserData(quizCat.replace('-', ''), 0, 0, 0);
       }
     }
 

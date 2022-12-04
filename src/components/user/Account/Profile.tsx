@@ -83,7 +83,7 @@ const Profile = () => {
             color="blue.5"
             onClick={() => {
               if (user?.username !== editedUsername) {
-                updateUsername(editedUsername, user?.id);
+                updateUsername(editedUsername);
               } else {
                 setEditUsername(false);
               }
