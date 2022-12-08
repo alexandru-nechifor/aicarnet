@@ -19,6 +19,11 @@ const Testimonials = () => {
           Vezi ce părere au{' '}
           <span className={classes.gradientHeader}>utilizatorii noștri</span>
         </Title>
+        <img
+          src={handDrawnLine}
+          className={classes.handDrawnLine}
+          alt="Hand Drawn Line"
+        />
         <Carousel mx="auto" mt={'4rem'}>
           {TestimonialsData.map((item) => {
             return (
@@ -29,11 +34,6 @@ const Testimonials = () => {
                       src={item.image}
                       className={classes.testimonialImage}
                       alt={item.name}
-                    />
-                    <img
-                      src={handDrawnLine}
-                      className={classes.handDrawnLine}
-                      alt="Hand Drawn Line"
                     />
                   </Grid.Col>
 

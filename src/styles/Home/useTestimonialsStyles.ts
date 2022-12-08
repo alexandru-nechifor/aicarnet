@@ -5,6 +5,7 @@ export const useTestimonialsStyles = createStyles((theme) => ({
     backgroundColor:
       theme.colorScheme === 'dark' ? theme.colors.dark[6] : 'white',
     padding: '4rem 0 0 0',
+    position: 'relative',
   },
   gradientHeader: {
     background: theme.fn.linearGradient(
@@ -38,8 +39,13 @@ export const useTestimonialsStyles = createStyles((theme) => ({
   handDrawnLine: {
     width: 50,
     position: 'absolute',
-    top: -50,
-    left: -50,
+    top: '20%',
+    left: '0%',
+
+    [theme.fn.largerThan(500)]: { top: '18%', left: '25%' },
+    [theme.fn.largerThan('md')]: { top: '25%', left: '17%' },
+    [theme.fn.largerThan(1200)]: { top: '25%', left: '18%' },
+    [theme.fn.largerThan(1900)]: { top: '25%', left: '20%' },
   },
 
   quoteLeft: {

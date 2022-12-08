@@ -74,7 +74,7 @@ const AuthProvider = ({ children }: IReactChildren) => {
     negativeScore: number
   ) => {
     // Update user progress in quiz
-    await APIAxiosInstace.put(`/users/${userData?.id}`, {
+    await APIAxiosInstace.put(`/user/me`, {
       [`${quizID}`]: {
         progress: {
           currentQuestion,
@@ -116,7 +116,7 @@ const AuthProvider = ({ children }: IReactChildren) => {
           data,
         }).then((result) => {
           const [data] = result.data;
-          APIAxiosInstace.put(`users/${userData?.id}?populate=*`, {
+          APIAxiosInstace.put(`user/me`, {
             profilePicture: data,
           });
           // Refresh the user state
@@ -127,7 +127,7 @@ const AuthProvider = ({ children }: IReactChildren) => {
   };
 
   const updateUsername = async (username: string | undefined) => {
-    await APIAxiosInstace.put(`/users/${userData?.id}`, {
+    await APIAxiosInstace.put(`/user/me`, {
       username,
     });
     refetchLoggedInUser(authToken);

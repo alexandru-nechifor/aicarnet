@@ -46,7 +46,13 @@ const Navbar = () => {
   });
 
   return (
-    <Header height={HEADER_HEIGHT} sx={{ borderBottom: 0 }}>
+    <Header
+      height={HEADER_HEIGHT}
+      sx={(theme) => ({
+        borderBottom: 0,
+        backgroundColor: dark ? theme.colors.dark[8] : '#fff',
+      })}
+    >
       <Container className={classes.inner} fluid>
         <NavLink to="/">
           <Image
